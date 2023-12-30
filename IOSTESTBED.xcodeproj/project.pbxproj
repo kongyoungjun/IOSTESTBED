@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895244482B40DF0800E2F7A4 /* CommonHome.swift */; };
 		8952C3BB2B35E52B0028A2A8 /* IOSTESTBEDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3BA2B35E52B0028A2A8 /* IOSTESTBEDApp.swift */; };
 		8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3BC2B35E52B0028A2A8 /* ContentView.swift */; };
 		8952C3BF2B35E5300028A2A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8952C3BE2B35E5300028A2A8 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		895244482B40DF0800E2F7A4 /* CommonHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHome.swift; sourceTree = "<group>"; };
 		8952C3B72B35E52B0028A2A8 /* IOSTESTBED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSTESTBED.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8952C3BA2B35E52B0028A2A8 /* IOSTESTBEDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSTESTBEDApp.swift; sourceTree = "<group>"; };
 		8952C3BC2B35E52B0028A2A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +39,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		895244442B40DE6100E2F7A4 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		895244462B40DEA400E2F7A4 /* Work */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Work;
+			sourceTree = "<group>";
+		};
+		895244472B40DEAC00E2F7A4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				895244482B40DF0800E2F7A4 /* CommonHome.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		8952C3AE2B35E52B0028A2A8 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +80,9 @@
 		8952C3B92B35E52B0028A2A8 /* IOSTESTBED */ = {
 			isa = PBXGroup;
 			children = (
+				895244472B40DEAC00E2F7A4 /* Common */,
+				895244462B40DEA400E2F7A4 /* Work */,
+				895244442B40DE6100E2F7A4 /* Assembly */,
 				8952C3BA2B35E52B0028A2A8 /* IOSTESTBEDApp.swift */,
 				8952C3BC2B35E52B0028A2A8 /* ContentView.swift */,
 				8952C3BE2B35E5300028A2A8 /* Assets.xcassets */,
@@ -144,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
 				8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */,
