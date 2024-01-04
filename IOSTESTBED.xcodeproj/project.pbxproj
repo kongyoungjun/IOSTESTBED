@@ -14,6 +14,7 @@
 		8952C3C22B35E5300028A2A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8952C3C12B35E5300028A2A8 /* Preview Assets.xcassets */; };
 		8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3C32B35E5300028A2A8 /* Persistence.swift */; };
 		8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3C52B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld */; };
+		8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8956A6352B4632F200FC6F17 /* WorkHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8952C3C32B35E5300028A2A8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8952C3C62B35E5300028A2A8 /* IOSTESTBED.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOSTESTBED.xcdatamodel; sourceTree = "<group>"; };
 		8952C3C82B35E5300028A2A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8956A6352B4632F200FC6F17 /* WorkHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 		895244462B40DEA400E2F7A4 /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				8956A6352B4632F200FC6F17 /* WorkHome.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
+				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
 				8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */,
