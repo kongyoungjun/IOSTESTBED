@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A2D2B4818D400855ECF /* AssemblyHome.swift */; };
+		894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A302B4820E600855ECF /* WorkPOR.swift */; };
+		894C5A362B48374100855ECF /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A352B48374100855ECF /* LogIn.swift */; };
 		895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895244482B40DF0800E2F7A4 /* CommonHome.swift */; };
 		8952C3BB2B35E52B0028A2A8 /* IOSTESTBEDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3BA2B35E52B0028A2A8 /* IOSTESTBEDApp.swift */; };
 		8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3BC2B35E52B0028A2A8 /* ContentView.swift */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		894C5A2D2B4818D400855ECF /* AssemblyHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyHome.swift; sourceTree = "<group>"; };
+		894C5A302B4820E600855ECF /* WorkPOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkPOR.swift; sourceTree = "<group>"; };
+		894C5A352B48374100855ECF /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		895244482B40DF0800E2F7A4 /* CommonHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHome.swift; sourceTree = "<group>"; };
 		8952C3B72B35E52B0028A2A8 /* IOSTESTBED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSTESTBED.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8952C3BA2B35E52B0028A2A8 /* IOSTESTBEDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSTESTBEDApp.swift; sourceTree = "<group>"; };
@@ -44,6 +50,7 @@
 		895244442B40DE6100E2F7A4 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				894C5A2D2B4818D400855ECF /* AssemblyHome.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -52,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				8956A6352B4632F200FC6F17 /* WorkHome.swift */,
+				894C5A302B4820E600855ECF /* WorkPOR.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -93,6 +101,7 @@
 				8952C3C82B35E5300028A2A8 /* Info.plist */,
 				8952C3C52B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld */,
 				8952C3C02B35E5300028A2A8 /* Preview Content */,
+				894C5A352B48374100855ECF /* LogIn.swift */,
 			);
 			path = IOSTESTBED;
 			sourceTree = "<group>";
@@ -174,11 +183,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */,
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
+				894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */,
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
 				8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */,
+				894C5A362B48374100855ECF /* LogIn.swift in Sources */,
 				8952C3BB2B35E52B0028A2A8 /* IOSTESTBEDApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

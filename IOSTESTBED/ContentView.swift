@@ -25,12 +25,42 @@ struct ContentView: View {
     }
 
     var body: some View {
-        TabView(selection: $selection)
-        {
-            CommonHome().tabItem { Text("조립") }.tag(Tab.assembly)
-            Text("Tab Content 2").tabItem { Text("업무") }.tag(Tab.work)
-            Text("Tab Content 2").tabItem { Text("공통") }.tag(Tab.common)
+        VStack {
+            Text("Image View Sample")
+                            .font(.title)
+                            .frame(width: .infinity, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            //.padding()
+            Image("main") // Replace "yourImageName" with the name of your image asset
+                           .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: .infinity, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                           .padding()
+            
+//            Button(action: {
+//                       // Action to perform when the first button is tapped
+//                //self.background(Color.Red)
+//                    print("First Button tapped!")
+//
+//                   }) {
+//                       VStack {
+//                           Image("iconcar")
+//                           Text("Like123")
+//                       }
+//                       .padding()
+//                       .foregroundColor(.black)
+//                       .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//
+//            }
+            //Spacer().frame(height: 30)
+            TabView(selection: $selection)
+            {
+                AssemblyHome().tabItem { Text("조립") }.tag(Tab.assembly)
+                WorkHome().tabItem { Text("업무") }.tag(Tab.work)
+                CommonHome().tabItem { Text("공통") }.tag(Tab.common)
+            }.accentColor(.green)
         }
+        
+        
                 
         
 //        List {
