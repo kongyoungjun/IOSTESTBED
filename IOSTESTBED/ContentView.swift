@@ -26,15 +26,20 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
+            Text("Top text centred in top box")
+                            .frame(minWidth: 0,
+                                   maxWidth: .infinity,
+                                   minHeight: 0,
+                                   maxHeight: 40)
+                            .background(Color.green)
+            
             Text("Image View Sample")
-                            .font(.title)
-                            .frame(width: .infinity, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            //.padding()
-            Image("main") // Replace "yourImageName" with the name of your image asset
-                           .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: .infinity, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                           .padding()
+                .font(.body)
+                .frame(width: .infinity, height: 40)
+            Image("main")
+                .resizable()
+               // .aspectRatio(contentMode: .fit)
+                .frame(width: .infinity, height: 150)
             
 //            Button(action: {
 //                       // Action to perform when the first button is tapped
@@ -59,6 +64,14 @@ struct ContentView: View {
                 CommonHome().tabItem { Text("공통") }.tag(Tab.common)
             }.accentColor(.green)
         }
+        
+        
+        
+        
+        //ZStack
+        //{
+            
+        //}.background(Color.blue)
         
         
                 
@@ -121,6 +134,7 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+        // ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

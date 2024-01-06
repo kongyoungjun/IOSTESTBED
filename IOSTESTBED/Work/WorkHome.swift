@@ -92,10 +92,16 @@ struct WorkHome: View {
                         
                         
                         Button(action: {
+                            //isShowingPopup = true
+                            //WorkPOR(isPresented: $isShowingPopup)
                                    // Action to perform when the first button is tapped
                             //self.background(Color.Red)
-                                print("First Button tapped!")
-                                    
+                             //   print("First Button tapped!")
+                               
+                           // .fullScreenCover(
+                               
+                            //)
+                            
                                }) {
                                    VStack {
                                        Image("iconcar")
@@ -124,7 +130,10 @@ struct WorkHome: View {
                                .background(Color.blue)
                                .cornerRadius(8)
                            }
-                        .sheet(isPresented: $isShowingPopup) {
+                        //.sheet(isPresented: $isShowingPopup) {
+                        //    WorkPOR(isPresented: $isShowingPopup)
+                        //}
+                        .fullScreenCover(isPresented: $isShowingPopup) {
                             // Popup view displayed as a sheet
                             //WorkPOR(isPresented: $isShowingPopup)
                             WorkPOR(isPresented: $isShowingPopup)

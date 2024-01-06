@@ -2,8 +2,24 @@
 import SwiftUI
 
 struct AssemblyHome: View {
+   // @State private var isActiveShip: Bool = false
+    @State private var showNewScreen: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+                    Button(action: {
+                        showNewScreen.toggle()
+                    }) {
+                        Text("Present Full Screen")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                    }
+                    .fullScreenCover(isPresented: $showNewScreen, content: {
+                        AssemblySearchShip()
+                    })
+                }
     }
 }
 

@@ -34,8 +34,10 @@ struct WorkPOR: View {
     
 }
 
-//struct WorkPOR_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WorkPOR(isPresented: Binding<Bool>)
-//    }
-//}
+struct WorkPOR_Previews: PreviewProvider {
+    static var previews: some View {
+       // WorkPOR(isPresented: Binding<Bool>)
+        WorkPOR(isPresented: Binding.constant(false))
+        
+    }
+}

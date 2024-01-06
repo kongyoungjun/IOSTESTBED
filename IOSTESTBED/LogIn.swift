@@ -24,6 +24,16 @@ struct LogIn: View {
                     SecureField("Password", text: $password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
+            
+                    NavigationLink(destination: SessionView(userId: $username, roomNo: $password)) {
+                                       Text("입장")
+                                   }
+                                   .frame(width: 200, height: 20)
+                                    //.buttonStyle(Color.red)
+                                   .foregroundColor(Color.blue)
+                                   .padding()
+                                   .background(Color("#243062"))
+                                   .cornerRadius(10)
 
                     Button(action: {
                         //ContentView()
@@ -43,8 +53,11 @@ struct LogIn: View {
                         Text("Logged in as \(username)")
                             .padding()
                     }
-                }
-                .padding()
+                    
+            
+            
+        }
+        .padding()
     }
 }
 
