@@ -10,6 +10,8 @@
 		894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A2D2B4818D400855ECF /* AssemblyHome.swift */; };
 		894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A302B4820E600855ECF /* WorkPOR.swift */; };
 		894C5A362B48374100855ECF /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A352B48374100855ECF /* LogIn.swift */; };
+		894E14592B4C154500E1AB47 /* Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E14582B4C154500E1AB47 /* Intro.swift */; };
+		894E145D2B4C29D400E1AB47 /* WorkDailywork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */; };
 		894F54182B49A22600C1823A /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F54172B49A22600C1823A /* Init.swift */; };
 		894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541A2B49A42700C1823A /* CommonWorker.swift */; };
 		894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541D2B49A68700C1823A /* AssemblySearchShip.swift */; };
@@ -29,6 +31,8 @@
 		894C5A2D2B4818D400855ECF /* AssemblyHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyHome.swift; sourceTree = "<group>"; };
 		894C5A302B4820E600855ECF /* WorkPOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkPOR.swift; sourceTree = "<group>"; };
 		894C5A352B48374100855ECF /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		894E14582B4C154500E1AB47 /* Intro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intro.swift; sourceTree = "<group>"; };
+		894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDailywork.swift; sourceTree = "<group>"; };
 		894F54172B49A22600C1823A /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		894F541A2B49A42700C1823A /* CommonWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWorker.swift; sourceTree = "<group>"; };
 		894F541D2B49A68700C1823A /* AssemblySearchShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchShip.swift; sourceTree = "<group>"; };
@@ -37,7 +41,7 @@
 		895244482B40DF0800E2F7A4 /* CommonHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHome.swift; sourceTree = "<group>"; };
 		8952C3B72B35E52B0028A2A8 /* IOSTESTBED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSTESTBED.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8952C3BA2B35E52B0028A2A8 /* IOSTESTBEDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSTESTBEDApp.swift; sourceTree = "<group>"; };
-		8952C3BC2B35E52B0028A2A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8952C3BC2B35E52B0028A2A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		8952C3BE2B35E5300028A2A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8952C3C12B35E5300028A2A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8952C3C32B35E5300028A2A8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			children = (
 				8956A6352B4632F200FC6F17 /* WorkHome.swift */,
 				894C5A302B4820E600855ECF /* WorkPOR.swift */,
+				894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 				894C5A352B48374100855ECF /* LogIn.swift */,
 				894F54172B49A22600C1823A /* Init.swift */,
 				894F54232B49B0BA00C1823A /* SessionView.swift */,
+				894E14582B4C154500E1AB47 /* Intro.swift */,
 			);
 			path = IOSTESTBED;
 			sourceTree = "<group>";
@@ -203,7 +209,9 @@
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */,
 				894F54182B49A22600C1823A /* Init.swift in Sources */,
+				894E14592B4C154500E1AB47 /* Intro.swift in Sources */,
 				894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */,
+				894E145D2B4C29D400E1AB47 /* WorkDailywork.swift in Sources */,
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
 				894F54242B49B0BA00C1823A /* SessionView.swift in Sources */,
 				894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */,

@@ -9,7 +9,13 @@ import SwiftUI
 
 struct Init: View {
     var body: some View {
+        
         NavigationView {
+            Image("intro") // Set your image name here
+                   .resizable()
+                   .scaledToFill()
+                   .edgesIgnoringSafeArea(.all)
+                   .overlay(
                  VStack {
                      NavigationLink(destination: LogIn()) {
                          Text("Go to Second View")
@@ -19,6 +25,7 @@ struct Init: View {
                              .cornerRadius(10)
                      }
                  }
+                   )
                 // .navigationBarTitle("First View")
              }
     }

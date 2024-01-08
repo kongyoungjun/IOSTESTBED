@@ -13,7 +13,12 @@ struct WorkHome: View {
     
    //     let colorbutton : UIColor? = UIColor(named:"ColorButton")
     
-    @State private var isButtonHidden = true
+    @State private var isButton1Hidden = true
+    @State private var isButton2Hidden = true
+    @State private var isButton3Hidden = true
+    @State private var isButton4Hidden = true
+    @State private var isButton5Hidden = true
+    @State private var isButton6Hidden = true
     
    // @State private var showingProfile = false
     
@@ -23,61 +28,42 @@ struct WorkHome: View {
     let colorround = Color(red: 200/255, green: 200/255, blue: 200/255)
             
     var body: some View {
-           VStack {
+        VStack {
                    HStack {
-                    if isButtonHidden {
+                        if isButton1Hidden {
+                            Button(action: {
+                               // self.present(WorkPOR(), animated: true)
+                                   }) {
+                                       VStack {
+                                           Image("iconship")
+                                        Text("호선정보조회").font(.system(size:12))
+                                       }
+                                       .frame(width: 70, height: 60)
+                                       .padding()
+                                       .foregroundColor(.black)
+                                       .background(
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .stroke(colorround, lineWidth: 2)
+                                                .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                                        )
+                            }
+                        }
+                        else {
+                            Button(action: {}) {}
+                                .frame(width: 70, height: 60)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color.white)
+                        }
+                    if isButton2Hidden {
                         Button(action: {
                            // self.present(WorkPOR(), animated: true)
                                }) {
                                    VStack {
-                                       Image("iconcar")
-                                       Text("Like")
+                                       Image("iconship")
+                                       Text("호선정보조회").font(.system(size:12))
                                    }
-                                   .padding()
-                                   .foregroundColor(.white)
-                                   .background(Color.gray)
-                                   .cornerRadius(8)
-                                  // .frame(width:300)
-                                   
-                        }
-                    }
-                    else {
-                        Button(action: {}) {}
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color.white)
-                    }
-                    
-                    Button(action: {
-                               // Action to perform when the first button is tapped
-                              //  showingProfile.toggle()
-                           }) {
-                               VStack {
-                                   Image("iconcar")
-                                   Text("Like")
-                               }
-                               .padding()
-                               .foregroundColor(Color.red)
-                               .background(Color.gray)
-                               .cornerRadius(8)
-                               
-                           }
-                           // .sheet(isPresented: $showingProfile) {
-                           //     WorkPOR()
-                           // }
-                       
-                   }
-                    HStack {
-                        Button(action: {
-                                   // Action to perform when the first button is tapped
-                            //self.background(Color.Red)
-                                print("First Button tapped!")
-                                    
-                               }) {
-                                   VStack {
-                                       Image("iconcar")
-                                       Text("Like123")
-                                   }
+                                   .frame(width: 70, height: 60)
                                    .padding()
                                    .foregroundColor(.black)
                                    .background(
@@ -85,22 +71,124 @@ struct WorkHome: View {
                                             .stroke(colorround, lineWidth: 2)
                                             .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                     )
-                                    
                         }
                     }
-                    HStack {
-                        
-                        
+                    else {
+                        Button(action: {}) {}
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.white)
+                    }
+                    
+                    if isButton3Hidden {
                         Button(action: {
-                            //isShowingPopup = true
-                            //WorkPOR(isPresented: $isShowingPopup)
-                                   // Action to perform when the first button is tapped
-                            //self.background(Color.Red)
-                             //   print("First Button tapped!")
-                               
-                           // .fullScreenCover(
-                               
-                            //)
+                           // self.present(WorkPOR(), animated: true)
+                               }) {
+                                   VStack {
+                                       Image("iconship")
+                                       Text("호선정보조회").font(.system(size:12))
+                                   }
+                                   .frame(width: 70, height: 60)
+                                   .padding()
+                                   .foregroundColor(.black)
+                                   .background(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(colorround, lineWidth: 2)
+                                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                                    )
+                        }
+                    }
+                    else {
+                        Button(action: {}) {}
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.white)
+                    }
+                    
+                   }
+            HStack {
+                 if isButton4Hidden {
+                     Button(action: {
+                        // self.present(WorkPOR(), animated: true)
+                            }) {
+                                VStack {
+                                    Image("iconship")
+                                 Text("호선정보조회").font(.system(size:12))
+                                }
+                                .frame(width: 70, height: 60)
+                                .padding()
+                                .foregroundColor(.black)
+                                .background(
+                                     RoundedRectangle(cornerRadius: 8)
+                                         .stroke(colorround, lineWidth: 2)
+                                         .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                                 )
+                     }
+                 }
+                 else {
+                     Button(action: {}) {}
+                         .frame(width: 70, height: 60)
+                         .padding()
+                         .foregroundColor(.white)
+                         .background(Color.white)
+                 }
+             if isButton5Hidden {
+                 Button(action: {
+                    // self.present(WorkPOR(), animated: true)
+                        }) {
+                            VStack {
+                                Image("iconship")
+                                Text("호선정보조회").font(.system(size:12))
+                            }
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.black)
+                            .background(
+                                 RoundedRectangle(cornerRadius: 8)
+                                     .stroke(colorround, lineWidth: 2)
+                                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                             )
+                 }
+             }
+             else {
+                 Button(action: {}) {}
+                     .frame(width: 70, height: 60)
+                     .padding()
+                     .foregroundColor(.white)
+                     .background(Color.white)
+             }
+             
+             if isButton6Hidden {
+                 Button(action: {
+                    // self.present(WorkPOR(), animated: true)
+                        }) {
+                            VStack {
+                                Image("iconship")
+                                Text("호선정보조회").font(.system(size:12))
+                            }
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.black)
+                            .background(
+                                 RoundedRectangle(cornerRadius: 8)
+                                     .stroke(colorround, lineWidth: 2)
+                                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                             )
+                 }
+             }
+             else {
+                 Button(action: {}) {}
+                     .frame(width: 70, height: 60)
+                     .padding()
+                     .foregroundColor(.white)
+                     .background(Color.white)
+             }
+             
+            }
+                    HStack {
+                        Button(action: {
                             
                                }) {
                                    VStack {
@@ -140,9 +228,10 @@ struct WorkHome: View {
                         }
                     
                 }
-             }
-           .padding()
-       }}
+        }//.padding(.all, 10)
+    }
+    
+}
 
 struct WorkHome_Previews: PreviewProvider {
     static var previews: some View {

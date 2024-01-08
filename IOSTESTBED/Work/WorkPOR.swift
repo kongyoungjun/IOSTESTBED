@@ -1,12 +1,27 @@
-//
-//  WorkPOR.swift
-//  IOSTESTBED
-//
-//  Created by KX60 on 2024/01/05.
-//
 
 import SwiftUI
 
+
+
+extension View {
+    func statusBarStyle(_ style: UIStatusBarStyle) -> some View {
+        self.modifier(StatusBarStyleModifier(style: style))
+    }
+}
+
+struct StatusBarStyleModifier: ViewModifier {
+    var style: UIStatusBarStyle
+
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                let viewController = UIViewController()
+                viewController.overrideUserInterfaceStyle = .light
+                viewController.setNeedsStatusBarAppearanceUpdate()
+                //viewController.preferredStatusBarStyle = style
+            }
+    }
+}
 
 struct WorkPOR: View {
     @Binding var isPresented: Bool
@@ -15,9 +30,10 @@ struct WorkPOR: View {
     var body: some View {
         VStack {
             Text("This is a Popup View")
+                .statusBarStyle(.darkContent)
                 .font(.title)
                 .padding()
-
+Spacer()
             Button(action: {
                 // Action to dismiss the popup view
                 isPresented = false
