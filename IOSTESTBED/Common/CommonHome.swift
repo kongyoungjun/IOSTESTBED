@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CommonHome: View {
     @State private var isActive: Bool = false
+    @State private var isShowingPop: Bool = false
+    @State private var isShowingPopup: Bool = false
     var body: some View {
-        //Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        
         VStack()
         {
-            HStack(spacing:20) {
+            HStack{
                 NavigationView {
                            VStack {
                                Button(action: {
@@ -26,53 +26,79 @@ struct CommonHome: View {
                                        .background(Color.blue)
                                        .cornerRadius(10)
                                }
-                               .padding()
-
-                               NavigationLink(
-                                   destination: CommonWorker(),
-                                   isActive: $isActive,
-                                   label: {
-                                       EmptyView()
-                                   }
-                               )
-                               .hidden()
+                            NavigationLink(
+                                destination: CommonWorker(),
+                                isActive: $isActive,
+                                label: {
+                                    EmptyView()
+                                }
+                            )
+                            .hidden()
+                               
                            }
                            .navigationBarTitle("First View")
                        }
                 
-                    Button(action: {
-                           // Action to perform when the first button is tapped
-                           print("First Button tapped!")
-                       }) {
-                           VStack {
-                               Image("iconcar") // SF Symbol as button image
-                               Text("Like")
-                           }
-                           .padding()
-                           .foregroundColor(.white)
-                           .background(Color.blue)
-                           .cornerRadius(8)
-                       }
+//                    Button(action: {
+//                           // Action to perform when the first button is tapped
+//                           print("First Button tapped!")
+//                       }) {
+//                           VStack {
+//                               Image("iconcar") // SF Symbol as button image
+//                               Text("Like")
+//                           }
+//                           .padding()
+//                           .foregroundColor(.white)
+//                           .background(Color.blue)
+//                           .cornerRadius(8)
+//                       }.fullScreenCover(isPresented: $isShowingPop) {
+//                        CommonPower(isPresented: $isShowingPop)
+//                     }
                 
-                    Button(action: {
-                               // Action to perform when the first button is tapped
-                        //NavigationLink(destination: CommonWorker()) {
-                            
-                        
-                           }) {
-                               VStack {
-                                   Image("iconcar")
-                                   Text("Like")
-                               }
-                               .padding()
-                               .foregroundColor(.white)
-                               .background(Color.gray)
-                               .cornerRadius(8)
+                Button(action: {isShowingPopup = true})
+                {
+                           VStack {
+                               Image("iconship")
+                               Text("호선정보조회").font(.system(size:12))
                            }
-                    
-                    .padding() // Add padding around the button
+                           .frame(width: 70, height: 60)
+                           .padding()
+                           .foregroundColor(.black)
+                           .background(Color.blue)
+                           
+                }.fullScreenCover(isPresented: $isShowingPopup) {
+                    CommonPower(isPresented: $isShowingPopup)
+                }
+                
+                Button(action: {isActive = true})
+                {
+                           VStack {
+                               Image("iconship")
+                               Text("호선정보조회").font(.system(size:12))
+                           }
+                           .frame(width: 70, height: 60)
+                           .padding()
+                           .foregroundColor(.black)
+                           .background(Color.blue)
+                           
+                }
+                
+               // .fullScreenCover(isPresented: $isShowingPopup) {
+                //    CommonPower(isPresented: $isShowingPopup)
+                //}
             }
             
+            
+//            HStack{
+//
+//                           VStack {
+//                               NavigationLink("Go to Details", destination: DetailView())
+//                                   .padding()
+//                           }
+//                           .navigationTitle("Main View")
+//                       }
+//            }
+
         }
     }
 }

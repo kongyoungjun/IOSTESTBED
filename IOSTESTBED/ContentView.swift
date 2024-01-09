@@ -65,10 +65,9 @@ struct ContentView: View {
                             Text("업무")
                             
                         }.tag(Tab.work)
-                        CommonHome().tabItem {
+                        CommomHomeTest().tabItem {
                             Image("common")
                             Text("공통")
-                            
                         }.tag(Tab.common)
                     }.accentColor(.green)
                     //.frame(height: 200) // Set the height of the TabView

@@ -19,6 +19,9 @@ struct WorkHome: View {
     @State private var isButton4Hidden = true
     @State private var isButton5Hidden = true
     @State private var isButton6Hidden = true
+    @State private var isButton7Hidden = true
+    @State private var isButton8Hidden = true
+    @State private var isButton9Hidden = true
     
    // @State private var showingProfile = false
     
@@ -60,8 +63,8 @@ struct WorkHome: View {
                            // self.present(WorkPOR(), animated: true)
                                }) {
                                    VStack {
-                                       Image("iconship")
-                                       Text("호선정보조회").font(.system(size:12))
+                                       Image("iconbigengine")
+                                       Text("대형실적관리").font(.system(size:12))
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -87,7 +90,7 @@ struct WorkHome: View {
                                }) {
                                    VStack {
                                        Image("iconship")
-                                       Text("호선정보조회").font(.system(size:12))
+                                       Text("힘센실적관리").font(.system(size:12))
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -139,7 +142,7 @@ struct WorkHome: View {
                     // self.present(WorkPOR(), animated: true)
                         }) {
                             VStack {
-                                Image("iconship")
+                                Image("iconbigengine")
                                 Text("호선정보조회").font(.system(size:12))
                             }
                             .frame(width: 70, height: 60)
@@ -187,47 +190,129 @@ struct WorkHome: View {
              }
              
             }
-                    HStack {
-                        Button(action: {
+            HStack {
+                 if isButton4Hidden {
+                     Button(action: {
+                        // self.present(WorkPOR(), animated: true)
+                            }) {
+                                VStack {
+                                    Image("iconship")
+                                 Text("호선정보조회").font(.system(size:12))
+                                }
+                                .frame(width: 70, height: 60)
+                                .padding()
+                                .foregroundColor(.black)
+                                .background(
+                                     RoundedRectangle(cornerRadius: 8)
+                                         .stroke(colorround, lineWidth: 2)
+                                         .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                                 )
+                     }
+                 }
+                 else {
+                     Button(action: {}) {}
+                         .frame(width: 70, height: 60)
+                         .padding()
+                         .foregroundColor(.white)
+                         .background(Color.white)
+                 }
+             if isButton5Hidden {
+                 Button(action: {
+                    // self.present(WorkPOR(), animated: true)
+                        }) {
+                            VStack {
+                                Image("iconbigengine")
+                                Text("호선정보조회").font(.system(size:12))
+                            }
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.black)
+                            .background(
+                                 RoundedRectangle(cornerRadius: 8)
+                                     .stroke(colorround, lineWidth: 2)
+                                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                             )
+                 }
+             }
+             else {
+                 Button(action: {}) {}
+                     .frame(width: 70, height: 60)
+                     .padding()
+                     .foregroundColor(.white)
+                     .background(Color.white)
+             }
+             
+             if isButton6Hidden {
+                 Button(action: {isShowingPopup = true})
+                 {
+                            VStack {
+                                Image("iconship")
+                                Text("호선정보조회").font(.system(size:12))
+                            }
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.black)
+                            .background(
+                                 RoundedRectangle(cornerRadius: 8)
+                                     .stroke(colorround, lineWidth: 2)
+                                     .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                             )
                             
-                               }) {
-                                   VStack {
-                                       Image("iconcar")
-                                       Text("Like")
-                                   }
-                                   .padding()
-                                   .foregroundColor(.white)
-                                   .background(
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .stroke(Color.blue, lineWidth: 2)
-                                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(UIColor.blue)))
-                                    )
-                               }
-                        
-                        Button(action: {
-                               // Action to perform when the first button is tapped
-                               //print("First Button tapped!")
-                            isShowingPopup = true
-                           }) {
-                               VStack {
-                                   Image("iconcar") // SF Symbol as button image
-                                   Text("Like")
-                               }
-                               .padding()
-                               .foregroundColor(.white)
-                               .background(Color.blue)
-                               .cornerRadius(8)
-                           }
-                        //.sheet(isPresented: $isShowingPopup) {
-                        //    WorkPOR(isPresented: $isShowingPopup)
-                        //}
-                        .fullScreenCover(isPresented: $isShowingPopup) {
-                            // Popup view displayed as a sheet
-                            //WorkPOR(isPresented: $isShowingPopup)
-                            WorkPOR(isPresented: $isShowingPopup)
-                        }
-                    
-                }
+                 }.fullScreenCover(isPresented: $isShowingPopup) {
+                    WorkPOR(isPresented: $isShowingPopup)
+                 }
+             }
+             else {
+                 Button(action: {}) {}
+                     .frame(width: 70, height: 60)
+                     .padding()
+                     .foregroundColor(.white)
+                     .background(Color.white)
+             }
+             
+            }
+            
+//                    HStack {
+//                        Button(action: {
+//
+//                               }) {
+//                                   VStack {
+//                                       Image("iconcar")
+//                                       Text("Like")
+//                                   }
+//                                   .padding()
+//                                   .foregroundColor(.white)
+//                                   .background(
+//                                        RoundedRectangle(cornerRadius: 8)
+//                                            .stroke(Color.blue, lineWidth: 2)
+//                                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(Color(UIColor.blue)))
+//                                    )
+//                               }
+//
+//                        Button(action: {
+//                               // Action to perform when the first button is tapped
+//                               //print("First Button tapped!")
+//                            isShowingPopup = true
+//                           }) {
+//                               VStack {
+//                                   Image("iconcar") // SF Symbol as button image
+//                                   Text("Like")
+//                               }
+//                               .padding()
+//                               .foregroundColor(.white)
+//                               .background(Color.blue)
+//                               .cornerRadius(8)
+//                           }
+//                        //.sheet(isPresented: $isShowingPopup) {
+//                        //    WorkPOR(isPresented: $isShowingPopup)
+//                        //}
+//                        .fullScreenCover(isPresented: $isShowingPopup) {
+//                            // Popup view displayed as a sheet
+//                            //WorkPOR(isPresented: $isShowingPopup)
+//                            WorkPOR(isPresented: $isShowingPopup)
+//                        }
+//
+//                }
         }//.padding(.all, 10)
     }
     

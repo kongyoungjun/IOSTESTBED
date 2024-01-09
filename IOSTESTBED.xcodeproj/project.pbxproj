@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8947682C2B4D7284008DA3FE /* CommonPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947682B2B4D7284008DA3FE /* CommonPower.swift */; };
+		8947682F2B4D7AEA008DA3FE /* CommomHomeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947682E2B4D7AEA008DA3FE /* CommomHomeTest.swift */; };
+		894768322B4D8047008DA3FE /* CommomWorkerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894768312B4D8047008DA3FE /* CommomWorkerList.swift */; };
+		8947683A2B4D8221008DA3FE /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894768392B4D8221008DA3FE /* ModelData.swift */; };
+		8947683E2B4D833F008DA3FE /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8947683D2B4D833F008DA3FE /* data.json */; };
+		894768422B4D864F008DA3FE /* WorkerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894768412B4D864F008DA3FE /* WorkerList.swift */; };
+		894768452B4D8AB9008DA3FE /* SampleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894768442B4D8AB9008DA3FE /* SampleItem.swift */; };
+		8947684D2B4D9917008DA3FE /* WorkerListPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */; };
 		894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A2D2B4818D400855ECF /* AssemblyHome.swift */; };
 		894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A302B4820E600855ECF /* WorkPOR.swift */; };
 		894C5A362B48374100855ECF /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A352B48374100855ECF /* LogIn.swift */; };
@@ -28,6 +36,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8947682B2B4D7284008DA3FE /* CommonPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPower.swift; sourceTree = "<group>"; };
+		8947682E2B4D7AEA008DA3FE /* CommomHomeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommomHomeTest.swift; sourceTree = "<group>"; };
+		894768312B4D8047008DA3FE /* CommomWorkerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommomWorkerList.swift; sourceTree = "<group>"; };
+		894768392B4D8221008DA3FE /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		8947683D2B4D833F008DA3FE /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		894768412B4D864F008DA3FE /* WorkerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerList.swift; sourceTree = "<group>"; };
+		894768442B4D8AB9008DA3FE /* SampleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleItem.swift; sourceTree = "<group>"; };
+		8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerListPopup.swift; sourceTree = "<group>"; };
 		894C5A2D2B4818D400855ECF /* AssemblyHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyHome.swift; sourceTree = "<group>"; };
 		894C5A302B4820E600855ECF /* WorkPOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkPOR.swift; sourceTree = "<group>"; };
 		894C5A352B48374100855ECF /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
@@ -61,6 +77,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		894768342B4D8127008DA3FE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				894768392B4D8221008DA3FE /* ModelData.swift */,
+				894768442B4D8AB9008DA3FE /* SampleItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8947683C2B4D8308008DA3FE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				8947683D2B4D833F008DA3FE /* data.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		895244442B40DE6100E2F7A4 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +119,11 @@
 			children = (
 				895244482B40DF0800E2F7A4 /* CommonHome.swift */,
 				894F541A2B49A42700C1823A /* CommonWorker.swift */,
+				8947682B2B4D7284008DA3FE /* CommonPower.swift */,
+				8947682E2B4D7AEA008DA3FE /* CommomHomeTest.swift */,
+				894768312B4D8047008DA3FE /* CommomWorkerList.swift */,
+				894768412B4D864F008DA3FE /* WorkerList.swift */,
+				8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -109,6 +147,8 @@
 		8952C3B92B35E52B0028A2A8 /* IOSTESTBED */ = {
 			isa = PBXGroup;
 			children = (
+				8947683C2B4D8308008DA3FE /* Resource */,
+				894768342B4D8127008DA3FE /* Model */,
 				895244472B40DEAC00E2F7A4 /* Common */,
 				895244462B40DEA400E2F7A4 /* Work */,
 				895244442B40DE6100E2F7A4 /* Assembly */,
@@ -193,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8952C3C22B35E5300028A2A8 /* Preview Assets.xcassets in Resources */,
+				8947683E2B4D833F008DA3FE /* data.json in Resources */,
 				8952C3BF2B35E5300028A2A8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,19 +248,26 @@
 				894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */,
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
+				894768422B4D864F008DA3FE /* WorkerList.swift in Sources */,
 				894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */,
 				894F54182B49A22600C1823A /* Init.swift in Sources */,
+				894768452B4D8AB9008DA3FE /* SampleItem.swift in Sources */,
 				894E14592B4C154500E1AB47 /* Intro.swift in Sources */,
 				894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */,
+				8947684D2B4D9917008DA3FE /* WorkerListPopup.swift in Sources */,
 				894E145D2B4C29D400E1AB47 /* WorkDailywork.swift in Sources */,
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
 				894F54242B49B0BA00C1823A /* SessionView.swift in Sources */,
 				894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */,
+				894768322B4D8047008DA3FE /* CommomWorkerList.swift in Sources */,
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
+				8947682F2B4D7AEA008DA3FE /* CommomHomeTest.swift in Sources */,
 				8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */,
 				894C5A362B48374100855ECF /* LogIn.swift in Sources */,
+				8947682C2B4D7284008DA3FE /* CommonPower.swift in Sources */,
 				8952C3BB2B35E52B0028A2A8 /* IOSTESTBEDApp.swift in Sources */,
 				894F54212B49A86F00C1823A /* AssemblyProjNoA.swift in Sources */,
+				8947683A2B4D8221008DA3FE /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
