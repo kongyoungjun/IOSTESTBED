@@ -26,6 +26,7 @@ struct WorkHome: View {
    // @State private var showingProfile = false
     
     @State private var isShowingPopup = false
+    @State private var isShowingPopup1: Bool = false
     
     let colorbutton = Color(red: 230/255, green: 230/255, blue: 230/255)
     let colorround = Color(red: 200/255, green: 200/255, blue: 200/255)
@@ -191,7 +192,7 @@ struct WorkHome: View {
              
             }
             HStack {
-                 if isButton4Hidden {
+                 if isButton7Hidden {
                      Button(action: {
                         // self.present(WorkPOR(), animated: true)
                             }) {
@@ -216,10 +217,8 @@ struct WorkHome: View {
                          .foregroundColor(.white)
                          .background(Color.white)
                  }
-             if isButton5Hidden {
-                 Button(action: {
-                    // self.present(WorkPOR(), animated: true)
-                        }) {
+             if isButton8Hidden {
+                Button(action: {isShowingPopup1 = true}){
                             VStack {
                                 Image("iconbigengine")
                                 Text("호선정보조회").font(.system(size:12))
@@ -232,6 +231,8 @@ struct WorkHome: View {
                                      .stroke(colorround, lineWidth: 2)
                                      .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                              )
+                 }.fullScreenCover(isPresented: $isShowingPopup1) {
+                    WorkerList(isPresented: $isShowingPopup1)
                  }
              }
              else {
@@ -242,7 +243,7 @@ struct WorkHome: View {
                      .background(Color.white)
              }
              
-             if isButton6Hidden {
+             if isButton9Hidden {
                  Button(action: {isShowingPopup = true})
                  {
                             VStack {

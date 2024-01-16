@@ -33,7 +33,7 @@ struct WorkPOR: View {
                 .statusBarStyle(.darkContent)
                 .font(.title)
                 .padding()
-Spacer()
+                    Spacer()
             Button(action: {
                 // Action to dismiss the popup view
                 isPresented = false

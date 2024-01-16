@@ -55,6 +55,21 @@ struct CommonHome: View {
 //                        CommonPower(isPresented: $isShowingPop)
 //                     }
                 
+                Button(action: {isShowingPop = true})
+                {
+                           VStack {
+                               Image("iconship")
+                               Text("호선정보조회").font(.system(size:12))
+                           }
+                           .frame(width: 70, height: 60)
+                           .padding()
+                           .foregroundColor(.black)
+                           .background(Color.blue)
+                           
+                }.fullScreenCover(isPresented: $isShowingPop) {
+                    CommonPower(isPresented: $isShowingPop)
+                }
+                
                 Button(action: {isShowingPopup = true})
                 {
                            VStack {
@@ -66,26 +81,10 @@ struct CommonHome: View {
                            .foregroundColor(.black)
                            .background(Color.blue)
                            
-                }.fullScreenCover(isPresented: $isShowingPopup) {
+                }
+                .fullScreenCover(isPresented: $isShowingPopup) {
                     CommonPower(isPresented: $isShowingPopup)
                 }
-                
-                Button(action: {isActive = true})
-                {
-                           VStack {
-                               Image("iconship")
-                               Text("호선정보조회").font(.system(size:12))
-                           }
-                           .frame(width: 70, height: 60)
-                           .padding()
-                           .foregroundColor(.black)
-                           .background(Color.blue)
-                           
-                }
-                
-               // .fullScreenCover(isPresented: $isShowingPopup) {
-                //    CommonPower(isPresented: $isShowingPopup)
-                //}
             }
             
             
