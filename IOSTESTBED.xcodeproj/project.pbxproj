@@ -43,6 +43,8 @@
 		8960AF192B56BB6E005047AF /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8960AF102B56BB6E005047AF /* Pretendard-ExtraLight.otf */; };
 		8960AF1A2B56BB6E005047AF /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8960AF112B56BB6E005047AF /* Pretendard-Light.otf */; };
 		8960AF1B2B56BB6E005047AF /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8960AF122B56BB6E005047AF /* Pretendard-SemiBold.otf */; };
+		8960AF232B580065005047AF /* ModelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF222B580065005047AF /* ModelWorker.swift */; };
+		8960AF262B58119F005047AF /* CommHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF252B58119F005047AF /* CommHome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,8 @@
 		8960AF102B56BB6E005047AF /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
 		8960AF112B56BB6E005047AF /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
 		8960AF122B56BB6E005047AF /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		8960AF222B580065005047AF /* ModelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWorker.swift; sourceTree = "<group>"; };
+		8960AF252B58119F005047AF /* CommHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommHome.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			children = (
 				894768392B4D8221008DA3FE /* ModelData.swift */,
 				894768442B4D8AB9008DA3FE /* SampleItem.swift */,
+				8960AF222B580065005047AF /* ModelWorker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 				8947682B2B4D7284008DA3FE /* CommonPower.swift */,
 				8947682E2B4D7AEA008DA3FE /* CommomHomeTest.swift */,
 				894768312B4D8047008DA3FE /* CommomWorkerList.swift */,
+				8960AF252B58119F005047AF /* CommHome.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				894768422B4D864F008DA3FE /* WorkerList.swift in Sources */,
+				8960AF262B58119F005047AF /* CommHome.swift in Sources */,
 				894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */,
 				894F54182B49A22600C1823A /* Init.swift in Sources */,
 				894768452B4D8AB9008DA3FE /* SampleItem.swift in Sources */,
@@ -314,6 +321,7 @@
 				894C5A362B48374100855ECF /* LogIn.swift in Sources */,
 				8947682C2B4D7284008DA3FE /* CommonPower.swift in Sources */,
 				8952C3BB2B35E52B0028A2A8 /* IOSTESTBEDApp.swift in Sources */,
+				8960AF232B580065005047AF /* ModelWorker.swift in Sources */,
 				894F54212B49A86F00C1823A /* AssemblyProjNoA.swift in Sources */,
 				8947683A2B4D8221008DA3FE /* ModelData.swift in Sources */,
 			);

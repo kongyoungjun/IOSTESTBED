@@ -37,7 +37,7 @@ struct ContentView: View {
         //NavigationView {
             ZStack{
                 VStack  {
-                    HStack {
+                    VStack {
                         Text("사용자정보")
                             .multilineTextAlignment(.leading)
                             .font(Font.footnote.bold())
@@ -47,11 +47,13 @@ struct ContentView: View {
                                                minHeight: 0,
                                                maxHeight: 30)
                                         .background(colortop)
+                        Image("main")
+                            .resizable()
+                            //.frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .aspectRatio(contentMode: .fit)
+                           // .frame(width: .infinity)
                     }
-                    Image("main")
-                        .resizable()
-                       // .aspectRatio(contentMode: .fit)
-                        .frame(width: .infinity, height: 130)
+                    
               
                     TabView(selection: $selection)
                     {
@@ -65,7 +67,7 @@ struct ContentView: View {
                             Text("업무")
                             
                         }.tag(Tab.work)
-                        CommomHomeTest().tabItem {
+                        CommHome().tabItem {
                             Image("common")
                             Text("공통")
                         }.tag(Tab.common)

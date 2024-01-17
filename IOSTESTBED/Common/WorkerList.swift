@@ -23,12 +23,18 @@ extension Font {
     
 }
 
+
+
 struct WorkerList: View {
     
-    @State private var items = [SampleItem]() // Array to hold decoded items
+    @State private var modelworkers: [ModelWorker] = []
+    @State private var selectedWorker: ModelWorker?
+
+    
     @State private var isDataLoaded = false
     @State private var isShowingPopup = false
-    @State private var textInput: String = ""
+    @State private var textShip: String = ""
+    @State private var textProjno: String = ""
     
     
     @State private var textSampel: String = ""
@@ -37,6 +43,7 @@ struct WorkerList: View {
     @Binding var isPresented: Bool
     
     @State private var isBigEngine: Bool = true
+    @State private var isLoading: Bool = false
     
     @State private var selectedFromDate = Date()
     @State private var selectedToDate = Date()
@@ -49,85 +56,132 @@ struct WorkerList: View {
                 isPresented = false
             }) {
                 Text("< Back").frame(height: 10)
+                    
+                      //  .ignoresSafeArea()
             }
             Spacer()
             
-            Text(" 호선정보조회").font(.pretendardBold28)
+            Text(" 호선정보조회").font(.pretendardBold24)
             
             Divider()
             
-            HStack(alignment:.center,  spacing: 0){
-                   Spacer()
-                   Button(action: {
-                    isBigEngine = true
-                   }) {
-                       Text("대형").font(.pretendardBold18)
-                           .frame(width: 70, height: 10)
-                           .padding()
-                           .foregroundColor(.white)
-                           .background(isBigEngine ? Color.blue : Color.gray)
-                   }
-                    Button(action: {
-                        isBigEngine = false
-                    }) {
-                        Text("힘센").font(.pretendardBold18)
-                            .frame(width: 70, height: 10)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(isBigEngine ? Color.gray : Color.blue)
-                    }
-                  Spacer()
-                
-                            Button(action: {
-                                loadData()
-                            }) {
-                                Text("Load JSON ")
-                                    .frame(height: 10)
-                            }
-            }
             
-
-            HStack
+            VStack(alignment:.center,  spacing: 3)
             {
-                Text("TEST:").font(.pretendardBold18)
-                TextField("Enter text", text: $textInput)
-                               .textFieldStyle(RoundedBorderTextFieldStyle())
+                HStack(alignment:.center,  spacing: 0){
+                       Spacer()
+                       Button(action: {
+                        isBigEngine = true
+                       }) {
+                           Text("대형").font(.pretendardBold18)
+                               .frame(width: 40, height: 10)
                                .padding()
-                               .frame(width: 200)
-            }
-            HStack
-            {
-                DatePicker(selection: $selectedFromDate, in: ...Date(), displayedComponents: .date) {
-                            Text("날짜를 선택하세요")
+                               .foregroundColor(.white)
+                               .background(isBigEngine ? Color.blue : Color.gray)
+                       }
+                        Button(action: {
+                            isBigEngine = false
+                        }) {
+                            Text("힘센").font(.pretendardBold18)
+                                .frame(width: 40, height: 10)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(isBigEngine ? Color.gray : Color.blue)
                         }
+                      Spacer()
+                    
+                        Button(action: {
+                            loadData()
+                        }) {
+                            Text("조회").font(.pretendardBold24)
+                                .frame(height: 10)
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+//                        Button(action: {
+//                            clearData()
+//                        }) {
+//                            Text("C ")
+//                                .frame(height: 10)
+//                        }.padding()
+                }
+                
+                HStack
+                {
+                    Text(" 호선번호:").font(.pretendardBold14)
+                    TextField("호선번호", text: $textShip)
+                                    .font(.pretendardBold14)
+                                   .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button(action: {
+                        //isBigEngine = false
+                    }) {
+                        Image("iconsearch")
+                            .padding(6)
+                            .background(Color.blue)
+                    }
+                }
+                HStack
+                {
+                    Text(" 공사번호:").font(.pretendardBold14)
+                    
+                    TextField("공사번호", text: $textProjno)
+                                    .font(.pretendardBold14)
+                                   .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Button(action: {
+                        //isBigEngine = false
+                    }) {
+                        Image("iconsearch")
+                            .padding(6)
+                            .background(Color.blue)
+                    }
+                }
+                
+                
+                 HStack (spacing: 0)
+                 {
+                     Text(" 공시일  :").font(.pretendardBold14)
+                     DatePicker(selection: $selectedFromDate, in: ...Date(), displayedComponents: .date) {
+                     }
+                    DatePicker(selection: $selectedToDate, in: ...Date(), displayedComponents: .date) {
+                            }
+                    Spacer()
 
 
+                 }
+                
             }
-            
-            
-            
-            Button("Load Popup Data") {
-                isShowingPopup.toggle()
-            }
-            .sheet(isPresented: $isShowingPopup, content: {
-                WorkerListPopup(isPresented: $isShowingPopup, state: $state)
-                                //.frame(width: 300, height: 100)
-                        })
-            
             NavigationView {
+                        
                         VStack {
-                            List(items) { item in
-                                VStack(alignment: .leading) {
-                                    Text(item.name)
-                                        .font(.headline)
-                                    Text(item.description)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
+                            if isLoading {
+                                                ProgressView("Loading...")
+                                                    .progressViewStyle(CircularProgressViewStyle())
+                                                    .padding()
+                            } else {
+                                List(modelworkers, id: \.EMPNO) { modelworkers in
+                                    HStack(alignment: .top) {
+                                        Text("U: \(modelworkers.EMPNO)")
+                                        Text("D: \(modelworkers.DEPTNM)")
+                                        Text("E: \(modelworkers.MOBILE)")
+                                    }
+                                    .onTapGesture {
+                                        selectedWorker = modelworkers
+                                        textSampel = selectedWorker!.EMPNO
+                                    }
+                                    
                                 }
                             }
-                        }
-                       // .navigationTitle("Custom List")
+                            
+                            
+                        }//.onAppear(perform: loadData)
+                        .navigationBarHidden(true)
+                        //.navigationBarTitleDisplayMode(.inline)
+                        .navigationBarTitle("", displayMode: .automatic)
+                        //
+                        //.navigationTitle("Custom List")
                     }
+            
             
             HStack
             {
@@ -164,20 +218,65 @@ struct WorkerList: View {
         return formatter.string(from: selectedFromDate)
     }
     
+    private func clearData() {
+        modelworkers.removeAll()
+    }
+    
     private func loadData() {
-            // Fetch and decode JSON data
-            if let fileURL = Bundle.main.url(forResource: "data", withExtension: "json") {
-                do {
-                    let data = try Data(contentsOf: fileURL)
-                    let decodedItems = try JSONDecoder().decode([SampleItem].self, from: data)
-                    self.items = decodedItems
-                    isDataLoaded = true
-                } catch {
-                   // print("Error decoding JSON: \(error.localizedDescription)")
+        //print("nav")
+        isLoading = true
+        
+        
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchworker.jsp?userid=A372897&deptcd=KX6&empnm=") else {
+            //print("nav1")
+            return
+        }
+        //print("Error decoding JSON")
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            defer {
+                DispatchQueue.main.async {
+                    isLoading = false
                 }
             }
+            
+            guard let data = data, error == nil else {
+               // print("nav2")
+                        return
+                    }
+
+            do {
+                
+                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
+                                    if let workerList = decodedData["List"] {
+                                        DispatchQueue.main.async {
+                                            modelworkers = workerList
+                                        }
+                    }
+                
+                
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
         }
+
+        task.resume()
     }
+}
+//    private func loadDataEx() {
+//            // Fetch and decode JSON data
+//            if let fileURL = Bundle.main.url(forResource: "data", withExtension: "json") {
+//                do {
+//                    let data = try Data(contentsOf: fileURL)
+//                    let decodedItems = try JSONDecoder().decode([SampleItem].self, from: data)
+//                    self.items = decodedItems
+//                    isDataLoaded = true
+//                } catch {
+//                   // print("Error decoding JSON: \(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
 
 
 
@@ -187,3 +286,56 @@ struct WorkerList_Previews: PreviewProvider {
         //.environmentObject(ModelData())
     }
 }
+
+
+
+
+//            VStack(spacing: 0)
+//            {
+//                HStack
+//                {
+//                    Text(" 호선번호:").font(.pretendardBold14)
+//                    TextField("Enter text", text: $textShip)
+//                                    .font(.pretendardBold14)
+//                                   .textFieldStyle(RoundedBorderTextFieldStyle())
+//                                   .padding()
+//                    Button(action: {
+//                        //isBigEngine = false
+//                    }) {
+//                        Image("iconsearch")
+//                            .padding(8)
+//                            .background(Color.blue)
+//                    }
+//                }
+//                HStack
+//                {
+//                    Text(" 호선번호:").font(.pretendardBold14)
+//                    TextField("Enter text", text: $textShip)
+//                                    .font(.pretendardBold14)
+//                                   .textFieldStyle(RoundedBorderTextFieldStyle())
+//                                   .padding()
+//                    Button(action: {
+//                        //isBigEngine = false
+//                    }) {
+//                        Image("iconsearch")
+//                            .padding(8)
+//                            .background(Color.blue)
+//                    }
+//                }
+//                Spacer()
+//            }
+
+
+
+
+
+
+
+//            Button("Load Popup Data") {
+//                isShowingPopup.toggle()
+//            }
+//            .sheet(isPresented: $isShowingPopup, content: {
+//                WorkerListPopup(isPresented: $isShowingPopup, state: $state)
+//                                //.frame(width: 300, height: 100)
+//                        })
+
