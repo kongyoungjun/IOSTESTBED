@@ -9,6 +9,7 @@ extension Font {
     static let pretendardBold24: Font = .custom("Pretendard-Bold", size: 24)
     static let pretendardBold18: Font = .custom("Pretendard-Bold", size: 18)
     static let pretendardBold14: Font = .custom("Pretendard-Bold", size: 14)
+    static let pretendardBold12: Font = .custom("Pretendard-Bold", size: 12)
     
     // SemiBold
     static let pretendardSemiBold16: Font = .custom("Pretendard-SemiBold", size: 16)
@@ -26,6 +27,8 @@ extension Font {
 
 
 struct WorkerList: View {
+    
+    //let screenWidth = UIScreen.main.bounds.size.width
     
     @State private var modelworkers: [ModelWorker] = []
     @State private var selectedWorker: ModelWorker?
@@ -47,6 +50,10 @@ struct WorkerList: View {
     
     @State private var selectedFromDate = Date()
     @State private var selectedToDate = Date()
+    
+    
+    let colorwhiteblue = Color(red: 243/255, green: 248/255, blue: 255/255)
+    let colordarkblue = Color(red: 0/255, green: 23/255, blue: 51/255)
     
     
     var body: some View {
@@ -99,12 +106,6 @@ struct WorkerList: View {
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.blue)
-//                        Button(action: {
-//                            clearData()
-//                        }) {
-//                            Text("C ")
-//                                .frame(height: 10)
-//                        }.padding()
                 }
                 
                 HStack
@@ -141,18 +142,29 @@ struct WorkerList: View {
                  HStack (spacing: 0)
                  {
                      Text(" 공시일  :").font(.pretendardBold14)
-                     DatePicker(selection: $selectedFromDate, in: ...Date(), displayedComponents: .date) {
-                     }
-                    DatePicker(selection: $selectedToDate, in: ...Date(), displayedComponents: .date) {
-                            }
+                     //DatePicker(selection: $selectedFromDate, in: ...Date(), displayedComponents: .date) {}
+                    DatePicker("Select Date", selection: $selectedFromDate, in: ...Date(), displayedComponents: .date).labelsHidden()
+                     Text("~").font(.pretendardBold14)
+                    DatePicker("Select Date", selection: $selectedToDate, in: ...Date(), displayedComponents: .date).labelsHidden()
                     Spacer()
-
-
+                                   
                  }
                 
             }
+            
+            Spacer()
+            //UIScreen.main.bounds.size.width
+            HStack (alignment:.center, spacing: 1)
+            {
+                Spacer(minLength: 1)
+                Button(action: {}) { Text("호선번호").font(.pretendardBold14).frame(width: 60, height: 10).padding().foregroundColor(.white).background(Color.gray)}
+                Button(action: {}) { Text("공사번호").font(.pretendardBold14) .frame(width: 60, height: 10).padding() .foregroundColor(.white) .background(Color.gray)}
+                Button(action: {}) { Text("타입").font(.pretendardBold12) .frame(width: 60, height: 10).padding() .foregroundColor(.white) .background(Color.gray)}
+                Button(action: {}) { Text("공시일").font(.pretendardBold12) .frame(width: 60, height: 10).padding() .foregroundColor(.white) .background(Color.gray)}
+                Spacer(minLength: 1)
+
+            }
             NavigationView {
-                        
                         VStack {
                             if isLoading {
                                                 ProgressView("Loading...")
@@ -161,9 +173,9 @@ struct WorkerList: View {
                             } else {
                                 List(modelworkers, id: \.EMPNO) { modelworkers in
                                     HStack(alignment: .top) {
-                                        Text("U: \(modelworkers.EMPNO)")
-                                        Text("D: \(modelworkers.DEPTNM)")
-                                        Text("E: \(modelworkers.MOBILE)")
+                                        Text("\(modelworkers.EMPNO)")
+                                        Text("\(modelworkers.DEPTNM)")
+                                        Text("\(modelworkers.MOBILE)")
                                     }
                                     .onTapGesture {
                                         selectedWorker = modelworkers
@@ -180,37 +192,63 @@ struct WorkerList: View {
                         .navigationBarTitle("", displayMode: .automatic)
                         //
                         //.navigationTitle("Custom List")
-                    }
-            
-            
-            HStack
+           }
+            VStack(spacing: 1)
             {
-                Text("Swift UI")
-                    .padding()
-                    .background(Color.yellow)
-                
-                TextField("", text: $textSampel)
-                        .padding()
-                        .background(Color(UIColor.secondarySystemBackground))
-                
-//                HStack
-//                {
-//                    Text("TEST:")
-//                }.background(Color.green)
-//                HStack{
-//                    TextField("Enter text", text: $textInput)
-//                                   .textFieldStyle(RoundedBorderTextFieldStyle())
-//                                   .padding()
-//                                   .frame(width: 200)
-//                }
-                
+                HStack(alignment:.center, spacing: 1)
+                {
+                    Spacer(minLength: 1)
+                    Text("호선번호").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("공사번호").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Spacer(minLength: 1)
+                }
+                HStack(alignment:.center, spacing: 1)
+                {
+                    Spacer(minLength: 1)
+                    Text("엔진타입").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("공시일자").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Spacer(minLength: 1)
+                }
+                HStack(alignment:.center, spacing: 1)
+                {
+                    Spacer(minLength: 1)
+                    Text("조선소").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("베딩일자").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Spacer(minLength: 1)
+                }
+                HStack(alignment:.center, spacing: 1)
+                {
+                    Spacer(minLength: 1)
+                    Text("BED").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("조립부서").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Spacer(minLength: 1)
+                }
+                HStack(alignment:.center, spacing: 1)
+                {
+                    Spacer(minLength: 1)
+                    Text("선주").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("국적").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Spacer(minLength: 1)
+                }
             }
+            
+            
+//            TextField("", text: $textSampel).padding()
+//                    .background(Color(UIColor.secondarySystemBackground))
         }
-        
-        
-
-       
+      
     }
+    
 
     private func formattedDate() -> String {
         let formatter = DateFormatter()

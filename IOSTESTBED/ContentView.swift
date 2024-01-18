@@ -49,8 +49,8 @@ struct ContentView: View {
                                         .background(colortop)
                         Image("main")
                             .resizable()
-                            //.frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .aspectRatio(contentMode: .fit)
+                            .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                           // .aspectRatio(contentMode: .fit)
                            // .frame(width: .infinity)
                     }
                     
