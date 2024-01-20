@@ -2,30 +2,6 @@
 
 import SwiftUI
 
-extension Font {
-    
-    // Bold
-    static let pretendardBold28: Font = .custom("Pretendard-Bold", size: 28)
-    static let pretendardBold24: Font = .custom("Pretendard-Bold", size: 24)
-    static let pretendardBold18: Font = .custom("Pretendard-Bold", size: 18)
-    static let pretendardBold14: Font = .custom("Pretendard-Bold", size: 14)
-    static let pretendardBold12: Font = .custom("Pretendard-Bold", size: 12)
-    
-    // SemiBold
-    static let pretendardSemiBold16: Font = .custom("Pretendard-SemiBold", size: 16)
-    
-    // Medium
-    static let pretendardMedium18: Font = .custom("Pretendard-Medium", size: 18)
-    static let pretendardMedium16: Font = .custom("Pretendard-Medium", size: 16)
-    
-    // Regular
-    static let pretendardRegular14: Font = .custom("Pretendard-Regular", size: 14)
-    static let pretendardRegular16: Font = .custom("Pretendard-Regular", size: 16)
-    
-}
-
-
-
 struct WorkerList: View {
     
     //let screenWidth = UIScreen.main.bounds.size.width
@@ -40,7 +16,16 @@ struct WorkerList: View {
     @State private var textProjno: String = ""
     
     
-    @State private var textSampel: String = ""
+    @State private var textResult1: String = ""
+    @State private var textResult2: String = ""
+    @State private var textResult3: String = ""
+    @State private var textResult4: String = ""
+    @State private var textResult5: String = ""
+    @State private var textResult6: String = ""
+    @State private var textResult7: String = ""
+    @State private var textResult8: String = ""
+    @State private var textResult9: String = ""
+    @State private var textResult10: String = ""
     
     @State var state: Int  = 0;
     @Binding var isPresented: Bool
@@ -72,84 +57,99 @@ struct WorkerList: View {
             
             Divider()
             
-            
-            VStack(alignment:.center,  spacing: 3)
+        
+            HStack
             {
-                HStack(alignment:.center,  spacing: 0){
-                       Spacer()
-                       Button(action: {
-                        isBigEngine = true
-                       }) {
-                           Text("대형").font(.pretendardBold18)
-                               .frame(width: 40, height: 10)
-                               .padding()
-                               .foregroundColor(.white)
-                               .background(isBigEngine ? Color.blue : Color.gray)
-                       }
-                        Button(action: {
-                            isBigEngine = false
-                        }) {
-                            Text("힘센").font(.pretendardBold18)
-                                .frame(width: 40, height: 10)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(isBigEngine ? Color.gray : Color.blue)
-                        }
-                      Spacer()
+                VStack(alignment:.leading,  spacing: 3)
+                {
+                    HStack{
+                           Text(" 구분:").font(.pretendardBold14)
+                           Spacer()
+                           Button(action: {
+                            isBigEngine = true
+                           }) {
+                               Text("대형").font(.pretendardBold18)
+                                   .frame(width: 40, height: 10)
+                                   .padding()
+                                   .foregroundColor(.white)
+                                   .background(isBigEngine ? Color.blue : Color.gray)
+                           }
+                            Button(action: {
+                                isBigEngine = false
+                            }) {
+                                Text("힘센").font(.pretendardBold18)
+                                    .frame(width: 40, height: 10)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(isBigEngine ? Color.gray : Color.blue)
+                            }
+                          Spacer()
+                          Spacer()
+                          Spacer()
+                          Spacer()
+                        
+    
+                    }
                     
+                    HStack
+                    {
+                        Text(" 호선번호:").font(.pretendardBold14)
+                        TextField("호선번호", text: $textShip)
+                                        .font(.pretendardBold14)
+                                       .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button(action: {
+                            //isBigEngine = false
+                        }) {
+                            Image("iconsearch")
+                                .padding(6)
+                                .background(Color.blue)
+                        }
+                    }
+                    HStack
+                    {
+                        Text(" 공사번호:").font(.pretendardBold14)
+                        
+                        TextField("공사번호", text: $textProjno)
+                                        .font(.pretendardBold14)
+                                       .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button(action: {
+                            //isBigEngine = false
+                        }) {
+                            Image("iconsearch")
+                                .padding(6)
+                                .background(Color.blue)
+                        }
+                    }
+                    
+                    
+                     
+                    
+                }
+                Spacer()
+                HStack
+                {
                         Button(action: {
                             loadData()
                         }) {
                             Text("조회").font(.pretendardBold24)
-                                .frame(height: 10)
+                                .frame(height: 100)
                         }
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.blue)
                 }
-                
-                HStack
-                {
-                    Text(" 호선번호:").font(.pretendardBold14)
-                    TextField("호선번호", text: $textShip)
-                                    .font(.pretendardBold14)
-                                   .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Button(action: {
-                        //isBigEngine = false
-                    }) {
-                        Image("iconsearch")
-                            .padding(6)
-                            .background(Color.blue)
-                    }
-                }
-                HStack
-                {
-                    Text(" 공사번호:").font(.pretendardBold14)
-                    
-                    TextField("공사번호", text: $textProjno)
-                                    .font(.pretendardBold14)
-                                   .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Button(action: {
-                        //isBigEngine = false
-                    }) {
-                        Image("iconsearch")
-                            .padding(6)
-                            .background(Color.blue)
-                    }
-                }
-                
-                
-                 HStack (spacing: 0)
-                 {
-                     Text(" 공시일  :").font(.pretendardBold14)
-                     //DatePicker(selection: $selectedFromDate, in: ...Date(), displayedComponents: .date) {}
-                    DatePicker("Select Date", selection: $selectedFromDate, in: ...Date(), displayedComponents: .date).labelsHidden()
-                     Text("~").font(.pretendardBold14)
-                    DatePicker("Select Date", selection: $selectedToDate, in: ...Date(), displayedComponents: .date).labelsHidden()
-                    Spacer()
-                                   
-                 }
-                
+                Spacer()
+            }
+            
+            HStack (spacing: 0)
+            {
+                Text(" 공시일  : ").font(.pretendardBold14)
+                //DatePicker(selection: $selectedFromDate, in: ...Date(), displayedComponents: .date) {}
+               DatePicker("Select Date", selection: $selectedFromDate, in: ...Date(), displayedComponents: .date).labelsHidden().font(.pretendardBold12)
+                Text(" ~ ").font(.pretendardBold14)
+               DatePicker("Select Date", selection: $selectedToDate, in: ...Date(), displayedComponents: .date).labelsHidden().font(.pretendardBold12)
+               Spacer()
+                              
             }
             
             Spacer()
@@ -157,13 +157,14 @@ struct WorkerList: View {
             HStack (alignment:.center, spacing: 1)
             {
                 Spacer(minLength: 1)
-                Button(action: {}) { Text("호선번호").font(.pretendardBold14).frame(width: 60, height: 10).padding().foregroundColor(.white).background(Color.gray)}
-                Button(action: {}) { Text("공사번호").font(.pretendardBold14) .frame(width: 60, height: 10).padding() .foregroundColor(.white) .background(Color.gray)}
-                Button(action: {}) { Text("타입").font(.pretendardBold12) .frame(width: 60, height: 10).padding() .foregroundColor(.white) .background(Color.gray)}
-                Button(action: {}) { Text("공시일").font(.pretendardBold12) .frame(width: 60, height: 10).padding() .foregroundColor(.white) .background(Color.gray)}
+                Button(action: {}) { Text("호선번호").font(.pretendardBold14).frame(minWidth:0, maxWidth: .infinity, minHeight: 10, maxHeight: 10).padding().foregroundColor(.white).background(Color.gray)}
+                Button(action: {}) { Text("공사번호").font(.pretendardBold14) .frame(minWidth:0, maxWidth: .infinity, minHeight: 10, maxHeight: 10).padding() .foregroundColor(.white) .background(Color.gray)}
+                Button(action: {}) { Text("타입").font(.pretendardBold12) .frame(minWidth:0, maxWidth: .infinity, minHeight: 10, maxHeight: 10).padding() .foregroundColor(.white) .background(Color.gray)}
+                Button(action: {}) { Text("공시일").font(.pretendardBold12) .frame(minWidth:0, maxWidth: .infinity, minHeight: 10, maxHeight: 10).padding() .foregroundColor(.white) .background(Color.gray)}
                 Spacer(minLength: 1)
 
             }
+            
             NavigationView {
                         VStack {
                             if isLoading {
@@ -179,7 +180,7 @@ struct WorkerList: View {
                                     }
                                     .onTapGesture {
                                         selectedWorker = modelworkers
-                                        textSampel = selectedWorker!.EMPNO
+                                      //  textSampel = selectedWorker!.EMPNO
                                     }
                                     
                                 }
@@ -192,54 +193,68 @@ struct WorkerList: View {
                         .navigationBarTitle("", displayMode: .automatic)
                         //
                         //.navigationTitle("Custom List")
-           }
+            }
             VStack(spacing: 1)
             {
                 HStack(alignment:.center, spacing: 1)
                 {
                     Spacer(minLength: 1)
-                    Text("호선번호").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Text("공사번호").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("호선번호").font(.pretendardBold14).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: .infinity * 1/10, minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                    TextField("", text: $textResult1).font(.pretendardBold14).padding().frame(minWidth:0, maxWidth: .infinity * 4/10, minHeight: 10, maxHeight: 30).foregroundColor(.black).background(Color(UIColor.secondarySystemBackground))
+                    Text("공사번호").font(.pretendardBold14).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: .infinity * 1/10, minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                    TextField("", text: $textResult2).font(.pretendardBold14).padding().frame(minWidth:0, maxWidth: .infinity * 4/10, minHeight: 10, maxHeight: 30).foregroundColor(.black).background(Color(UIColor.secondarySystemBackground))
                     Spacer(minLength: 1)
                 }
                 HStack(alignment:.center, spacing: 1)
                 {
                     Spacer(minLength: 1)
-                    Text("엔진타입").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Text("공시일자").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("엔진타입").font(.pretendardBold14).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: .infinity * 1/10, minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                    TextField("", text: $textResult3).font(.pretendardBold14).padding().frame(minWidth:0, maxWidth: .infinity * 4/10, minHeight: 10, maxHeight: 30).foregroundColor(.black).background(Color(UIColor.secondarySystemBackground))
+                    Text("공시일자").font(.pretendardBold14).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: .infinity * 1/10, minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                    TextField("", text: $textResult4).font(.pretendardBold14).padding().frame(minWidth:0, maxWidth: .infinity * 4/10, minHeight: 10, maxHeight: 30).foregroundColor(.black).background(Color(UIColor.secondarySystemBackground))
                     Spacer(minLength: 1)
+                    
+//                    Spacer(minLength: 1)
+//                    Text("엔진타입").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Text("공시일자").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Spacer(minLength: 1)
                 }
                 HStack(alignment:.center, spacing: 1)
                 {
                     Spacer(minLength: 1)
-                    Text("조선소").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Text("베딩일자").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+                    Text("조선소").font(.pretendardBold14).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: .infinity * 1/10, minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                    TextField("", text: $textResult5).font(.pretendardBold14).padding().frame(minWidth:0, maxWidth: .infinity * 4/10, minHeight: 10, maxHeight: 30).foregroundColor(.black).background(Color(UIColor.secondarySystemBackground))
+                    Text("베딩일자").font(.pretendardBold14).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: .infinity * 1/10, minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                    TextField("", text: $textResult6).font(.pretendardBold14).padding().frame(minWidth:0, maxWidth: .infinity * 4/10, minHeight: 10, maxHeight: 30).foregroundColor(.black).background(Color(UIColor.secondarySystemBackground))
                     Spacer(minLength: 1)
+                    
+//                    Spacer(minLength: 1)
+//                    Text("조선소").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Text("베딩일자").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Spacer(minLength: 1)
                 }
-                HStack(alignment:.center, spacing: 1)
-                {
-                    Spacer(minLength: 1)
-                    Text("BED").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Text("조립부서").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Spacer(minLength: 1)
-                }
-                HStack(alignment:.center, spacing: 1)
-                {
-                    Spacer(minLength: 1)
-                    Text("선주").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Text("국적").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
-                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
-                    Spacer(minLength: 1)
-                }
+//                HStack(alignment:.center, spacing: 1)
+//                {
+//                    Spacer(minLength: 1)
+//                    Text("BED").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Text("조립부서").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Spacer(minLength: 1)
+//                }
+//                HStack(alignment:.center, spacing: 1)
+//                {
+//                    Spacer(minLength: 1)
+//                    Text("선주").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Text("국적").font(.pretendardBold14).frame(width: 60, height: 10).foregroundColor(.blue).padding().background(colorwhiteblue)
+//                    TextField("", text: $textSampel).frame(width: 60, height: 10).padding().background(Color(UIColor.secondarySystemBackground))
+//                    Spacer(minLength: 1)
+//                }
             }
             
             

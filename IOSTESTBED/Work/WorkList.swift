@@ -41,8 +41,8 @@ struct WorkList: View {
                 isShowingPopup.toggle()
             }
             .sheet(isPresented: $isShowingPopup, content: {
-                WorkerListPopup(isPresented: $isShowingPopup, state: $state)
-                                .frame(width: 300, height: 200)
+                PopUpShipNo(isPresented: $isShowingPopup, state: $state , textInput: $textInput)
+                    //.frame(width: .infinity - 100, height: .infinity - 150)
                         })
             
             NavigationView {

@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+
 struct WorkHome: View {
     
    // var optionalCustomUIColor: UIColor? = UIColor(red: 100/255, green: 150/255, blue: 200/255, alpha: 1.0) // Optional custom UIColor
     
    //     let colorbutton : UIColor? = UIColor(named:"ColorButton")
+    
+    
+    
     
     @State private var isButton1Hidden = true
     @State private var isButton2Hidden = true
@@ -42,6 +46,7 @@ struct WorkHome: View {
                                            Image("iconship")
                                         Text("호선정보조회").font(.system(size:12))
                                        }
+                                       //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)
                                        .frame(width: 70, height: 60)
                                        .padding()
                                        .foregroundColor(.black)

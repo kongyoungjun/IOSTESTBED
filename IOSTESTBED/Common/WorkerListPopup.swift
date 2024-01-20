@@ -19,6 +19,7 @@ struct WorkerListPopup: View {
             
             Button("Close") {
                 isPresented = false // Close the popup when tapped
+                state = 1
             }
             .padding()
         }

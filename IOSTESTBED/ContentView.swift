@@ -8,6 +8,28 @@
 import SwiftUI
 import CoreData
 
+extension Font {
+    
+    // Bold
+    static let pretendardBold28: Font = .custom("Pretendard-Bold", size: 28)
+    static let pretendardBold24: Font = .custom("Pretendard-Bold", size: 24)
+    static let pretendardBold18: Font = .custom("Pretendard-Bold", size: 18)
+    static let pretendardBold14: Font = .custom("Pretendard-Bold", size: 14)
+    static let pretendardBold12: Font = .custom("Pretendard-Bold", size: 12)
+    
+    // SemiBold
+//    static let pretendardSemiBold16: Font = .custom("Pretendard-SemiBold", size: 16)
+//
+//    // Medium
+//    static let pretendardMedium18: Font = .custom("Pretendard-Medium", size: 18)
+//    static let pretendardMedium16: Font = .custom("Pretendard-Medium", size: 16)
+//
+//    // Regular
+//    static let pretendardRegular14: Font = .custom("Pretendard-Regular", size: 14)
+//    static let pretendardRegular16: Font = .custom("Pretendard-Regular", size: 16)
+    
+}
+
 struct ContentView: View {
     
     let colortop = Color(red: 0/255, green: 23/255, blue: 51/255)

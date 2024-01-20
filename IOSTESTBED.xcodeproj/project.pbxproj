@@ -45,6 +45,7 @@
 		8960AF1B2B56BB6E005047AF /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8960AF122B56BB6E005047AF /* Pretendard-SemiBold.otf */; };
 		8960AF232B580065005047AF /* ModelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF222B580065005047AF /* ModelWorker.swift */; };
 		8960AF262B58119F005047AF /* CommHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF252B58119F005047AF /* CommHome.swift */; };
+		8960AF2B2B5B4044005047AF /* PopUpShipNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		8960AF122B56BB6E005047AF /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		8960AF222B580065005047AF /* ModelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWorker.swift; sourceTree = "<group>"; };
 		8960AF252B58119F005047AF /* CommHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommHome.swift; sourceTree = "<group>"; };
+		8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpShipNo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 		8947683C2B4D8308008DA3FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				8960AF282B5B3FFA005047AF /* POPUP */,
 				8960AEF62B56BAE9005047AF /* Pretendard */,
 				8947683D2B4D833F008DA3FE /* data.json */,
 			);
@@ -219,6 +222,14 @@
 			path = Pretendard;
 			sourceTree = "<group>";
 		};
+		8960AF282B5B3FFA005047AF /* POPUP */ = {
+			isa = PBXGroup;
+			children = (
+				8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */,
+			);
+			path = POPUP;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,6 +313,7 @@
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				894768422B4D864F008DA3FE /* WorkerList.swift in Sources */,
+				8960AF2B2B5B4044005047AF /* PopUpShipNo.swift in Sources */,
 				8960AF262B58119F005047AF /* CommHome.swift in Sources */,
 				894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */,
 				894F54182B49A22600C1823A /* Init.swift in Sources */,
