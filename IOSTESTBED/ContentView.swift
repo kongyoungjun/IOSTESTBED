@@ -29,25 +29,33 @@ extension Font {
 //    static let pretendardRegular16: Font = .custom("Pretendard-Regular", size: 16)
     
 }
-
+//init() {
+//    UITabBar.appearance().barTintColor = UIColor(colortab)
+//}
 struct ContentView: View {
     
+    @Binding var userShowingName: String
+    @State private var textTitle: String = ""
+   
     let colortop = Color(red: 0/255, green: 23/255, blue: 51/255)
-    let colortab = Color(red: 9/255, green: 77/255, blue: 200/255)
     let colorround = Color(red: 200/255, green: 200/255, blue: 255/255)
     
-    //let uiColortab = UIColor(colortab)
-    init() {
-            //Use this if NavigationBarTitle is with Large Font
-           //UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
-           //UINavigationBar.appearance().backgroundColor = .gray
-            UITabBar.appearance().barTintColor = UIColor(colortab)
-        }
+   
     
     //private var items: FetchedResults<Item>
     @State private var selection: Tab = .assembly
+    let colortab = Color(red: 9/255, green: 77/255, blue: 200/255)
+    
+    //let uiColortab = UIColor(colortab)
     
     
+   // {
+            //Use this if NavigationBarTitle is with Large Font
+           //UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+           //UINavigationBar.appearance().backgroundColor = .gray
+   //        UITabBar.appearance().barTintColor = UIColor(colortab)
+    //}
+
     
     enum Tab {
         case assembly
@@ -55,20 +63,28 @@ struct ContentView: View {
         case common
     }
     
+    
+    
     var body: some View {
+       
         //NavigationView {
             ZStack{
                 VStack  {
                     VStack {
-                        Text("사용자정보")
-                            .multilineTextAlignment(.leading)
-                            .font(Font.footnote.bold())
-                                        .foregroundColor(.white)
-                                        .frame(minWidth: 0,
-                                               maxWidth: .infinity,
-                                               minHeight: 0,
-                                               maxHeight: 30)
-                                        .background(colortop)
+                        HStack {
+                            Text("\(textTitle)")
+                            Spacer()
+                            Text("사용자정보:")
+                                .multilineTextAlignment(.leading)
+                                .font(Font.footnote.bold())
+                                            .foregroundColor(.white)
+                                            .frame(minWidth: 0,
+                                                   maxWidth: .infinity,
+                                                   minHeight: 0,
+                                                   maxHeight: 30)
+                                            .background(colortop)
+                        }
+                        
                         Image("main")
                             .resizable()
                             .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -82,18 +98,23 @@ struct ContentView: View {
                         AssemblyHome().tabItem {
                             Image("assembly")
                             Text("조립")
+                            //textTitle = "조립"
                         }
                         .tag(Tab.assembly)
                         WorkHome().tabItem {
                             Image("work")
                             Text("업무")
+                            //textTitle = "업무"
                             
                         }.tag(Tab.work)
                         CommHome().tabItem {
                             Image("common")
-                            Text("공통")
+                            Text("공통").font(.pretendardBold18)
+                            //textTitle = "공통"
                         }.tag(Tab.common)
                     }.accentColor(.green)
+                    .background(Color.blue)
+                    
                     //.frame(height: 200) // Set the height of the TabView
                       //          .border(Color.gray) // Add a border for visual clarity
                                 
@@ -104,14 +125,16 @@ struct ContentView: View {
     }
 }
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-        ContentView()
-        }
-        
-        
-        // ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        //Group {
+          //  ContentView(userShowingName: constant.)
+        //ContentView()
+        //}
+        //ContentView()
+        ContentView(userShowingName: Binding.constant("Preview userId"))
+        //.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
     

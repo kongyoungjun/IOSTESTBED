@@ -16,8 +16,8 @@ struct IOSTESTBEDApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView() .environment(\.managedObjectContext, persistenceController.container.viewContext)
-           // LogIn()
+           // ContentView() .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            Intro()
         }
     }
 }

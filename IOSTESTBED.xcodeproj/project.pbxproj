@@ -33,6 +33,11 @@
 		8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3C32B35E5300028A2A8 /* Persistence.swift */; };
 		8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8952C3C52B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld */; };
 		8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8956A6352B4632F200FC6F17 /* WorkHome.swift */; };
+		895A2B132B5FE7650049E881 /* ModelLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A2B122B5FE7650049E881 /* ModelLogin.swift */; };
+		895A2B162B5FE8E90049E881 /* ModelPopShipNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A2B152B5FE8E90049E881 /* ModelPopShipNo.swift */; };
+		895A2B192B5FEE8F0049E881 /* PopUpProjNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A2B182B5FEE8F0049E881 /* PopUpProjNo.swift */; };
+		895A2B1C2B5FFBCC0049E881 /* WorkSearchPOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A2B1B2B5FFBCC0049E881 /* WorkSearchPOR.swift */; };
+		895A2B1F2B5FFBFF0049E881 /* ModelSearchPOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895A2B1E2B5FFBFF0049E881 /* ModelSearchPOR.swift */; };
 		8960AEF32B56B102005047AF /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AEF22B56B102005047AF /* WorkList.swift */; };
 		8960AF132B56BB6E005047AF /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8960AF0A2B56BB6D005047AF /* Pretendard-Black.otf */; };
 		8960AF142B56BB6E005047AF /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8960AF0B2B56BB6D005047AF /* Pretendard-Thin.otf */; };
@@ -77,6 +82,11 @@
 		8952C3C62B35E5300028A2A8 /* IOSTESTBED.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IOSTESTBED.xcdatamodel; sourceTree = "<group>"; };
 		8952C3C82B35E5300028A2A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8956A6352B4632F200FC6F17 /* WorkHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkHome.swift; sourceTree = "<group>"; };
+		895A2B122B5FE7650049E881 /* ModelLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLogin.swift; sourceTree = "<group>"; };
+		895A2B152B5FE8E90049E881 /* ModelPopShipNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPopShipNo.swift; sourceTree = "<group>"; };
+		895A2B182B5FEE8F0049E881 /* PopUpProjNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpProjNo.swift; sourceTree = "<group>"; };
+		895A2B1B2B5FFBCC0049E881 /* WorkSearchPOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSearchPOR.swift; sourceTree = "<group>"; };
+		895A2B1E2B5FFBFF0049E881 /* ModelSearchPOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchPOR.swift; sourceTree = "<group>"; };
 		8960AEF22B56B102005047AF /* WorkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkList.swift; sourceTree = "<group>"; };
 		8960AF0A2B56BB6D005047AF /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
 		8960AF0B2B56BB6D005047AF /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
@@ -109,6 +119,9 @@
 				894768392B4D8221008DA3FE /* ModelData.swift */,
 				894768442B4D8AB9008DA3FE /* SampleItem.swift */,
 				8960AF222B580065005047AF /* ModelWorker.swift */,
+				895A2B122B5FE7650049E881 /* ModelLogin.swift */,
+				895A2B152B5FE8E90049E881 /* ModelPopShipNo.swift */,
+				895A2B1E2B5FFBFF0049E881 /* ModelSearchPOR.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -116,7 +129,6 @@
 		8947683C2B4D8308008DA3FE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				8960AF282B5B3FFA005047AF /* POPUP */,
 				8960AEF62B56BAE9005047AF /* Pretendard */,
 				8947683D2B4D833F008DA3FE /* data.json */,
 			);
@@ -140,6 +152,7 @@
 				894C5A302B4820E600855ECF /* WorkPOR.swift */,
 				894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */,
 				8960AEF22B56B102005047AF /* WorkList.swift */,
+				895A2B1B2B5FFBCC0049E881 /* WorkSearchPOR.swift */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -178,6 +191,7 @@
 		8952C3B92B35E52B0028A2A8 /* IOSTESTBED */ = {
 			isa = PBXGroup;
 			children = (
+				8960AF282B5B3FFA005047AF /* POPUP */,
 				8947683C2B4D8308008DA3FE /* Resource */,
 				894768342B4D8127008DA3FE /* Model */,
 				895244472B40DEAC00E2F7A4 /* Common */,
@@ -226,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */,
+				895A2B182B5FEE8F0049E881 /* PopUpProjNo.swift */,
 			);
 			path = POPUP;
 			sourceTree = "<group>";
@@ -310,14 +325,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */,
+				895A2B1C2B5FFBCC0049E881 /* WorkSearchPOR.swift in Sources */,
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				894768422B4D864F008DA3FE /* WorkerList.swift in Sources */,
 				8960AF2B2B5B4044005047AF /* PopUpShipNo.swift in Sources */,
 				8960AF262B58119F005047AF /* CommHome.swift in Sources */,
+				895A2B1F2B5FFBFF0049E881 /* ModelSearchPOR.swift in Sources */,
 				894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */,
 				894F54182B49A22600C1823A /* Init.swift in Sources */,
 				894768452B4D8AB9008DA3FE /* SampleItem.swift in Sources */,
+				895A2B132B5FE7650049E881 /* ModelLogin.swift in Sources */,
+				895A2B192B5FEE8F0049E881 /* PopUpProjNo.swift in Sources */,
 				894E14592B4C154500E1AB47 /* Intro.swift in Sources */,
 				894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */,
 				8947684D2B4D9917008DA3FE /* WorkerListPopup.swift in Sources */,
@@ -327,6 +346,7 @@
 				894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */,
 				894768322B4D8047008DA3FE /* CommomWorkerList.swift in Sources */,
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
+				895A2B162B5FE8E90049E881 /* ModelPopShipNo.swift in Sources */,
 				8960AEF32B56B102005047AF /* WorkList.swift in Sources */,
 				8947682F2B4D7AEA008DA3FE /* CommomHomeTest.swift in Sources */,
 				8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */,

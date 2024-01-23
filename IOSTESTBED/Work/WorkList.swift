@@ -41,7 +41,7 @@ struct WorkList: View {
                 isShowingPopup.toggle()
             }
             .sheet(isPresented: $isShowingPopup, content: {
-                PopUpShipNo(isPresented: $isShowingPopup, state: $state , textInput: $textInput)
+                PopUpShipNo(isShowingShipNo: $isShowingPopup, state: $state , textInput: $textInput)
                     //.frame(width: .infinity - 100, height: .infinity - 150)
                         })
             

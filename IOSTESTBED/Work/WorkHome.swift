@@ -20,12 +20,12 @@ struct WorkHome: View {
     @State private var isButton1Hidden = true
     @State private var isButton2Hidden = true
     @State private var isButton3Hidden = true
-    @State private var isButton4Hidden = true
-    @State private var isButton5Hidden = true
-    @State private var isButton6Hidden = true
-    @State private var isButton7Hidden = true
-    @State private var isButton8Hidden = true
-    @State private var isButton9Hidden = true
+    @State private var isButton4Hidden = false
+    @State private var isButton5Hidden = false
+    @State private var isButton6Hidden = false
+    @State private var isButton7Hidden = false
+    @State private var isButton8Hidden = false
+    @State private var isButton9Hidden = false
     
    // @State private var showingProfile = false
     
@@ -40,11 +40,11 @@ struct WorkHome: View {
                    HStack {
                         if isButton1Hidden {
                             Button(action: {
-                               // self.present(WorkPOR(), animated: true)
+                                isShowingPopup1 = true
                                    }) {
                                        VStack {
-                                           Image("iconship")
-                                        Text("호선정보조회").font(.system(size:12))
+                                            Image("iconsearch").resizable().frame(width: 50, height: 50)
+                                        Text("POR조회").font(.system(size:12))
                                        }
                                        //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)
                                        .frame(width: 70, height: 60)
@@ -55,7 +55,9 @@ struct WorkHome: View {
                                                 .stroke(colorround, lineWidth: 2)
                                                 .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                         )
-                            }
+                            }.fullScreenCover(isPresented: $isShowingPopup1) {
+                                WorkSearchPOR(isPresented: $isShowingPopup1)
+                             }
                         }
                         else {
                             Button(action: {}) {}
@@ -69,8 +71,8 @@ struct WorkHome: View {
                            // self.present(WorkPOR(), animated: true)
                                }) {
                                    VStack {
-                                       Image("iconbigengine")
-                                       Text("대형실적관리").font(.system(size:12))
+                                    Image("iconsearch").resizable().frame(width: 50, height: 50)
+                                       Text("근태조회").font(.system(size:12))
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -95,8 +97,8 @@ struct WorkHome: View {
                            // self.present(WorkPOR(), animated: true)
                                }) {
                                    VStack {
-                                       Image("iconship")
-                                       Text("힘센실적관리").font(.system(size:12))
+                                    Image("iconsearch").resizable().frame(width: 50, height: 50)
+                                       Text("자재창고담당").font(.system(size:12))
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -123,8 +125,8 @@ struct WorkHome: View {
                         // self.present(WorkPOR(), animated: true)
                             }) {
                                 VStack {
-                                    Image("iconship")
-                                 Text("호선정보조회").font(.system(size:12))
+                                    Image("iconsearch").resizable().frame(width: 50, height: 50)
+                                 Text("호선담당자").font(.system(size:12))
                                 }
                                 .frame(width: 70, height: 60)
                                 .padding()
@@ -148,8 +150,8 @@ struct WorkHome: View {
                     // self.present(WorkPOR(), animated: true)
                         }) {
                             VStack {
-                                Image("iconbigengine")
-                                Text("호선정보조회").font(.system(size:12))
+                                Image("iconmonitoring").resizable().frame(width: 50, height: 50)
+                             Text("대형모니터링").font(.system(size:12))
                             }
                             .frame(width: 70, height: 60)
                             .padding()
@@ -174,8 +176,8 @@ struct WorkHome: View {
                     // self.present(WorkPOR(), animated: true)
                         }) {
                             VStack {
-                                Image("iconship")
-                                Text("호선정보조회").font(.system(size:12))
+                                Image("iconmonitoring").resizable().frame(width: 50, height: 50)
+                             Text("힘센모니터링").font(.system(size:12))
                             }
                             .frame(width: 70, height: 60)
                             .padding()
