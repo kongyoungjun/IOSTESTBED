@@ -31,44 +31,46 @@ struct WorkHome: View {
     
     @State private var isShowingPopup = false
     @State private var isShowingPopup1: Bool = false
+    @State private var isShowingPopup2: Bool = false
+    @State private var isShowingPopup3: Bool = false
     
     let colorbutton = Color(red: 230/255, green: 230/255, blue: 230/255)
     let colorround = Color(red: 200/255, green: 200/255, blue: 200/255)
             
     var body: some View {
         VStack {
-                   HStack {
-                        if isButton1Hidden {
-                            Button(action: {
-                                isShowingPopup1 = true
-                                   }) {
-                                       VStack {
-                                            Image("iconsearch").resizable().frame(width: 50, height: 50)
-                                        Text("POR조회").font(.system(size:12))
-                                       }
-                                       //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)
-                                       .frame(width: 70, height: 60)
-                                       .padding()
-                                       .foregroundColor(.black)
-                                       .background(
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .stroke(colorround, lineWidth: 2)
-                                                .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
-                                        )
-                            }.fullScreenCover(isPresented: $isShowingPopup1) {
-                                WorkSearchPOR(isPresented: $isShowingPopup1)
-                             }
-                        }
-                        else {
-                            Button(action: {}) {}
-                                .frame(width: 70, height: 60)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color.white)
-                        }
+               HStack {
+                    if isButton1Hidden {
+                        Button(action: {
+                            isShowingPopup1 = true
+                               }) {
+                                   VStack {
+                                        Image("iconsearch").resizable().frame(width: 50, height: 50)
+                                    Text("POR조회").font(.system(size:12))
+                                   }
+                                   //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)
+                                   .frame(width: 70, height: 60)
+                                   .padding()
+                                   .foregroundColor(.black)
+                                   .background(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .stroke(colorround, lineWidth: 2)
+                                            .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
+                                    )
+                        }.fullScreenCover(isPresented: $isShowingPopup1) {
+                            WorkSearchPOR(isPresented: $isShowingPopup1)
+                         }
+                    }
+                    else {
+                        Button(action: {}) {}
+                            .frame(width: 70, height: 60)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.white)
+                    }
                     if isButton2Hidden {
                         Button(action: {
-                           // self.present(WorkPOR(), animated: true)
+                            isShowingPopup2 = true
                                }) {
                                    VStack {
                                     Image("iconsearch").resizable().frame(width: 50, height: 50)
@@ -82,7 +84,9 @@ struct WorkHome: View {
                                             .stroke(colorround, lineWidth: 2)
                                             .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                     )
-                        }
+                        }.fullScreenCover(isPresented: $isShowingPopup2) {
+                            WorkSearchWorker(isPresented: $isShowingPopup2)
+                         }
                     }
                     else {
                         Button(action: {}) {}
@@ -94,7 +98,7 @@ struct WorkHome: View {
                     
                     if isButton3Hidden {
                         Button(action: {
-                           // self.present(WorkPOR(), animated: true)
+                            isShowingPopup3 = true
                                }) {
                                    VStack {
                                     Image("iconsearch").resizable().frame(width: 50, height: 50)
@@ -108,7 +112,9 @@ struct WorkHome: View {
                                             .stroke(colorround, lineWidth: 2)
                                             .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                     )
-                        }
+                        }.fullScreenCover(isPresented: $isShowingPopup3) {
+                            WorkSearchStorePic(isPresented: $isShowingPopup3)
+                         }
                     }
                     else {
                         Button(action: {}) {}
@@ -118,7 +124,7 @@ struct WorkHome: View {
                             .background(Color.white)
                     }
                     
-                   }
+            }
             HStack {
                  if isButton4Hidden {
                      Button(action: {
@@ -238,8 +244,6 @@ struct WorkHome: View {
                                      .stroke(colorround, lineWidth: 2)
                                      .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                              )
-                 }.fullScreenCover(isPresented: $isShowingPopup1) {
-                    WorkerList(isPresented: $isShowingPopup1)
                  }
              }
              else {
@@ -266,8 +270,6 @@ struct WorkHome: View {
                                      .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                              )
                             
-                 }.fullScreenCover(isPresented: $isShowingPopup) {
-                    WorkPOR(isPresented: $isShowingPopup)
                  }
              }
              else {
