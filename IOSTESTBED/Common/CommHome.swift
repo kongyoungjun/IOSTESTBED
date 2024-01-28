@@ -34,7 +34,7 @@ struct CommHome: View {
                                 isShowingPopup1 = true
                                    }) {
                                        VStack {
-                                           Image("iconship")
+                                           Image("iconsearch")
                                         Text("사원조회").font(.pretendardBold14)
                                        }
                                        //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)
@@ -47,7 +47,7 @@ struct CommHome: View {
                                                 .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                         )
                             }.fullScreenCover(isPresented: $isShowingPopup1) {
-                                WorkerList(isPresented: $isShowingPopup1)
+                                CommonSearchWorker(isPresented: $isShowingPopup1)
                              }
                         }
                         else {

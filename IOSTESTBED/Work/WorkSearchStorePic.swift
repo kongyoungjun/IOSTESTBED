@@ -13,66 +13,82 @@ struct WorkSearchStorePic: View {
 
     
     @State private var isDataLoaded = false
+    @State private var isShowingPopup = false
     //@State private var isShowing = false
     @State private var isShowingProjNo = false
     @State private var textWareHouse: String = ""
     @State private var selectedDate = Date()
     @State var state: Int  = 0;
+    @State private var textTeam: String = ""
+    @State private var selectedOption = 0
     
     
     
     let colorwhiteblue = Color(red: 243/255, green: 248/255, blue: 255/255)
     let colordarkblue = Color(red: 0/255, green: 23/255, blue: 51/255)
     
-    
-    @State private var selectedOption = 0
-    
     let options = ["ALL","SPARE창고","대형1창고","대형2창고","통합외자창고","힘센1창고","힘센2창고"]
     
     var body: some View {
         VStack (alignment:.leading,  spacing: 3)
         {
+            
             Button(action: {
                 isPresented = false
             }) {
-                Text("< Back").frame(height: 10)
-                    
-                      //  .ignoresSafeArea()
-            }
+                Text("< Back")
+            }.frame(width:150, height: 50, alignment:.leading)
             Spacer()
+            HStack
+            {
+                Button(action: {
+
+                }) {
+                    Text("").frame(height: 1)
+                }
+            }
             
             Text(" 자재창고 담당자 관리").font(.pretendardBold24)
-            
             Divider()
             
             
             HStack {
-                Text(" 창고명 :").font(.pretendardBold18)
                 
-                Spacer()
-                VStack
+                
+                VStack(alignment:.leading,  spacing: 3)
                 {
-                    Picker("검색조건", selection: $selectedOption) {
-                        ForEach(0..<options.count) {
-                            index in Text(options[index]).tag(index)
+                    HStack
+                    {
+                        Text(" 창고명 :").font(.pretendardBold18)
+                        
+                        Spacer()
+                        VStack
+                        {
+                           Picker("검색조건", selection: $selectedOption) {
+                               ForEach(0..<options.count) {
+                                   index in Text(options[index]).tag(index)
+                               }
+                           }
+                           .frame(width:150, height:30)
+                           .clipped()
                         }
+                        Spacer()
+                        
+                        TextField("", text: $textWareHouse)
+                                        .font(.pretendardBold18)
+                        Button(action: {
+                            var textReult : String = loadData(from: textWareHouse, to: textTeam)
+                        }) {
+                            Text("조회").font(.pretendardBold24)
+                                .frame(height: 40)
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        
                     }
-                    .frame(width:150, height:30)
-                    .clipped()
                 }
-                Spacer()
                 
-                TextField("", text: $textWareHouse)
-                                .font(.pretendardBold18)
-                Button(action: {
-                    var textReult : String = loadData(from: textWareHouse)
-                }) {
-                    Text("조회").font(.pretendardBold24)
-                        .frame(height: 40)
-                }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.blue)
             }
         
             
@@ -127,7 +143,7 @@ struct WorkSearchStorePic: View {
       
     }
     
-    private func loadData(from textDept : String) -> String {
+    private func loadData(from textDept: String, to textTeam : String )-> String {
         isLoading = true
         
         guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_store.jsp?userid=") else {

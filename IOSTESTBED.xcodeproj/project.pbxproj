@@ -23,6 +23,8 @@
 		894E145D2B4C29D400E1AB47 /* WorkDailywork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */; };
 		894E68312B65EA8C00F78E34 /* PopUpDeptNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68302B65EA8C00F78E34 /* PopUpDeptNo.swift */; };
 		894E68342B65EBC400F78E34 /* PopUpTeamNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68332B65EBC400F78E34 /* PopUpTeamNo.swift */; };
+		894E68372B668B9B00F78E34 /* AssemblySearchResult1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68362B668B9B00F78E34 /* AssemblySearchResult1.swift */; };
+		894E683A2B6691EC00F78E34 /* AssemblySearchResult1Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68392B6691EC00F78E34 /* AssemblySearchResult1Detail.swift */; };
 		894F54182B49A22600C1823A /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F54172B49A22600C1823A /* Init.swift */; };
 		894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541A2B49A42700C1823A /* CommonWorker.swift */; };
 		894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541D2B49A68700C1823A /* AssemblySearchShip.swift */; };
@@ -77,6 +79,8 @@
 		894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDailywork.swift; sourceTree = "<group>"; };
 		894E68302B65EA8C00F78E34 /* PopUpDeptNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeptNo.swift; sourceTree = "<group>"; };
 		894E68332B65EBC400F78E34 /* PopUpTeamNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpTeamNo.swift; sourceTree = "<group>"; };
+		894E68362B668B9B00F78E34 /* AssemblySearchResult1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchResult1.swift; sourceTree = "<group>"; };
+		894E68392B6691EC00F78E34 /* AssemblySearchResult1Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchResult1Detail.swift; sourceTree = "<group>"; };
 		894F54172B49A22600C1823A /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		894F541A2B49A42700C1823A /* CommonWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWorker.swift; sourceTree = "<group>"; };
 		894F541D2B49A68700C1823A /* AssemblySearchShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchShip.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				894C5A2D2B4818D400855ECF /* AssemblyHome.swift */,
 				894F541D2B49A68700C1823A /* AssemblySearchShip.swift */,
 				894F54202B49A86F00C1823A /* AssemblyProjNoA.swift */,
+				894E68362B668B9B00F78E34 /* AssemblySearchResult1.swift */,
+				894E68392B6691EC00F78E34 /* AssemblySearchResult1Detail.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -355,6 +361,7 @@
 			files = (
 				895A2B312B6150C80049E881 /* ModelSearchStorePic.swift in Sources */,
 				894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */,
+				894E683A2B6691EC00F78E34 /* AssemblySearchResult1Detail.swift in Sources */,
 				895A2B1C2B5FFBCC0049E881 /* WorkSearchPOR.swift in Sources */,
 				8947850A2B6404F60045182E /* CommonSearchWorker.swift in Sources */,
 				894E68312B65EA8C00F78E34 /* PopUpDeptNo.swift in Sources */,
@@ -373,6 +380,7 @@
 				894E14592B4C154500E1AB47 /* Intro.swift in Sources */,
 				894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */,
 				895A2B282B614F6A0049E881 /* WorkSearchStorePic.swift in Sources */,
+				894E68372B668B9B00F78E34 /* AssemblySearchResult1.swift in Sources */,
 				8947684D2B4D9917008DA3FE /* WorkerListPopup.swift in Sources */,
 				894E145D2B4C29D400E1AB47 /* WorkDailywork.swift in Sources */,
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,

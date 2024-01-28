@@ -27,7 +27,7 @@ struct PopUpShipNo: View {
             Button("< Back") {
                 isPresented = false // Close the popup when tapped
                //state = 1
-            }.frame(width:150, height: 60, alignment:.leading)
+            }.frame(width:150, height: 40, alignment:.leading)
             Spacer()
             HStack
             {

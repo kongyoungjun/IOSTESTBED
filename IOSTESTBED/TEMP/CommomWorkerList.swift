@@ -82,8 +82,8 @@ struct CommomWorkerList: View {
                                 .padding(6)
                                 .background(Color.blue)
                         }
-                        .sheet(isPresented: $isShowingPopup, content: {
-                                PopUpProjNo(isPresented: $isShowingPopup)})
+//                        .sheet(isPresented: $isShowingPopup, content: {
+//                                PopUpShipNo(isPresented: $isShowingPopup)})
                     }
                     
                     

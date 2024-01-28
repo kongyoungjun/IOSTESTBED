@@ -1,13 +1,13 @@
 //
-//  AssemblySearchShip.swift
+//  AssemblySearchResult1.swift
 //  IOSTESTBED
 //
-//  Created by KX60 on 2024/01/07.
+//  Created by KX60 on 2024/01/28.
 //
 
 import SwiftUI
 
-struct AssemblySearchShip: View {
+struct AssemblySearchResult1: View {
     
     @State private var modelworkers: [ModelWorker] = []
     @State private var selectedWorker: ModelWorker?
@@ -16,8 +16,11 @@ struct AssemblySearchShip: View {
     @State private var isDataLoaded = false
     @State private var isShowingPopup1 = false
     @State private var isShowingPopup2 = false
+    @State private var isShowingPopup3 = false
     @State private var textShip: String = ""
     @State private var textProjno: String = ""
+    @State private var textSubProjno: String = ""
+    @State private var textProcno: String = ""
     
     
     @State private var textResult1: String = ""
@@ -55,7 +58,7 @@ struct AssemblySearchShip: View {
             }
             Spacer()
             
-            Text(" 호선정보조회").font(.pretendardBold24)
+            Text(" 대형작업실적").font(.pretendardBold24)
             
             Divider()
             
@@ -64,34 +67,6 @@ struct AssemblySearchShip: View {
             {
                 VStack(alignment:.leading,  spacing: 3)
                 {
-                    HStack{
-                           Text(" 구분:").font(.pretendardBold14)
-                           Spacer()
-                           Button(action: {
-                            isBigEngine = true
-                           }) {
-                               Text("대형").font(.pretendardBold18)
-                                   .frame(width: 40, height: 10)
-                                   .padding()
-                                   .foregroundColor(.white)
-                                   .background(isBigEngine ? Color.blue : Color.gray)
-                           }
-                            Button(action: {
-                                isBigEngine = false
-                            }) {
-                                Text("힘센").font(.pretendardBold18)
-                                    .frame(width: 40, height: 10)
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .background(isBigEngine ? Color.gray : Color.blue)
-                            }
-                          Spacer()
-                          Spacer()
-                          Spacer()
-                          Spacer()
-                        
-    
-                    }
                     
                     HStack
                     {
@@ -133,9 +108,6 @@ struct AssemblySearchShip: View {
                               //  PopUpProjNo(isPresented: $isShowingPopup)})
                     }
                     
-                    
-                     
-                    
                 }
                 Spacer()
                 HStack
@@ -144,7 +116,7 @@ struct AssemblySearchShip: View {
                             loadData()
                         }) {
                             Text("조회").font(.pretendardBold24)
-                                .frame(height: 100)
+                                .frame(height: 60)
                         }
                         .padding()
                         .foregroundColor(.white)
@@ -181,7 +153,8 @@ struct AssemblySearchShip: View {
                   
                 }
                 
-            }.frame(width: .infinity, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            }
+            .frame(width: .infinity, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             NavigationView {
                         VStack {
                             if isLoading {
@@ -251,15 +224,35 @@ struct AssemblySearchShip: View {
                     HStack(alignment:.center, spacing: 1)
                     {
                         Spacer(minLength: 1)
-                        Text("선주").font(.pretendardBold12).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: (hstackwidth * 0.2), minHeight: 10, maxHeight: 30).background(colorwhiteblue)
-                        TextField("", text: $textResult9).font(.pretendardBold12).padding().frame(minWidth:0, maxWidth: (hstackwidth * 0.3), minHeight: 10, maxHeight: 30).background(Color(UIColor.secondarySystemBackground))
-                        Text("국적").font(.pretendardBold12).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: (hstackwidth * 0.2), minHeight: 10, maxHeight: 30).background(colorwhiteblue)
-                        TextField("", text: $textResult10).font(.pretendardBold12).padding().frame(minWidth:0, maxWidth: (hstackwidth * 0.3), minHeight: 10, maxHeight: 30).background(Color(UIColor.secondarySystemBackground))
+                        Text("비고").font(.pretendardBold12).foregroundColor(.blue).padding().frame(minWidth:0, maxWidth: (hstackwidth * 0.2), minHeight: 10, maxHeight: 30).background(colorwhiteblue)
+                        TextField("", text: $textResult9).font(.pretendardBold12).padding().frame(minWidth:0, maxWidth: (hstackwidth * 0.9), minHeight: 10, maxHeight: 30).background(Color(UIColor.secondarySystemBackground))
                         Spacer(minLength: 1)
+                    }
+                    HStack(alignment:.center, spacing: 1)
+                    {
+                        Spacer()
+                        VStack(alignment:.trailing, spacing: 1)
+                        {
+                            Button(action: {
+                                isShowingPopup3 = true
+                            }) {
+                                Text("실적변경").font(.pretendardBold18)
+                                    .frame(width:150, height: 30)
+                                    //.padding()
+                                    .foregroundColor(.white)
+                                    .background(Color.blue)
+                            }
+                            .sheet(isPresented: $isShowingPopup3, content: {
+                                AssemblySearchResult1Detail(isPresented: $isShowingPopup3, textProjno: $textProjno , textSubProjno: $textSubProjno,
+                                    textProcno: $textProcno)
+                                        })
+                        }
+                        
+                       // Spacer(minLength: 1)
                     }
                 }
             }
-            .frame(width: .infinity, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            .frame(width: .infinity, height: 180, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         }
       
     }
@@ -280,7 +273,7 @@ struct AssemblySearchShip: View {
         isLoading = true
         
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchworker.jsp?userid=A372897&deptcd=KX6&empnm=") else {
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchresult1.jsp?user_id=A372897&gubun=&projno=KAA007642&subprojno=001") else {
             //print("nav1")
             return
         }
@@ -317,8 +310,8 @@ struct AssemblySearchShip: View {
     }
 }
 
-struct AssemblySearchShip_Previews: PreviewProvider {
+struct AssemblySearchResult1_Previews: PreviewProvider {
     static var previews: some View {
-        AssemblySearchShip(isPresented: Binding.constant(false))
+        AssemblySearchResult1(isPresented: Binding.constant(false))
     }
 }

@@ -76,8 +76,8 @@ struct WorkSearchPOR: View {
                        // .sheet(isPresented: $isShowingPopup, content: {
                         //    WorkerListPopup(isPresented: $isShowingPopup, state: $state)
                        //             })
-                        .sheet(isPresented: $isShowingPopup, content: {
-                                PopUpProjNo(isPresented: $isShowingPopup)})
+//                        .sheet(isPresented: $isShowingPopup, content: {
+//                                PopUpProjNo(isPresented: $isShowingPopup)})
 //                        .fullScreenCover(isPresented: $isShowingPopup) {
 //                            PopUpProjNo(isShowingProjNo: $isShowingPopup)
 //                        }
