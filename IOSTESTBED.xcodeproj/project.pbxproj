@@ -15,11 +15,14 @@
 		894768422B4D864F008DA3FE /* WorkerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894768412B4D864F008DA3FE /* WorkerList.swift */; };
 		894768452B4D8AB9008DA3FE /* SampleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894768442B4D8AB9008DA3FE /* SampleItem.swift */; };
 		8947684D2B4D9917008DA3FE /* WorkerListPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */; };
+		8947850A2B6404F60045182E /* CommonSearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894785092B6404F60045182E /* CommonSearchWorker.swift */; };
 		894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A2D2B4818D400855ECF /* AssemblyHome.swift */; };
 		894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A302B4820E600855ECF /* WorkPOR.swift */; };
 		894C5A362B48374100855ECF /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C5A352B48374100855ECF /* LogIn.swift */; };
 		894E14592B4C154500E1AB47 /* Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E14582B4C154500E1AB47 /* Intro.swift */; };
 		894E145D2B4C29D400E1AB47 /* WorkDailywork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */; };
+		894E68312B65EA8C00F78E34 /* PopUpDeptNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68302B65EA8C00F78E34 /* PopUpDeptNo.swift */; };
+		894E68342B65EBC400F78E34 /* PopUpTeamNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68332B65EBC400F78E34 /* PopUpTeamNo.swift */; };
 		894F54182B49A22600C1823A /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F54172B49A22600C1823A /* Init.swift */; };
 		894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541A2B49A42700C1823A /* CommonWorker.swift */; };
 		894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541D2B49A68700C1823A /* AssemblySearchShip.swift */; };
@@ -66,11 +69,14 @@
 		894768412B4D864F008DA3FE /* WorkerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerList.swift; sourceTree = "<group>"; };
 		894768442B4D8AB9008DA3FE /* SampleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleItem.swift; sourceTree = "<group>"; };
 		8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerListPopup.swift; sourceTree = "<group>"; };
+		894785092B6404F60045182E /* CommonSearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSearchWorker.swift; sourceTree = "<group>"; };
 		894C5A2D2B4818D400855ECF /* AssemblyHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyHome.swift; sourceTree = "<group>"; };
 		894C5A302B4820E600855ECF /* WorkPOR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkPOR.swift; sourceTree = "<group>"; };
 		894C5A352B48374100855ECF /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		894E14582B4C154500E1AB47 /* Intro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intro.swift; sourceTree = "<group>"; };
 		894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDailywork.swift; sourceTree = "<group>"; };
+		894E68302B65EA8C00F78E34 /* PopUpDeptNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpDeptNo.swift; sourceTree = "<group>"; };
+		894E68332B65EBC400F78E34 /* PopUpTeamNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpTeamNo.swift; sourceTree = "<group>"; };
 		894F54172B49A22600C1823A /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		894F541A2B49A42700C1823A /* CommonWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWorker.swift; sourceTree = "<group>"; };
 		894F541D2B49A68700C1823A /* AssemblySearchShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchShip.swift; sourceTree = "<group>"; };
@@ -169,14 +175,8 @@
 		895244472B40DEAC00E2F7A4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				894768412B4D864F008DA3FE /* WorkerList.swift */,
-				8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */,
-				895244482B40DF0800E2F7A4 /* CommonHome.swift */,
-				894F541A2B49A42700C1823A /* CommonWorker.swift */,
-				8947682B2B4D7284008DA3FE /* CommonPower.swift */,
-				8947682E2B4D7AEA008DA3FE /* CommomHomeTest.swift */,
-				894768312B4D8047008DA3FE /* CommomWorkerList.swift */,
 				8960AF252B58119F005047AF /* CommHome.swift */,
+				894785092B6404F60045182E /* CommonSearchWorker.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -233,6 +233,13 @@
 		895A2B2D2B614FA80049E881 /* TEMP */ = {
 			isa = PBXGroup;
 			children = (
+				894768412B4D864F008DA3FE /* WorkerList.swift */,
+				8947684C2B4D9917008DA3FE /* WorkerListPopup.swift */,
+				895244482B40DF0800E2F7A4 /* CommonHome.swift */,
+				894F541A2B49A42700C1823A /* CommonWorker.swift */,
+				8947682B2B4D7284008DA3FE /* CommonPower.swift */,
+				8947682E2B4D7AEA008DA3FE /* CommomHomeTest.swift */,
+				894768312B4D8047008DA3FE /* CommomWorkerList.swift */,
 				894C5A302B4820E600855ECF /* WorkPOR.swift */,
 				894E145C2B4C29D400E1AB47 /* WorkDailywork.swift */,
 				8960AEF22B56B102005047AF /* WorkList.swift */,
@@ -261,6 +268,8 @@
 			children = (
 				8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */,
 				895A2B182B5FEE8F0049E881 /* PopUpProjNo.swift */,
+				894E68302B65EA8C00F78E34 /* PopUpDeptNo.swift */,
+				894E68332B65EBC400F78E34 /* PopUpTeamNo.swift */,
 			);
 			path = POPUP;
 			sourceTree = "<group>";
@@ -347,6 +356,8 @@
 				895A2B312B6150C80049E881 /* ModelSearchStorePic.swift in Sources */,
 				894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */,
 				895A2B1C2B5FFBCC0049E881 /* WorkSearchPOR.swift in Sources */,
+				8947850A2B6404F60045182E /* CommonSearchWorker.swift in Sources */,
+				894E68312B65EA8C00F78E34 /* PopUpDeptNo.swift in Sources */,
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
 				8956A6362B4632F200FC6F17 /* WorkHome.swift in Sources */,
 				894768422B4D864F008DA3FE /* WorkerList.swift in Sources */,
@@ -367,6 +378,7 @@
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
 				894F54242B49B0BA00C1823A /* SessionView.swift in Sources */,
 				894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */,
+				894E68342B65EBC400F78E34 /* PopUpTeamNo.swift in Sources */,
 				894768322B4D8047008DA3FE /* CommomWorkerList.swift in Sources */,
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
 				895A2B162B5FE8E90049E881 /* ModelPopShipNo.swift in Sources */,

@@ -27,7 +27,7 @@ struct WorkSearchStorePic: View {
     
     @State private var selectedOption = 0
     
-    let options = ["ALL","SPARE창고","대형1창고"]
+    let options = ["ALL","SPARE창고","대형1창고","대형2창고","통합외자창고","힘센1창고","힘센2창고"]
     
     var body: some View {
         VStack (alignment:.leading,  spacing: 3)
@@ -57,7 +57,7 @@ struct WorkSearchStorePic: View {
                             index in Text(options[index]).tag(index)
                         }
                     }
-                    .frame(width:100, height:30)
+                    .frame(width:150, height:30)
                     .clipped()
                 }
                 Spacer()
