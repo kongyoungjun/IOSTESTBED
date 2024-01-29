@@ -14,8 +14,8 @@ struct CommomWorkerList: View {
     //
     @State private var isLoading: Bool = false
     
-    @State private var modelsearchpors: [ModelSearchPOR] = []
-    @State private var selectedmodelsearchpor: ModelSearchPOR?
+    @State private var modelsearchpors: [ModelSearchPor] = []
+    @State private var selectedmodelsearchpor: ModelSearchPor?
 
     
     @State private var isDataLoaded = false
@@ -142,11 +142,11 @@ struct CommomWorkerList: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-                                List(modelsearchpors, id: \.EMPNO) { modelsearchpor in
+                                List(modelsearchpors, id: \.PROJNO) { modelsearchpor in
                                     HStack(alignment: .top) {
-                                        Text("\(modelsearchpor.EMPNO)")
-                                        Text("\(modelsearchpor.DEPTNM)")
-                                        Text("\(modelsearchpor.MOBILE)")
+                                       // Text("\(modelsearchpor.EMPNO)")
+                                       // Text("\(modelsearchpor.DEPTNM)")
+                                       // Text("\(modelsearchpor.MOBILE)")
                                     }
                                     .onTapGesture {
                                         selectedmodelsearchpor = modelsearchpor
@@ -185,7 +185,7 @@ struct CommomWorkerList: View {
 
             do {
                 
-                    let decodedData = try JSONDecoder().decode([String: [ModelSearchPOR]].self, from: data)
+                    let decodedData = try JSONDecoder().decode([String: [ModelSearchPor]].self, from: data)
                                     if let modelSearchPors = decodedData["List"] {
                                         DispatchQueue.main.async {
                                             modelsearchpors = modelSearchPors

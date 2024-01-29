@@ -133,9 +133,9 @@ struct CommonSearchWorker: View {
                             } else {
                                 List(modelsearchstroepics, id: \.EMPNO) { modelsearchstore in
                                     HStack(alignment: .top) {
-                                        Text("\(modelsearchstore.EMPNO)")
-                                        Text("\(modelsearchstore.DEPTNM)")
-                                        Text("\(modelsearchstore.MOBILE)")
+                                     //   Text("\(modelsearchstore.EMPNO ?? <#default value#>)")
+                                     //   Text("\(modelsearchstore.DEPTNM)")
+                                     //   Text("\(modelsearchstore.MOBILE)")
                                     }
                                     .onTapGesture {
                                         selectedmodelsearchstore = modelsearchstore
