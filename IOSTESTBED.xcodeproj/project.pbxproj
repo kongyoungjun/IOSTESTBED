@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,7 +40,6 @@
 		894E68622B67662000F78E34 /* ModelComboMat1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68612B67662000F78E34 /* ModelComboMat1.swift */; };
 		894E68652B67664600F78E34 /* ModelSearchWorking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68642B67664600F78E34 /* ModelSearchWorking.swift */; };
 		894E68682B67668600F78E34 /* ModelComboStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E68672B67668600F78E34 /* ModelComboStore.swift */; };
-		894F54182B49A22600C1823A /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F54172B49A22600C1823A /* Init.swift */; };
 		894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541A2B49A42700C1823A /* CommonWorker.swift */; };
 		894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F541D2B49A68700C1823A /* AssemblySearchShip.swift */; };
 		894F54212B49A86F00C1823A /* AssemblyProjNoA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F54202B49A86F00C1823A /* AssemblyProjNoA.swift */; };
@@ -75,6 +74,15 @@
 		8960AF232B580065005047AF /* ModelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF222B580065005047AF /* ModelWorker.swift */; };
 		8960AF262B58119F005047AF /* CommHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF252B58119F005047AF /* CommHome.swift */; };
 		8960AF2B2B5B4044005047AF /* PopUpShipNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */; };
+		C76DC4D72B6D11E800C5B291 /* AssemblySearchResult2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76DC4D62B6D11E800C5B291 /* AssemblySearchResult2.swift */; };
+		C76DC4D92B6D150D00C5B291 /* AssemblySearchResult2Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76DC4D82B6D150D00C5B291 /* AssemblySearchResult2Detail.swift */; };
+		C76DC4DB2B6D166B00C5B291 /* AssemblySearchShipPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76DC4DA2B6D166B00C5B291 /* AssemblySearchShipPic.swift */; };
+		C76DC4DF2B6D2D1400C5B291 /* AssemblySearchShipPicDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76DC4DE2B6D2D1400C5B291 /* AssemblySearchShipPicDetail.swift */; };
+		C76FF5DA2B7FC02900925785 /* ModelMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FF5D92B7FC02900925785 /* ModelMenu.swift */; };
+		C770C57E2B7E5573002F2BC7 /* ModelPopupTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770C57D2B7E5573002F2BC7 /* ModelPopupTeam.swift */; };
+		C770CBE52B6FB5E000D177D9 /* AssemblySearchMonitoring1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770CBE42B6FB5E000D177D9 /* AssemblySearchMonitoring1.swift */; };
+		C770CBE72B6FB7C400D177D9 /* AssemblySearchMonitoring2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770CBE62B6FB7C400D177D9 /* AssemblySearchMonitoring2.swift */; };
+		C772812F2B7916630011A1BE /* ModelSearchResult2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C772812E2B7916630011A1BE /* ModelSearchResult2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,7 +119,6 @@
 		894E68612B67662000F78E34 /* ModelComboMat1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelComboMat1.swift; sourceTree = "<group>"; };
 		894E68642B67664600F78E34 /* ModelSearchWorking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchWorking.swift; sourceTree = "<group>"; };
 		894E68672B67668600F78E34 /* ModelComboStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelComboStore.swift; sourceTree = "<group>"; };
-		894F54172B49A22600C1823A /* Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
 		894F541A2B49A42700C1823A /* CommonWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWorker.swift; sourceTree = "<group>"; };
 		894F541D2B49A68700C1823A /* AssemblySearchShip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchShip.swift; sourceTree = "<group>"; };
 		894F54202B49A86F00C1823A /* AssemblyProjNoA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyProjNoA.swift; sourceTree = "<group>"; };
@@ -148,6 +155,15 @@
 		8960AF222B580065005047AF /* ModelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelWorker.swift; sourceTree = "<group>"; };
 		8960AF252B58119F005047AF /* CommHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommHome.swift; sourceTree = "<group>"; };
 		8960AF2A2B5B4043005047AF /* PopUpShipNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpShipNo.swift; sourceTree = "<group>"; };
+		C76DC4D62B6D11E800C5B291 /* AssemblySearchResult2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchResult2.swift; sourceTree = "<group>"; };
+		C76DC4D82B6D150D00C5B291 /* AssemblySearchResult2Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchResult2Detail.swift; sourceTree = "<group>"; };
+		C76DC4DA2B6D166B00C5B291 /* AssemblySearchShipPic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchShipPic.swift; sourceTree = "<group>"; };
+		C76DC4DE2B6D2D1400C5B291 /* AssemblySearchShipPicDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchShipPicDetail.swift; sourceTree = "<group>"; };
+		C76FF5D92B7FC02900925785 /* ModelMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMenu.swift; sourceTree = "<group>"; };
+		C770C57D2B7E5573002F2BC7 /* ModelPopupTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPopupTeam.swift; sourceTree = "<group>"; };
+		C770CBE42B6FB5E000D177D9 /* AssemblySearchMonitoring1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchMonitoring1.swift; sourceTree = "<group>"; };
+		C770CBE62B6FB7C400D177D9 /* AssemblySearchMonitoring2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblySearchMonitoring2.swift; sourceTree = "<group>"; };
+		C772812E2B7916630011A1BE /* ModelSearchResult2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSearchResult2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +203,9 @@
 				894E68612B67662000F78E34 /* ModelComboMat1.swift */,
 				894E68642B67664600F78E34 /* ModelSearchWorking.swift */,
 				894E68672B67668600F78E34 /* ModelComboStore.swift */,
+				C772812E2B7916630011A1BE /* ModelSearchResult2.swift */,
+				C770C57D2B7E5573002F2BC7 /* ModelPopupTeam.swift */,
+				C76FF5D92B7FC02900925785 /* ModelMenu.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,6 +227,12 @@
 				894F54202B49A86F00C1823A /* AssemblyProjNoA.swift */,
 				894E68362B668B9B00F78E34 /* AssemblySearchResult1.swift */,
 				894E68392B6691EC00F78E34 /* AssemblySearchResult1Detail.swift */,
+				C76DC4D62B6D11E800C5B291 /* AssemblySearchResult2.swift */,
+				C76DC4D82B6D150D00C5B291 /* AssemblySearchResult2Detail.swift */,
+				C76DC4DA2B6D166B00C5B291 /* AssemblySearchShipPic.swift */,
+				C76DC4DE2B6D2D1400C5B291 /* AssemblySearchShipPicDetail.swift */,
+				C770CBE42B6FB5E000D177D9 /* AssemblySearchMonitoring1.swift */,
+				C770CBE62B6FB7C400D177D9 /* AssemblySearchMonitoring2.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -266,7 +291,6 @@
 				8952C3C52B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld */,
 				8952C3C02B35E5300028A2A8 /* Preview Content */,
 				894C5A352B48374100855ECF /* LogIn.swift */,
-				894F54172B49A22600C1823A /* Init.swift */,
 				894F54232B49B0BA00C1823A /* SessionView.swift */,
 				894E14582B4C154500E1AB47 /* Intro.swift */,
 			);
@@ -360,7 +384,7 @@
 				};
 			};
 			buildConfigurationList = 8952C3B22B35E52B0028A2A8 /* Build configuration list for PBXProject "IOSTESTBED" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -408,6 +432,7 @@
 				894C5A2E2B4818D400855ECF /* AssemblyHome.swift in Sources */,
 				894E683A2B6691EC00F78E34 /* AssemblySearchResult1Detail.swift in Sources */,
 				895A2B1C2B5FFBCC0049E881 /* WorkSearchPOR.swift in Sources */,
+				C76DC4D72B6D11E800C5B291 /* AssemblySearchResult2.swift in Sources */,
 				8947850A2B6404F60045182E /* CommonSearchWorker.swift in Sources */,
 				894E68312B65EA8C00F78E34 /* PopUpDeptNo.swift in Sources */,
 				895244492B40DF0800E2F7A4 /* CommonHome.swift in Sources */,
@@ -419,14 +444,15 @@
 				895A2B1F2B5FFBFF0049E881 /* ModelSearchPor.swift in Sources */,
 				895A2B252B6140350049E881 /* WorkSearchWorker.swift in Sources */,
 				894F541B2B49A42700C1823A /* CommonWorker.swift in Sources */,
+				C770C57E2B7E5573002F2BC7 /* ModelPopupTeam.swift in Sources */,
 				894E68462B67644600F78E34 /* ModelPopupDept.swift in Sources */,
 				894E685B2B67657D00F78E34 /* ModelSearchMonitoring21.swift in Sources */,
-				894F54182B49A22600C1823A /* Init.swift in Sources */,
 				894768452B4D8AB9008DA3FE /* SampleItem.swift in Sources */,
 				895A2B132B5FE7650049E881 /* ModelLogin.swift in Sources */,
 				894E685E2B6765B200F78E34 /* ModelComboFact2.swift in Sources */,
 				895A2B192B5FEE8F0049E881 /* PopUpProjNo.swift in Sources */,
 				894E14592B4C154500E1AB47 /* Intro.swift in Sources */,
+				C772812F2B7916630011A1BE /* ModelSearchResult2.swift in Sources */,
 				894E68522B67650500F78E34 /* ModelSearchShpPic2.swift in Sources */,
 				894F541E2B49A68700C1823A /* AssemblySearchShip.swift in Sources */,
 				895A2B282B614F6A0049E881 /* WorkSearchStorePic.swift in Sources */,
@@ -439,6 +465,7 @@
 				8952C3C42B35E5300028A2A8 /* Persistence.swift in Sources */,
 				894F54242B49B0BA00C1823A /* SessionView.swift in Sources */,
 				894C5A312B4820E600855ECF /* WorkPOR.swift in Sources */,
+				C770CBE52B6FB5E000D177D9 /* AssemblySearchMonitoring1.swift in Sources */,
 				894E68342B65EBC400F78E34 /* PopUpTeamNo.swift in Sources */,
 				894E68552B67652E00F78E34 /* ModelSearchMonitoring11.swift in Sources */,
 				894768322B4D8047008DA3FE /* CommomWorkerList.swift in Sources */,
@@ -446,15 +473,20 @@
 				8952C3C72B35E5300028A2A8 /* IOSTESTBED.xcdatamodeld in Sources */,
 				895A2B162B5FE8E90049E881 /* ModelPopShipNo.swift in Sources */,
 				895A2B222B613FEE0049E881 /* ModelSearchWorker.swift in Sources */,
+				C76DC4DF2B6D2D1400C5B291 /* AssemblySearchShipPicDetail.swift in Sources */,
 				8960AEF32B56B102005047AF /* WorkList.swift in Sources */,
 				8947682F2B4D7AEA008DA3FE /* CommomHomeTest.swift in Sources */,
+				C76FF5DA2B7FC02900925785 /* ModelMenu.swift in Sources */,
 				894E684C2B6764AA00F78E34 /* ModelSearchResult1.swift in Sources */,
 				894E68402B6763C200F78E34 /* ModelPopupShip.swift in Sources */,
 				894E68682B67668600F78E34 /* ModelComboStore.swift in Sources */,
 				8952C3BD2B35E52B0028A2A8 /* ContentView.swift in Sources */,
+				C76DC4DB2B6D166B00C5B291 /* AssemblySearchShipPic.swift in Sources */,
 				894C5A362B48374100855ECF /* LogIn.swift in Sources */,
 				8947682C2B4D7284008DA3FE /* CommonPower.swift in Sources */,
+				C770CBE72B6FB7C400D177D9 /* AssemblySearchMonitoring2.swift in Sources */,
 				8952C3BB2B35E52B0028A2A8 /* IOSTESTBEDApp.swift in Sources */,
+				C76DC4D92B6D150D00C5B291 /* AssemblySearchResult2Detail.swift in Sources */,
 				894E684F2B6764D800F78E34 /* ModelSearchShipPic1.swift in Sources */,
 				8960AF232B580065005047AF /* ModelWorker.swift in Sources */,
 				894F54212B49A86F00C1823A /* AssemblyProjNoA.swift in Sources */,

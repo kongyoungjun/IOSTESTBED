@@ -1,7 +1,13 @@
+//
+//  AssemblySearchMonitoring2.swift
+//  IOSTESTBED
+//
+//  Created by  hhi on 2/4/24.
+//
 
 import SwiftUI
 
-struct WorkSearchStorePic: View {
+struct AssemblySearchMonitoring2: View {
     
     // BACK 화면
     @Binding var isPresented: Bool
@@ -17,6 +23,7 @@ struct WorkSearchStorePic: View {
     //@State private var isShowing = false
     @State private var isShowingProjNo = false
     @State private var textWareHouse: String = ""
+    @State private var selectedDate = Date()
     @State var state: Int  = 0;
     @State private var textTeam: String = ""
     @State private var selectedOption = 0
@@ -26,7 +33,7 @@ struct WorkSearchStorePic: View {
     let colorwhiteblue = Color(red: 243/255, green: 248/255, blue: 255/255)
     let colordarkblue = Color(red: 0/255, green: 23/255, blue: 51/255)
     
-    let options = ["ALL","SPARE창고","대형1창고","대형2창고","통합외자창고","힘센1창고","힘센2창고"]
+    let options = ["전공장","힘센1공장","힘센2공장"]
     
     var body: some View {
         VStack (alignment:.leading,  spacing: 3)
@@ -36,7 +43,7 @@ struct WorkSearchStorePic: View {
                 isPresented = false
             }) {
                 Text("< Back")
-            }.frame(width:150, height: 40, alignment:.leading)
+            }.frame(width:150, height: 50, alignment:.leading)
             Spacer()
             HStack
             {
@@ -47,7 +54,7 @@ struct WorkSearchStorePic: View {
                 }
             }
             
-            Text(" 자재창고 담당자 관리").font(.pretendardBold24)
+            Text(" 힘센모니터링").font(.pretendardBold24)
             Divider()
             
             
@@ -58,7 +65,7 @@ struct WorkSearchStorePic: View {
                 {
                     HStack
                     {
-                        Text(" 창고명 :").font(.pretendardBold18)
+                        Text(" 공장 :").font(.pretendardBold18)
                         
                         Spacer()
                         VStack
@@ -68,17 +75,17 @@ struct WorkSearchStorePic: View {
                                    index in Text(options[index]).tag(index)
                                }
                            }
-                           .frame(width:150, height:30)
+                           .frame(width:200, height:30)
                            .clipped()
                         }
                         Spacer()
                         
-                        TextField("", text: $textWareHouse)
-                                        .font(.pretendardBold18)
+//                        TextField("", text: $textWareHouse)
+//                                        .font(.pretendardBold18)
                         Button(action: {
-                            var textReult : String = loadData(from: textWareHouse)
+                            var textReult : String = loadData(from: textWareHouse, to: textTeam)
                         }) {
-                            Text("조회").font(.pretendardBold18)
+                            Text("조회").font(.pretendardBold24)
                                 .frame(height: 40)
                         }
                         .padding()
@@ -100,11 +107,13 @@ struct WorkSearchStorePic: View {
                     HStack (alignment:.center, spacing: 1)
                     {
                         Spacer(minLength: 1)
-                        Button(action: {}) { Text("창고명")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth: (hstackwidth * 0.20), minHeight: 10, maxHeight: 30).background(Color.gray)
-                        Button(action: {}) { Text("부서명")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.20), minHeight: 10, maxHeight: 30).background(Color.gray)
-                        Button(action: {}) { Text("성명")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.15), minHeight: 10, maxHeight: 30).background(Color.gray)
-                        Button(action: {}) { Text("사무실")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.15), minHeight: 10, maxHeight: 30).background(Color.gray)
-                        Button(action: {}) { Text("전화번호")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.30), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("호선")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth: (hstackwidth * 0.20), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("엔진타입")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.20), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("시작")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.15), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("종료")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.15), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("BED")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.10), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("진행")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.10), minHeight: 10, maxHeight: 30).background(Color.gray)
+                        Button(action: {}) { Text("상태")}.foregroundColor(.white).font(.pretendardBold14).frame(minWidth:0, maxWidth:  (hstackwidth * 0.10), minHeight: 10, maxHeight: 30).background(Color.gray)
                         Spacer(minLength: 1)
 
                     }
@@ -120,35 +129,18 @@ struct WorkSearchStorePic: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-                                List(modelsearchstroepics, id: \.EMPNM) { modelsearchstore in
+                                List(modelsearchstroepics, id: \.EMPNO) { modelsearchstore in
                                     HStack(alignment: .top) {
-                                        let nullString = ""
-                                        let telno = (modelsearchstore.TELNO ?? nullString).suffix(6)
-                                        Text("\(modelsearchstore.GUBUN1)").font(.pretendardBold12)
-                                            .frame(minWidth:0, maxWidth: 70, minHeight: 10, maxHeight: 30 , alignment: .center)
-                                        Text("\(modelsearchstore.GUBUN2)").font(.pretendardBold12).frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
-                                        Text("\(modelsearchstore.EMPNM)").font(.pretendardBold12).frame(minWidth:0, maxWidth: 40, minHeight: 10, maxHeight: 30, alignment: .center)
-                                        Text("\(telno)").font(.pretendardBold12)
-                                            .frame(minWidth:0, maxWidth: 60, minHeight: 10, maxHeight: 30, alignment: .center)
-                                            .onTapGesture{
-                                            if let phoneURL = URL(string: "tel://\(modelsearchstore.TELNO ?? nullString)") {
-                                                                    UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
-                                                                }
-                                        }
-                                        Text("\(modelsearchstore.HPNO ?? nullString)").font(.pretendardBold12)
-                                            .frame(minWidth:0, maxWidth: 120, minHeight: 10, maxHeight: 30, alignment: .center)
-                                            .onTapGesture{
-                                                if let phoneURL = URL(string: "tel://\(modelsearchstore.HPNO ?? nullString)") {
-                                                                        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
-                                                                    }
-                                            }
+                                      //  Text("\(modelsearchstore.EMPNO)")
+                                      //  Text("\(modelsearchstore.DEPTNM)")
+                                       // Text("\(modelsearchstore.MOBILE)")
                                     }
                                     .onTapGesture {
                                         selectedmodelsearchstore = modelsearchstore
                                       //  textSampel = selectedWorker!.EMPNO
                                     }
                                     
-                                }.listStyle(.grouped)
+                                }
                             }
                         }
                         .navigationBarHidden(true)
@@ -158,20 +150,46 @@ struct WorkSearchStorePic: View {
         }
       
     }
-    
-    private func loadData(from textWearhouse: String)-> String {
+    private func loadCombo(from textDept: String, to textTeam : String )-> String {
         isLoading = true
         
-        var textWear = String()
-        if textWearhouse == "ALL" {
-            textWear = ""
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/monitoring21.jsp?user_id=A372897&gubun=A302") else {
+            return "ERROR"
         }
-        else
-        {
-            textWear = textWearhouse
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            defer {
+                DispatchQueue.main.async {
+                    isLoading = false
+                }
+            }
+            
+            guard let data = data, error == nil else {
+                        return
+                    }
+
+            do {
+                
+                    let decodedData = try JSONDecoder().decode([String: [ModelSearchStorePic]].self, from: data)
+                if let SearchStorePics = decodedData["List"] {
+                                        DispatchQueue.main.async {
+                                            modelsearchstroepics = SearchStorePics
+                                        }
+                    }
+                
+                
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
         }
+
+        task.resume()
+        return "OK"
+    }
+    private func loadData(from textDept: String, to textTeam : String )-> String {
+        isLoading = true
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchstorepic.jsp?gubun=\(textWear)&id=") else {
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/monitoring21.jsp?user_id=A372897&gubun=A302") else {
             return "ERROR"
         }
 
@@ -206,9 +224,8 @@ struct WorkSearchStorePic: View {
     }
 }
 
-
-struct WorkSearchStorePic_Previews: PreviewProvider {
+struct AssemblySearchMonitoring2_Previews: PreviewProvider {
     static var previews: some View {
-        WorkSearchStorePic(isPresented: Binding.constant(false))
+        AssemblySearchMonitoring2(isPresented: Binding.constant(false))
     }
 }

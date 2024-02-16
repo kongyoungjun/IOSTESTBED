@@ -12,15 +12,16 @@ struct WorkSearchWorker: View {
     @State private var selectedmodelsearchworker: ModelSearchWorker?
 
     
+    @State private var showAlert = false
     @State private var isDataLoaded = false
-    @State private var isShowingPopup = false
-    @State private var isShowingProjNo = false
+    @State private var isShowingDept = false
+    @State private var isShowingTeam = false
     @State private var textDept: String = ""
     @State private var textTeam: String = ""
-    @State private var selectedDate = Date()
+    //@State private var selectedDate = Date()
+    @State private var selectedDate = Calendar.current.date(byAdding: .month, value: 0, to: Date()) ?? Date()
+    
     @State var state: Int  = 0;
-    
-    
     
     let colorwhiteblue = Color(red: 243/255, green: 248/255, blue: 255/255)
     let colordarkblue = Color(red: 0/255, green: 23/255, blue: 51/255)
@@ -32,8 +33,6 @@ struct WorkSearchWorker: View {
                 isPresented = false
             }) {
                 Text("< Back").frame(height: 10)
-                    
-                      //  .ignoresSafeArea()
             }
             Spacer()
             
@@ -49,7 +48,7 @@ struct WorkSearchWorker: View {
                     HStack (spacing: 0)
                     {
                         Text(" 일자  : ").font(.pretendardBold14)
-                       DatePicker("Select Date", selection: $selectedDate, in: ...Date(), displayedComponents: .date).labelsHidden().font(.pretendardBold12)
+                        DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date).labelsHidden().font(.pretendardBold12)
                        Spacer()
                                       
                     }
@@ -60,14 +59,15 @@ struct WorkSearchWorker: View {
                                         .font(.pretendardBold14)
                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: {
-                            isShowingPopup = true
+                            isShowingDept = true
                         }) {
                             Image("iconsearch")
                                 .padding(6)
                                 .background(Color.blue)
                         }
-//                        .sheet(isPresented: $isShowingPopup, content: {
-//                                PopUpProjNo(isPresented: $isShowingPopup)})
+                        .sheet(isPresented: $isShowingDept, content: {
+                                PopUpDeptNo(isPresented: $isShowingDept , textDept: $textDept)})
+                        
                        
                     }
                     HStack
@@ -78,25 +78,25 @@ struct WorkSearchWorker: View {
                                         .font(.pretendardBold14)
                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: {
-                            isShowingPopup = true
+                            isShowingTeam = true
                         }) {
                             Image("iconsearch")
                                 .padding(6)
                                 .background(Color.blue)
                         }
-//                        .sheet(isPresented: $isShowingPopup, content: {
-//                                PopUpProjNo(isPresented: $isShowingPopup)})
+                        .sheet(isPresented: $isShowingTeam, content: {
+                            PopUpTeamNo(isPresented: $isShowingTeam , textTeam: $textTeam)})
                     }
-                    
-                    
-                     
-                    
                 }
                 Spacer()
                 HStack
                 {
                         Button(action: {
-                            var textReult : String = loadData(from: textDept, to: textTeam)
+                            if textDept.isEmpty {
+                               showAlert = true
+                           } else {
+                               var textReult : String = loadData(from: textDept, to: textTeam)
+                           }
                         }) {
                             Text("조회").font(.pretendardBold24)
                                 .frame(height: 70)
@@ -104,6 +104,13 @@ struct WorkSearchWorker: View {
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.blue)
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Alert"),
+                        message: Text("부서를 넣어주세요"),
+                        dismissButton: .default(Text("OK"))
+                    )
                 }
                 Spacer()
             }
@@ -138,16 +145,22 @@ struct WorkSearchWorker: View {
                             } else {
                                 List(modelsearchworkers, id: \.EMPNO) { modelsearchworker in
                                     HStack(alignment: .top) {
-                                        Text("\(modelsearchworker.EMPNO)")
-                                        Text("\(modelsearchworker.DEPTNM)")
-                                        Text("\(modelsearchworker.MOBILE)")
+                                        let nullString = ""
+                                        Text("\(modelsearchworker.EMPNO)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 80, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                        Text("\(modelsearchworker.EMPNM)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 80, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                        Text("\(modelsearchworker.STTIME ?? nullString)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 80, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                        Text("\(modelsearchworker.EDTIME ?? nullString)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 80, minHeight: 10, maxHeight: 30 , alignment: .center)
                                     }
                                     .onTapGesture {
                                         selectedmodelsearchworker = modelsearchworker
                                       //  textSampel = selectedWorker!.EMPNO
                                     }
                                     
-                                }
+                                }.listStyle(.grouped)
                             }
                         }
                         .navigationBarHidden(true)
@@ -158,12 +171,20 @@ struct WorkSearchWorker: View {
       
     }
     
+    private func dateToString(_ date: Date, format: String) -> String {
+          let dateFormatter = DateFormatter()
+          dateFormatter.dateFormat = format
+          return dateFormatter.string(from: date)
+      }
+    
     private func loadData(from textDept : String, to textTeam : String) -> String {
         isLoading = true
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchworkingjsp?projdate=20240117&dept=K42&team=21") else {
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchworking.jsp?projdate=\(dateToString(selectedDate, format: "yyyyMMdd"))&dept=\(textDept)&team=\(textTeam)") else {
             return "ERROR"
         }
+        
+        //
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             defer {

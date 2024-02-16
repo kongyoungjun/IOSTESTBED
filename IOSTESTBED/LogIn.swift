@@ -7,18 +7,35 @@
 
 import SwiftUI
 
+class UserData: ObservableObject {
+    @Published var loginId: String
+    
+    init (loginIDNew : String) {
+        self.loginId = loginIDNew
+    }
+}
+
 struct LogIn: View {
-        @State private var userid = ""
-        @State private var password = ""
+    
+       // @ObservedObject var userDataLogin : UserData
+        
+        @State private var logininfo: ModelLogin?
+        @State private var enteredID : String = ""
+        @State private var password : String  = ""
         //@State private var isLoggedIn = false
         @State private var isAutoSaveEnabled = false
         
         @State private var showContentView = false
     
-        @State private var userNameRes = ""
+        //@State private var userNameRes = ""
     
     
         @State private var isLoading: Bool = false
+    
+    init () {
+        //self.userDataLogin = userDataLogin
+    }
+    
     
     var body: some View {
         Image("login") // Set your image name here
@@ -39,7 +56,7 @@ struct LogIn: View {
                           .lineSpacing(8)
                         
                       
-                        TextField("ID", text: $userid)
+                        TextField("ID", text: $enteredID)
                            // .padding()
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .autocapitalization(.none)
@@ -53,7 +70,8 @@ struct LogIn: View {
                         
                         Button(action: {
                             //print("Username: \(username), Password: \(password), Auto Save: \(isAutoSaveEnabled)")
-                            var textResult : String = loadData(from: userid, to: password)
+                           // userDataLogin.loginId = enteredID
+                            var textResult : String = loadData(from: "", to: password)
                           showContentView.toggle()
                           
                         }) {
@@ -67,7 +85,11 @@ struct LogIn: View {
                                                   
                         }
                         .fullScreenCover(isPresented: $showContentView) {
-                            ContentView(userShowingName: $userNameRes)
+                            ContentView()
+                            //ContentView(userShowingName: $enteredID)
+                            //NavigationLink("Go to Another View", destination:  ContentView())
+                            //NavigationLink("Go to Profile", destination: )
+                            //ContentView(userData: userData)
                         }
                        // .fullScreenCover(isPresented: $showContentView, content: ContentView.init)
                       //  .fullScreenCover(isPresented: $showContentView, content: ContentView.init)
@@ -91,7 +113,8 @@ struct LogIn: View {
                        
                                   
                       Text("Version : 1.0")
-                          .multilineTextAlignment(.leading)
+                            .frame(minWidth:0, maxWidth: 300, minHeight: 10, maxHeight: 30 , alignment: .leading)
+                          //.multilineTextAlignment(.leading)
                           .font(.footnote)
                           .foregroundColor(.black)
                     }
@@ -110,7 +133,7 @@ struct LogIn: View {
         //print("nav")
         isLoading = true
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/mobile/main/login.jsp?userid=A372897&userpw=ffpark7230&lat=0&lng=0network=KT&model=SM-G977N") else {
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/login.jsp?userid=A372897&userpw=pppark7230&lat=0.0&lng=0.0&network=&model=IPHONE") else {
             //print("nav1")
             //return
             return "ERROR"
@@ -125,18 +148,20 @@ struct LogIn: View {
             }
             
             guard let data = data, error == nil else {
-               // print("nav2")
                         return
                     }
 
             do {
                 
-                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
-                                    if let workerList = decodedData["List"] {
-                                        DispatchQueue.main.async {
-                                            //modelworkers = workerList
-                                        }
-                    }
+                    let decodedData = try JSONDecoder().decode(ModelLogin.self, from: data)
+                        logininfo = decodedData
+                
+                
+//                                    if let workerList = decodedData["List"] {
+//                                        DispatchQueue.main.async {
+//                                            //modelworkers = workerList
+//                                        }
+                 //   }
                 
                 
             } catch {
@@ -151,9 +176,25 @@ struct LogIn: View {
        
 }
 
+//struct LogIn: View {
+//    @StateObject var userData = UserData()
+//
+//    var body: some View {
+//        NavigationView {
+//            VStack {
+//                LoginView(userData: userData)
+//                //NavigationLink("Go to Profile", destination: ProfileView(userData: userData))
+//            }
+//            .navigationBarTitle("Login Example")
+//        }
+//    }
+//}
+
 struct LogIn_Previews: PreviewProvider {
     static var previews: some View {
         LogIn()
+       // let userData = UserData()
+       // LogIn(userDataLogin: UserData(loginID: ""))
         //CommonPower(isPresented: $isShowingPop)
     }
 }

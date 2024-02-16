@@ -34,7 +34,7 @@ struct CommHome: View {
                                 isShowingPopup1 = true
                                    }) {
                                        VStack {
-                                           Image("iconsearch")
+                                           Image("iconsearch").resizable().frame(width: 50, height: 50)
                                         Text("사원조회").font(.pretendardBold14)
                                        }
                                        //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)

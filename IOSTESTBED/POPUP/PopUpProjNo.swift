@@ -6,8 +6,16 @@ struct PopUpProjNo: View {
     @Binding var state: Int
     @Binding var textInput: String
     
+    //@StateObject var userData = UserData()
+    
+    @State private var modelpopupprojs: [ModelPopupProjno] = []
+    @State private var selectedproj: ModelPopupProjno?
+    
+    @State private var showAlert = false
+    
     @State private var selectedOption = 1
-    @State private var textShip: String = ""
+    @State private var textSelect: String = ""
+    @State private var textValue: String = ""
     @State private var isLoading: Bool = false
     
     let options = ["호선번호","공사번호","공사명"]
@@ -16,14 +24,6 @@ struct PopUpProjNo: View {
         
         VStack (alignment:.leading,  spacing: 3)
             {
-//            HStack
-//            {
-//                Button(action: {
-//                    isPresented = false
-//                }) {
-//                    Text("< Back").frame(height: 20)
-//                }
-//            }
             Button("< Back") {
                isPresented = false // Close the popup when tapped
                //state = 1
@@ -48,29 +48,43 @@ struct PopUpProjNo: View {
                 Spacer()
                 VStack
                 {
-                    Picker("검색조건", selection: $selectedOption) {
+                    Picker("검색조건1", selection: $selectedOption) {
                         ForEach(0..<options.count) {
                             index in Text(options[index]).tag(index)
                         }
                     }
-                    //.pickerStyle(DefaultPickerStyle())
-                    //.clipped()
                     .frame(width:100, height:20)
                     .clipped()
-                   // Spacer()
                 }
                 Spacer()
 
-                TextField("", text: $textShip)
+                TextField("", text: $textValue)
                                 .font(.pretendardBold18)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .autocapitalization(.allCharacters)
                 Button(action: {
-                    var textReult : String = loadData(from: selectedOption, to: textInput)
+                    
+                    if textValue.isEmpty {
+                       showAlert = true
+                   } else {
+                       var textReult : String = loadData(from: selectedOption, to: textValue)
+                   }
+                    
+                    
                 }) {
                     Image("iconsearch")
                         .padding(6)
                         .background(Color.blue)
                 }
             }
+            .alert(isPresented: $showAlert) {
+               Alert(
+                   title: Text("Alert"),
+                   message: Text("검색조건을 넣어주세요"),
+                   dismissButton: .default(Text("OK"))
+               )
+            }
+                
             GeometryReader { geometry in
 
                 HStack (alignment:.center, spacing: 1)
@@ -93,24 +107,36 @@ struct PopUpProjNo: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-//                                List(modelworkers, id: \.EMPNO) { modelworkers in
-//                                    HStack(alignment: .top) {
-//                                        Text("\(modelworkers.EMPNO)")
-//                                        Text("\(modelworkers.DEPTNM)")
-//                                        Text("\(modelworkers.MOBILE)")
-//                                    }
-//                                    .onTapGesture {
-//                                        selectedWorker = modelworkers
-//                                      //  textSampel = selectedWorker!.EMPNO
-//                                    }
-//
-//                                }
+                                List(modelpopupprojs , id: \.COLM2)
+                                {
+                                    modelproj in
+                                    HStack(alignment: .top) {
+                                        Text("\(String(describing: modelproj.COLM1))").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 50, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture {
+                                                textInput = modelproj.COLM2
+                                                isPresented = false
+                                            }
+                                        Text("\(String(describing: modelproj.COLM2))").font(.pretendardBold12) .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture {
+                                            textInput = modelproj.COLM2
+                                            isPresented = false
+                                        }
+                                        Text("\(String(describing: modelproj.COLM3))").font(.pretendardBold12) .frame(minWidth:0, maxWidth: 150, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture {
+                                            textInput = modelproj.COLM2
+                                            isPresented = false
+                                        }
+                                    }
+                                }
+                                .listStyle(.grouped)
                             }
                             
                             
                         }
                         .navigationBarHidden(true)
                         .navigationBarTitle("", displayMode: .automatic)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
             
             
@@ -126,13 +152,19 @@ struct PopUpProjNo: View {
         //print("nav")
         isLoading = true
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_projno.jsp?userid=A372897&COM_GUBUN=SHIP_01&COM_DATA1=A&COM_DATA2=KBA007410&COM_DATA3=&COM_DATA4=") else {
-            //print("nav1")
-            //return
+        if selectInt == 0 {
+            textSelect = "B"
+        }
+        else if selectInt == 1{
+            textSelect = "A"
+        }
+        else{
+            textSelect = "C"
+        }
+        
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_projno.jsp?userid=\("")&COM_GUBUN=SHIP_01&COM_DATA1=\(textSelect)&COM_DATA2=\(textShip)&COM_DATA3=&COM_DATA4=") else {
             return "ERROR"
         }
-        //print("Error decoding JSON")
-
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             defer {
                 DispatchQueue.main.async {
@@ -141,16 +173,15 @@ struct PopUpProjNo: View {
             }
             
             guard let data = data, error == nil else {
-               // print("nav2")
                         return
                     }
 
             do {
                 
-                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
-                                    if let workerList = decodedData["List"] {
+                    let decodedData = try JSONDecoder().decode([String: [ModelPopupProjno]].self, from: data)
+                    if let workerPopupProjno = decodedData["List"] {
                                         DispatchQueue.main.async {
-                                            //modelworkers = workerList
+                                            modelpopupprojs = workerPopupProjno
                                         }
                     }
                 
@@ -168,8 +199,6 @@ struct PopUpProjNo: View {
 struct PopUpProjNo_Previews: PreviewProvider {
     static var previews: some View
     {
-       // PopUpProjNo(isPresented: Binding.constant(false))
-        
         PopUpProjNo(isPresented: Binding.constant(false), state: Binding.constant(0), textInput: Binding.constant(""))
     }
 }

@@ -3,7 +3,7 @@ import SwiftUI
 import CoreLocation
 
 struct ModelSearchMonitoring11 : Decodable {
-    public let PROJNO: String?
+    public let PROJNO: String
     public let TEXT5: String?
     public let LABEL: String?
     public let TEXT2: String?

@@ -4,6 +4,9 @@ import SwiftUI
 import CoreLocation
 
 struct ModelSearchPor: Decodable {
+    public let PORNO: String
+    public let QTY: String?
+    public let REQQTY: String?
     public let PROJNO: String?
     public let ACPTIM: String?
     public let STLOC: String?
@@ -14,7 +17,6 @@ struct ModelSearchPor: Decodable {
     public let PARTNO: String?
     public let CNAMELVL1: String?
     public let MATNO: String?
-    public let QTY: String?
     public let ACPTTEL: String?
     public let MSNO: String?
     public let RECQTY: String?
@@ -28,11 +30,9 @@ struct ModelSearchPor: Decodable {
     public let ORDNO: String?
     public let DWGIM: String?
     public let NAMEKOR: String?
-    public let PORNO: String?
     public let QTYSTATE: String?
     public let SOYOIL: String?
     public let TELNO: String?
     public let WGT: String?
     public let MSTDSC: String?
-    public let REQQTY: String?
-}    
+}

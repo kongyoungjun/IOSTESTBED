@@ -9,15 +9,24 @@ import SwiftUI
 
 struct PopUpDeptNo: View {
     @Binding var isPresented: Bool
+    @Binding var textDept: String
     //@Binding var state: Int
     
-    @State private var selectedOption = 1
-    @State private var textDept: String = ""
+    
+    @State private var modelpopupdepts: [ModelPopupDept] = []
+    @State private var selecteddept: ModelPopupDept?
+    
+    @State private var selectedOption = 0
+    @State private var textSelect: String = ""
+    @State private var textValue: String = ""
     @State private var isLoading: Bool = false
     
     let options = ["부서코드","부서명"]
     
+   
+    
     var body: some View {
+        
         
         VStack (alignment:.leading,  spacing: 3)
             {
@@ -54,9 +63,11 @@ struct PopUpDeptNo: View {
                 }
                 Spacer()
 
-                TextField("", text: $textDept)
+                TextField("", text: $textValue)
                                 .font(.pretendardBold18)
+                                .autocapitalization(.allCharacters)
                 Button(action: {
+                    var textReult : String = loadData(from: selectedOption, to: textValue)
                 }) {
                     Image("iconsearch")
                         .padding(6)
@@ -84,24 +95,29 @@ struct PopUpDeptNo: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-//                                List(modelworkers, id: \.EMPNO) { modelworkers in
-//                                    HStack(alignment: .top) {
-//                                        Text("\(modelworkers.EMPNO)")
-//                                        Text("\(modelworkers.DEPTNM)")
-//                                        Text("\(modelworkers.MOBILE)")
-//                                    }
-//                                    .onTapGesture {
-//                                        selectedWorker = modelworkers
-//                                      //  textSampel = selectedWorker!.EMPNO
-//                                    }
-//
-//                                }
+                                List(modelpopupdepts , id: \.COLM1)
+                                { modelpopupdept in
+                                    HStack(alignment: .top) {
+                                        Text("\(String(describing: modelpopupdept.COLM1))").font(.pretendardBold12)
+                                            .onTapGesture {
+                                                textDept = modelpopupdept.COLM1
+                                                isPresented = false
+                                            }
+                                        Text("\(String(describing: modelpopupdept.COLM2))").font(.pretendardBold12).onTapGesture {
+                                            textDept = modelpopupdept.COLM1
+                                            isPresented = false 
+                                        }
+                                    }
+                                }
+                                .listStyle(.grouped)
+                                
                             }
                             
                             
                         }
                         .navigationBarHidden(true)
                         .navigationBarTitle("", displayMode: .automatic)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
             
             
@@ -112,16 +128,22 @@ struct PopUpDeptNo: View {
         }
     }
     
-    private func loadData(from selectInt : Int, to textShip : String) -> String {
-        //print("nav")
+    
+    private func loadData(from selectInt : Int, to textValue : String) -> String {
         isLoading = true
+        
+        if selectInt == 0 {
+            textSelect = "A"
+        }
+        else{
+            textSelect = "B"
+        }
 
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_projno.jsp?userid=A372897&COM_GUBUN=SHIP_01&COM_DATA1=A&COM_DATA2=KBA007410&COM_DATA3=&COM_DATA4=") else {
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_dept.jsp?userid=A372897&COM_GUBUN=5&COM_DATA1=\(textSelect)&COM_DATA2=\(textValue)&COM_DATA3=&COM_DATA4=") else {
             //print("nav1")
             //return
             return "ERROR"
         }
-        //print("Error decoding JSON")
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             defer {
@@ -131,16 +153,15 @@ struct PopUpDeptNo: View {
             }
 
             guard let data = data, error == nil else {
-               // print("nav2")
                         return
                     }
 
             do {
 
-                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
-                                    if let workerList = decodedData["List"] {
+                    let decodedData = try JSONDecoder().decode([String: [ModelPopupDept]].self, from: data)
+                    if let popupDeptList = decodedData["List"] {
                                         DispatchQueue.main.async {
-                                            //modelworkers = workerList
+                                            modelpopupdepts = popupDeptList
                                         }
                     }
 
@@ -157,6 +178,6 @@ struct PopUpDeptNo: View {
 
 struct PopUpDeptNo_Previews: PreviewProvider {
     static var previews: some View {
-        PopUpDeptNo(isPresented: Binding.constant(false))
+        PopUpDeptNo(isPresented: Binding.constant(false), textDept: Binding.constant(""))
     }
 }

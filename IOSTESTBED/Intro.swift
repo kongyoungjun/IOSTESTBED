@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+
 struct Intro: View {
     
+    //@StateObject var userData = UserData()
     @State private var showNextView = false
     
     var body: some View {
@@ -44,7 +46,11 @@ struct Intro: View {
 //                        }
 //                        .padding()
                     }
-                    .fullScreenCover(isPresented: $showNextView, content: LogIn.init)
+                    .fullScreenCover(isPresented: $showNextView)
+            {
+                LogIn()
+              //  LogIn(userDataLogin: userData)
+            }//, content: LogIn.init)
                     .onAppear {
                         // Using a timer to change the view after 2 seconds
                         Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in

@@ -12,18 +12,16 @@ struct CommomHomeTest: View {
     @State private var isPresentingFullScreen = false
     
     var body: some View {
-        NavigationView {
-                    VStack {
-                        NavigationLink("Show Fullscreen Cover", destination:
-                            Text("Destination View")
-                                .fullScreenCover(isPresented: $isPresentingFullScreen, content: {
-                                    FullScreenCoverView1(isPresented: $isPresentingFullScreen)
-                                })
-                        )
+        VStack {
+                    Text("Tap to make a call")
                         .padding()
-                    }
-                    .navigationTitle("Main View")
-        }
+                        .onTapGesture {
+                            if let phoneURL = URL(string: "tel://1234567890") {
+                                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+                            }
+                        }
+                }
+                .navigationTitle("Phone Dialer")
     }
 }
 

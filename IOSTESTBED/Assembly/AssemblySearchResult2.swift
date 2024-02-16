@@ -1,19 +1,19 @@
 //
-//  AssemblySearchResult1.swift
+//  AssemblySearchResult3.swift
 //  IOSTESTBED
 //
-//  Created by KX60 on 2024/01/28.
+//  Created by  hhi on 2/2/24.
 //
 
 import SwiftUI
 
-struct AssemblySearchResult1: View {
+struct AssemblySearchResult2: View {
     
-    //@ObservedObject var userDataResult1 = UserData()
+    //@ObservedObject var userDataResult2 = UserData()
     
     @State private var modelships: [ModelSearchShip] = []
     @State private var selectedship: ModelSearchShip?
-    
+
     @State private var showAlert = false
     @State private var showAlert_change = false
     
@@ -25,7 +25,6 @@ struct AssemblySearchResult1: View {
     @State private var textProjno: String = ""
     @State  var textSelectProjno: String = ""
     @State  var textSelectSubProjno: String = ""
-    //@State private var textProcno: String = ""
     
     
     @State private var textResult1: String = ""
@@ -37,7 +36,7 @@ struct AssemblySearchResult1: View {
     @State private var textResult7: String = ""
     @State private var textResult8: String = ""
     @State private var textResult9: String = ""
-    //@State private var textResult10: String = ""
+    @State private var textResult10: String = ""
     
     @State var state: Int  = 0;
     @Binding var isPresented: Bool
@@ -63,7 +62,7 @@ struct AssemblySearchResult1: View {
             }
             Spacer()
             
-            Text(" 대형작업실적").font(.pretendardBold24)
+            Text(" 힘센작업실적").font(.pretendardBold24)
             
             Divider()
             
@@ -76,7 +75,7 @@ struct AssemblySearchResult1: View {
                     HStack
                     {
                         Text(" 호선번호:").font(.pretendardBold14)
-                        TextField("", text: $textShip)
+                        TextField("호선번호", text: $textShip)
                                         .font(.pretendardBold14)
                                         .autocapitalization(.allCharacters)
                                        .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -94,9 +93,10 @@ struct AssemblySearchResult1: View {
                     HStack
                     {
                         Text(" 공사번호:").font(.pretendardBold14)
-                        TextField("", text: $textProjno)
-                                        .font(.pretendardBold14).autocapitalization(.allCharacters)
-                                       .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        TextField("공사번호", text: $textProjno)
+                            .font(.pretendardBold14).autocapitalization(.allCharacters)
+                           .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: {
                             isShowingPopup2 = true
                         }) {
@@ -168,26 +168,12 @@ struct AssemblySearchResult1: View {
                                     modelship in
                                     HStack(alignment: .top) {
                                         let nullString = "N/A"
-                                       // let grade = modelship.GRADE ?? nullString
-                                       // let jptype = modelship.JPTYPE ?? nullString
                                         
                                         Text("\(modelship.SHIPNO)").font(.pretendardBold12)
                                             .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30 , alignment: .center)
-//                                            .onTapGesture{
-//                                                selectedship = modelship
-//                                                findDetails(select : modelship)
-//                                            }
                                         Text("\(modelship.PROJNO)").font(.pretendardBold12).frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
-//                                            .onTapGesture{
-//                                                selectedship = modelship
-//                                                findDetails(select : modelship)
-//                                            }
                                         Text("\(modelship.JPTYPE ?? nullString)").font(.pretendardBold12)
                                             .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
-//                                            .onTapGesture{
-//                                                selectedship = modelship
-//                                                findDetails(select : modelship)
-//                                            }
                                         
                                         Text("\(modelship.TESTST ?? nullString)").font(.pretendardBold12)
                                             .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
@@ -207,10 +193,11 @@ struct AssemblySearchResult1: View {
                                 }
                                 .listStyle(.grouped)
                             }
-                        }
+                            
+                            
+                        }.navigationBarHidden(true)
+                    .navigationBarTitle("", displayMode: .automatic).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
-            .navigationBarHidden(true)
-            .navigationBarTitle("", displayMode: .automatic).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             
             GeometryReader { geometry in
                 let hstackwidth = geometry.size.width
@@ -265,12 +252,7 @@ struct AssemblySearchResult1: View {
                         VStack(alignment:.trailing, spacing: 1)
                         {
                             Button(action: {
-                                if textResult1.isEmpty {
-                                   showAlert_change = true
-                                    
-                               } else {
-                                   isShowingPopup3 = true
-                               }
+                                isShowingPopup3 = true
                             }) {
                                 Text("실적변경").font(.pretendardBold18)
                                     .frame(width:150, height: 30)
@@ -279,7 +261,7 @@ struct AssemblySearchResult1: View {
                                     .background(Color.blue)
                             }
                             .sheet(isPresented: $isShowingPopup3, content: {
-                                AssemblySearchResult1Detail(isPresented: $isShowingPopup3, textSelectProjno: $textSelectProjno , textSelectSubProjno: $textSelectSubProjno)
+                                AssemblySearchResult2Detail(isPresented: $isShowingPopup3, textSelectProjno: $textSelectProjno , textSelectSubProjno: $textSelectSubProjno)
                                         })
                         }
                         
@@ -299,7 +281,6 @@ struct AssemblySearchResult1: View {
       
     }
     
-
     private func findDetails(select searchShip : ModelSearchShip)
     {
         let nullString = "N/A"
@@ -314,7 +295,7 @@ struct AssemblySearchResult1: View {
         textResult9 = ""
        // textResult10 = searchShip.SNATIONNM ?? nullString
     }
-    
+
     private func dateToString(_ date: Date, format: String) -> String {
           let dateFormatter = DateFormatter()
           dateFormatter.dateFormat = format
@@ -330,11 +311,12 @@ struct AssemblySearchResult1: View {
     }
     
     private func loadData(from textShipNo: String, to textProjNo : String )-> String {
+        //print("nav")
         isLoading = true
         
         
         guard let url = URL(string:
-                                "https://m-engine.hhi.co.kr/mengine/testbed/searchship.jsp?user_id=\("")&gubun=A&projno=\(textProjNo)&subprojno=&shipno=\(textShipNo)&stdate=\(dateToString(selectedFromDate, format: "yyyyMMdd"))&fndate=\(dateToString(selectedToDate, format: "yyyyMMdd"))"
+                                "https://m-engine.hhi.co.kr/mengine/testbed/searchship.jsp?user_id=\("")&gubun=B&projno=\(textProjNo)&subprojno=&shipno=\(textShipNo)&stdate=\(dateToString(selectedFromDate, format: "yyyyMMdd"))&fndate=\(dateToString(selectedToDate, format: "yyyyMMdd"))"
         )
         else {
             return "ERROR"
@@ -348,6 +330,7 @@ struct AssemblySearchResult1: View {
             }
             
             guard let data = data, error == nil else {
+               // print("nav2")
                         return
                     }
 
@@ -371,10 +354,13 @@ struct AssemblySearchResult1: View {
     }
 }
 
-struct AssemblySearchResult1_Previews: PreviewProvider {
+//#Preview {
+//    AssemblySearchResult2(userDataResult2: UserData(), isPresented: Binding.constant(false))
+//}
+
+struct AssemblySearchResult2_Previews: PreviewProvider {
     static var previews: some View {
-        AssemblySearchResult1(  isPresented: Binding.constant(false))
-       // AssemblySearchResult1( userDataResult1: UserData(), isPresented: Binding.constant(false))
-        
+        AssemblySearchResult2( isPresented: Binding.constant(false))
+        //AssemblySearchResult2(userDataResult2: UserData(), isPresented: Binding.constant(false))
     }
 }

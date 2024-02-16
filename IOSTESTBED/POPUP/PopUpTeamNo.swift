@@ -9,12 +9,17 @@ import SwiftUI
 
 struct PopUpTeamNo: View {
     @Binding var isPresented: Bool
+    @Binding var textTeam: String
     
-    @State private var selectedOption = 1
-    @State private var textDept: String = ""
+    @State private var modelpopupteams: [ModelPopupTeam] = []
+    @State private var selectedteam: ModelPopupTeam?
+    
+    //@State private var selectedOption = 1
+    //@State private var textDept: String = ""
     @State private var isLoading: Bool = false
+    @State private var textCode: String = ""
     
-    let options = ["부서코드"]
+    //let options = ["부서코드"]
     
     var body: some View {
         
@@ -22,7 +27,6 @@ struct PopUpTeamNo: View {
             {
             Button("< Back") {
                isPresented = false // Close the popup when tapped
-               //state = 1
             }.frame(width:150, height: 40, alignment:.leading)
             Spacer()
             HStack
@@ -42,14 +46,19 @@ struct PopUpTeamNo: View {
 
                 Spacer()
 
-                TextField("", text: $textDept)
-                                .font(.pretendardBold18)
+                TextField("", text: $textCode)
+                                .font(.pretendardBold18).textFieldStyle(RoundedBorderTextFieldStyle())
+                                .autocapitalization(.allCharacters)
+                
                 Button(action: {
+                    var textReult : String = loadData(from: textCode)
                 }) {
-                    Image("iconsearch")
-                        .padding(6)
-                        .background(Color.blue)
+                    Text("조회").font(.pretendardBold18)
+                        .frame(height: 15)
                 }
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
             }
             GeometryReader { geometry in
 
@@ -72,18 +81,20 @@ struct PopUpTeamNo: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-//                                List(modelworkers, id: \.EMPNO) { modelworkers in
-//                                    HStack(alignment: .top) {
-//                                        Text("\(modelworkers.EMPNO)")
-//                                        Text("\(modelworkers.DEPTNM)")
-//                                        Text("\(modelworkers.MOBILE)")
-//                                    }
-//                                    .onTapGesture {
-//                                        selectedWorker = modelworkers
-//                                      //  textSampel = selectedWorker!.EMPNO
-//                                    }
-//
-//                                }
+                                List(modelpopupteams, id: \.JOCODE) { modelteams in
+                                    HStack(alignment: .top) {
+                                        Text("\(String(describing: modelteams.JOCODE))").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 90, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                        Text("\(String(describing: modelteams.JONAME))").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 210, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                    }
+                                    .onTapGesture {
+                                        textTeam = modelteams.JOCODE
+                                        isPresented = false
+                                    }
+
+                                }
+                                .listStyle(.grouped)
                             }
                             
                             
@@ -100,17 +111,14 @@ struct PopUpTeamNo: View {
         }
     }
     
-    private func loadData(from selectInt : Int, to textShip : String) -> String {
+    private func loadData(from textDept : String) -> String {
         //print("nav")
         isLoading = true
 
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_projno.jsp?userid=A372897&COM_GUBUN=SHIP_01&COM_DATA1=A&COM_DATA2=KBA007410&COM_DATA3=&COM_DATA4=") else {
-            //print("nav1")
-            //return
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_team.jsp?userid=A372897&dept=\(textDept)")
+        else {
             return "ERROR"
         }
-        //print("Error decoding JSON")
-
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             defer {
                 DispatchQueue.main.async {
@@ -119,16 +127,15 @@ struct PopUpTeamNo: View {
             }
 
             guard let data = data, error == nil else {
-               // print("nav2")
                         return
                     }
 
             do {
 
-                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
-                                    if let workerList = decodedData["List"] {
+                    let decodedData = try JSONDecoder().decode([String: [ModelPopupTeam]].self, from: data)
+                    if let teamList = decodedData["List"] {
                                         DispatchQueue.main.async {
-                                            //modelworkers = workerList
+                                            modelpopupteams = teamList
                                         }
                     }
 
@@ -145,6 +152,6 @@ struct PopUpTeamNo: View {
 
 struct PopUpTeamNo_Previews: PreviewProvider {
     static var previews: some View {
-        PopUpTeamNo(isPresented: Binding.constant(false))
+        PopUpTeamNo(isPresented: Binding.constant(false), textTeam: Binding.constant(""))
     }
 }

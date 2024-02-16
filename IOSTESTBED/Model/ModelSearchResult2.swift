@@ -1,12 +1,13 @@
+
 import Foundation
 import SwiftUI
 import CoreLocation
 
-struct ModelSearchResult1: Decodable {
+struct ModelSearchResult2: Decodable {
     public let PROCNO: String?
     public let STDATE: String?
     public let CHGDATE: String?
-    public let GUBUN3: String
+    public let GUBUN4: String
     public let ACTDATE: String?
     public let CDNM1: String?
 }

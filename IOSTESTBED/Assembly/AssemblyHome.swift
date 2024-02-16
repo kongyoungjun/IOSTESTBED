@@ -8,7 +8,7 @@ struct AssemblyHome: View {
    //     let colorbutton : UIColor? = UIColor(named:"ColorButton")
     
     
-    
+    @ObservedObject var userDataHome = UserData(loginIDNew: "")
     
     @State private var isButton1Hidden = true
     @State private var isButton2Hidden = true
@@ -45,7 +45,7 @@ struct AssemblyHome: View {
                                    }) {
                                        VStack {
                                            Image("iconship").resizable().frame(width: 50, height: 50)
-                                        Text("호선정보조회").font(.system(size:12))
+                                        Text("호선정보조회").font(.pretendardBold12)
                                        }
                                        .frame(width: 70, height: 60)
                                        .padding()
@@ -66,13 +66,13 @@ struct AssemblyHome: View {
                                 .foregroundColor(.white)
                                 .background(Color.white)
                         }
-                    if isButton2Hidden {
+                        if isButton2Hidden {
                         Button(action: {
                             isShowingPopup2 = true
                                }) {
                                    VStack {
-                                       Image("iconbigengine")
-                                       Text("대형실적관리").font(.system(size:12))
+                                       Image("iconbigengine").resizable().frame(width: 50, height: 50)
+                                       Text("대형실적관리").font(.pretendardBold12)
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -81,9 +81,10 @@ struct AssemblyHome: View {
                                         RoundedRectangle(cornerRadius: 8)
                                             .stroke(colorround, lineWidth: 2)
                                             .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
-                                    ).fullScreenCover(isPresented: $isShowingPopup2) {
-                                        AssemblySearchResult1(isPresented: $isShowingPopup2)
-                                     }
+                                    )
+                             }.fullScreenCover(isPresented: $isShowingPopup2) {
+                                 AssemblySearchResult1(  isPresented: $isShowingPopup2)
+                                 //AssemblySearchResult1( userDataResult1: userDataHome, isPresented: $isShowingPopup2)
                         }
                     }
                     else {
@@ -96,11 +97,11 @@ struct AssemblyHome: View {
                     
                     if isButton3Hidden {
                         Button(action: {
-                           // self.present(WorkPOR(), animated: true)
+                            isShowingPopup3 = true
                                }) {
                                    VStack {
                                        Image("iconship")
-                                       Text("힘센실적관리").font(.system(size:12))
+                                       Text("힘센실적관리").font(.pretendardBold12)
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -110,6 +111,8 @@ struct AssemblyHome: View {
                                             .stroke(colorround, lineWidth: 2)
                                             .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                     )
+                               }.fullScreenCover(isPresented: $isShowingPopup3) {
+                                         AssemblySearchResult2( isPresented: $isShowingPopup3)
                         }
                     }
                     else {
@@ -124,11 +127,11 @@ struct AssemblyHome: View {
             HStack {
                  if isButton4Hidden {
                      Button(action: {
-                        // self.present(WorkPOR(), animated: true)
+                         isShowingPopup4 = true
                             }) {
                                 VStack {
                                     Image("iconsearch").resizable().frame(width: 50, height: 50)
-                                 Text("호선담당자").font(.system(size:12))
+                                 Text("호선담당자").font(.pretendardBold12)
                                 }
                                 .frame(width: 70, height: 60)
                                 .padding()
@@ -138,6 +141,8 @@ struct AssemblyHome: View {
                                          .stroke(colorround, lineWidth: 2)
                                          .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                                  )
+                     }.fullScreenCover(isPresented: $isShowingPopup4) {
+                         AssemblySearchShipPic(isPresented: $isShowingPopup4)
                      }
                  }
                  else {
@@ -149,11 +154,11 @@ struct AssemblyHome: View {
                  }
              if isButton5Hidden {
                  Button(action: {
-                    // self.present(WorkPOR(), animated: true)
+                     isShowingPopup5 = true
                         }) {
                             VStack {
                                 Image("iconmonitoring").resizable().frame(width: 50, height: 50)
-                             Text("대형모니터링").font(.system(size:12))
+                             Text("대형모니터링").font(.pretendardBold12)
                             }
                             .frame(width: 70, height: 60)
                             .padding()
@@ -163,6 +168,8 @@ struct AssemblyHome: View {
                                      .stroke(colorround, lineWidth: 2)
                                      .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                              )
+                 }.fullScreenCover(isPresented: $isShowingPopup5) {
+                     AssemblySearchMonitoring1(isPresented: $isShowingPopup5)
                  }
              }
              else {
@@ -175,11 +182,11 @@ struct AssemblyHome: View {
              
              if isButton6Hidden {
                  Button(action: {
-                    // self.present(WorkPOR(), animated: true)
+                     isShowingPopup6 = true
                         }) {
                             VStack {
                                 Image("iconmonitoring").resizable().frame(width: 50, height: 50)
-                             Text("힘센모니터링").font(.system(size:12))
+                             Text("힘센모니터링").font(.pretendardBold12)
                             }
                             .frame(width: 70, height: 60)
                             .padding()
@@ -189,6 +196,8 @@ struct AssemblyHome: View {
                                      .stroke(colorround, lineWidth: 2)
                                      .background(RoundedRectangle(cornerRadius: 8).foregroundColor(colorbutton))
                              )
+                 }.fullScreenCover(isPresented: $isShowingPopup6) {
+                     AssemblySearchMonitoring2(isPresented: $isShowingPopup6)
                  }
              }
              else {
@@ -207,7 +216,7 @@ struct AssemblyHome: View {
                             }) {
                                 VStack {
                                     Image("iconship")
-                                 Text("호선정보조회").font(.system(size:12))
+                                 Text("호선정보조회").font(.pretendardBold14)
                                 }
                                 .frame(width: 70, height: 60)
                                 .padding()
@@ -230,7 +239,7 @@ struct AssemblyHome: View {
                 Button(action: {isShowingPopup1 = true}){
                             VStack {
                                 Image("iconbigengine")
-                                Text("호선정보조회").font(.system(size:12))
+                                Text("호선정보조회").font(.pretendardBold14)
                             }
                             .frame(width: 70, height: 60)
                             .padding()
@@ -257,7 +266,7 @@ struct AssemblyHome: View {
                  {
                             VStack {
                                 Image("iconship")
-                                Text("호선정보조회").font(.system(size:12))
+                                Text("호선정보조회").font(.pretendardBold14)
                             }
                             .frame(width: 70, height: 60)
                             .padding()
@@ -661,6 +670,6 @@ struct AssemblyHome: View {
 
 struct AssemblyHome_Previews: PreviewProvider {
     static var previews: some View {
-        AssemblyHome()
+        AssemblyHome(userDataHome: UserData(loginIDNew: ""))
     }
 }

@@ -41,6 +41,8 @@ struct WorkerList: View {
     let colordarkblue = Color(red: 0/255, green: 23/255, blue: 51/255)
     
     
+    @State private var items = ["Item 1", "Item 2", "Item 3"]
+    
     var body: some View {
         VStack (alignment:.leading,  spacing: 3)
         {
@@ -164,36 +166,66 @@ struct WorkerList: View {
                 Spacer(minLength: 1)
 
             }
+//            NavigationView {
+//                     List {
+//                         ForEach(items.indices, id: \.self) { index in
+//                             Toggle(isOn: self.$items[index].isChecked) {
+//                                 Text(self.items[index])
+//                             }
+//                         }
+//                     }
+//                     .navigationBarTitle("Checkbox List")
+//                 }
             
-            NavigationView {
-                        VStack {
-                            if isLoading {
-                                                ProgressView("Loading...")
-                                                    .progressViewStyle(CircularProgressViewStyle())
-                                                    .padding()
-                            } else {
-                                List(modelworkers, id: \.EMPNO) { modelworkers in
-                                    HStack(alignment: .top) {
-                                        Text("\(modelworkers.EMPNO)")
-                                        Text("\(modelworkers.DEPTNM)")
-                                        Text("\(modelworkers.MOBILE)")
-                                    }
-                                    .onTapGesture {
-                                        selectedWorker = modelworkers
-                                      //  textSampel = selectedWorker!.EMPNO
-                                    }
-                                    
-                                }
-                            }
-                            
-                            
-                        }//.onAppear(perform: loadData)
-                        .navigationBarHidden(true)
-                        //.navigationBarTitleDisplayMode(.inline)
-                        .navigationBarTitle("", displayMode: .automatic)
-                        //
-                        //.navigationTitle("Custom List")
-            }
+//            NavigationView {
+//                    List {
+//                        ForEach(items.indices, id: \.self) { index in
+//                            Toggle(isOn: self.$items[index].isChecked) {
+//                                Text(self.items[index])
+//                            }
+//                        }
+//                    }
+//                    .navigationBarTitle("Checkbox List")
+//                }
+            
+//            NavigationView {
+//                        VStack {
+//                            if isLoading {
+//                                                ProgressView("Loading...")
+//                                                    .progressViewStyle(CircularProgressViewStyle())
+//                                                    .padding()
+//                            } else {
+//                                List{
+//                                    
+//                                    ForEach(items.indices, id: \.self) { index in
+//                                        Toggle(isOn: self.$items[index].isChecked) {
+//                                            Text(self.items[index])
+//                                        }
+//                                    }
+//                                    
+//                                    //                                    modelworkers in
+//                                    //                                    HStack(alignment: .top) {
+//                                    //                                        Text("\(modelworkers.EMPNO)")
+//                                    //                                        Text("\(modelworkers.DEPTNM)")
+//                                    //                                        Text("\(modelworkers.MOBILE)")
+//                                    //                                    }
+//                                    //.onTapGesture {
+//                                    // selectedWorker = modelworkers
+//                                    //  textSampel = selectedWorker!.EMPNO
+//                                    //  }
+//                                    
+//                                }
+//                            }
+//                            
+//                            
+//                            
+//                        }//.onAppear(perform: loadData)
+//                        .navigationBarHidden(true)
+//                        //.navigationBarTitleDisplayMode(.inline)
+//                        .navigationBarTitle("", displayMode: .automatic)
+//                        //
+//                        //.navigationTitle("Custom List")
+//            }
             VStack(spacing: 1)
             {
                 HStack(alignment:.center, spacing: 1)
@@ -338,6 +370,14 @@ struct WorkerList_Previews: PreviewProvider {
         WorkerList(isPresented: Binding.constant(false))
         //.environmentObject(ModelData())
     }
+}
+
+
+// 모델 구조체
+struct ListItem: Identifiable {
+    var id = UUID()
+    var title: String
+    var isChecked: Bool = false
 }
 
 

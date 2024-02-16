@@ -16,6 +16,10 @@ extension Font {
     static let pretendardBold18: Font = .custom("Pretendard-Bold", size: 18)
     static let pretendardBold14: Font = .custom("Pretendard-Bold", size: 14)
     static let pretendardBold12: Font = .custom("Pretendard-Bold", size: 12)
+    static let pretendardBold10: Font = .custom("Pretendard-Bold", size: 10)
+    
+    
+    
     
     // SemiBold
 //    static let pretendardSemiBold16: Font = .custom("Pretendard-SemiBold", size: 16)
@@ -29,13 +33,16 @@ extension Font {
 //    static let pretendardRegular16: Font = .custom("Pretendard-Regular", size: 16)
     
 }
-//init() {
-//    UITabBar.appearance().barTintColor = UIColor(colortab)
-//}
 struct ContentView: View {
+    //@ObservedObject var userDataContent : UserData
+    //@Binding var userShowingName: String
     
-    @Binding var userShowingName: String
+    
+    @State private var modelmenus: [ModelMenu] = []
+    
     @State private var textTitle: String = ""
+    @State private var userLogID : String = ""
+    @State private var isLoading: Bool = false
    
     let colortop = Color(red: 0/255, green: 23/255, blue: 51/255)
     let colorround = Color(red: 200/255, green: 200/255, blue: 255/255)
@@ -45,24 +52,34 @@ struct ContentView: View {
     //private var items: FetchedResults<Item>
     @State private var selection: Tab = .assembly
     let colortab = Color(red: 9/255, green: 77/255, blue: 200/255)
-    
-    //let uiColortab = UIColor(colortab)
-    
-    
-   // {
-            //Use this if NavigationBarTitle is with Large Font
-           //UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
-           //UINavigationBar.appearance().backgroundColor = .gray
-   //        UITabBar.appearance().barTintColor = UIColor(colortab)
-    //}
-
-    
     enum Tab {
         case assembly
         case work
         case common
     }
     
+    init() {
+        //self.userDataContent = userDataContent
+    }
+    
+//    init(userData: Binding<UserData>) {
+//            _userDataContentView = userData
+//            // Additional setup code can be added here
+//        }
+    
+//    init (userShowingName : Binding<String> = .constant("")) {
+//        
+//        userLogID = userData.loginId
+//        
+//        _userShowingName = userShowingName
+//       // _userData = userData
+//    }
+    
+    
+  //  init(userDataContent: UserData) {
+        //loadData(from: <#T##String#>)
+        //var _ : String = loadData(from: userDataContent.loginId)
+ //   }
     
     
     var body: some View {
@@ -72,31 +89,37 @@ struct ContentView: View {
                 VStack  {
                     VStack {
                         HStack {
-                            Text("\(textTitle)")
+                            let userID = ""//userDataContent.loginId
+                            //Text("\(userID)")
+                            //Text("")
                             Spacer()
-                            Text("사용자정보:")
-                                .multilineTextAlignment(.leading)
-                                .font(Font.footnote.bold())
-                                            .foregroundColor(.white)
-                                            .frame(minWidth: 0,
-                                                   maxWidth: .infinity,
-                                                   minHeight: 0,
-                                                   maxHeight: 30)
-                                            .background(colortop)
+                            Text("사용자 정보 : \(userID) ")
+                                .font(.pretendardBold18)
+                                .frame(minWidth:0, maxWidth: .infinity, minHeight: 10, maxHeight: 40 , alignment: .trailing)
+                                .font(.footnote)
+                                .foregroundColor(.white)
+//                            Text("사용자정보:")
+//                                .multilineTextAlignment(.leading)
+//                                .font(Font.footnote.bold())
+//                                            .foregroundColor(.white)
+//                                            .frame(minWidth: 0,
+//                                                   maxWidth: .infinity,
+//                                                   minHeight: 0,
+//                                                   maxHeight: 30)
+//                                            .background(colortop)
                         }
                         
                         Image("main")
                             .resizable()
                             .frame(width: UIScreen.main.bounds.size.width, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                           // .aspectRatio(contentMode: .fit)
-                           // .frame(width: .infinity)
                     }
                     
               
                     TabView(selection: $selection)
                     {
+                        //AssemblyHome(userDataHome: userDataContent).tabItem {
                         AssemblyHome().tabItem {
-                            Image("assembly")
+                        Image("assembly")
                             Text("조립")
                             //textTitle = "조립"
                         }
@@ -112,6 +135,16 @@ struct ContentView: View {
                             Text("공통").font(.pretendardBold18)
                             //textTitle = "공통"
                         }.tag(Tab.common)
+//                        CommHome().tabItem {
+//                            Image("common")
+//                            Text("공통").font(.pretendardBold18)
+//                            //textTitle = "공통"
+//                        }.tag(Tab.common)
+//                        CommHome().tabItem {
+//                            Image("common")
+//                            Text("공통").font(.pretendardBold18)
+//                            //textTitle = "공통"
+//                        }.tag(Tab.common)
                     }.accentColor(.green)
                     .background(Color.blue)
                     
@@ -123,17 +156,62 @@ struct ContentView: View {
             }.background(colortop.edgesIgnoringSafeArea(.all))
         //}
     }
+    
+    private func loadData(from userid : String) -> String {
+        //print("nav")
+        isLoading = true
+        
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/menu.jsp?user_id=A372897&group=")
+        else {
+            return "ERROR"
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            defer {
+                DispatchQueue.main.async {
+                    isLoading = false
+                }
+            }
+            
+            guard let data = data, error == nil else {
+                        return
+                    }
+
+            do {
+                let decodedData = try JSONDecoder().decode([String: [ModelMenu]].self, from: data)
+                if let workermenu = decodedData["List"] {
+                                    DispatchQueue.main.async {
+                                        modelmenus = workermenu
+                                    }
+                }
+            } catch {
+                print("Error decoding JSON: \(error)")
+            }
+        }
+
+        task.resume()
+        return "OK"
+    }
 }
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        //Group {
-          //  ContentView(userShowingName: constant.)
-        //ContentView()
-        //}
-        //ContentView()
-        ContentView(userShowingName: Binding.constant("Preview userId"))
+        //var textReult : String = loadData(from: userDataContent.loginId)
+        
+        ContentView()
+        //ContentView(userDataContent: UserData(loginId :""))
+        
+        
+        
+      //  let userDataContentView = UserData()
+        //userDataContentView.loginId = "TEST"
+      //  NavigationView {
+      //      ContentView()
+      //  }.environmentObject(userDataContentView)
+//
+//        _userShowingName = userData.loginId
+        
         //.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

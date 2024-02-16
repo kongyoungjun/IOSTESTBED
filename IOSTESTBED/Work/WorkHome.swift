@@ -46,7 +46,7 @@ struct WorkHome: View {
                                }) {
                                    VStack {
                                         Image("iconsearch").resizable().frame(width: 50, height: 50)
-                                    Text("POR조회").font(.system(size:12))
+                                    Text("POR조회").font(.pretendardBold12)
                                    }
                                    //.frame(minWidth:70, maxWidth: .infinity * 1/3 - 10, minHeight: 60, maxHeight: 70)
                                    .frame(width: 70, height: 60)
@@ -74,7 +74,7 @@ struct WorkHome: View {
                                }) {
                                    VStack {
                                     Image("iconsearch").resizable().frame(width: 50, height: 50)
-                                       Text("근태조회").font(.system(size:12))
+                                       Text("근태조회").font(.pretendardBold12)
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()
@@ -102,7 +102,7 @@ struct WorkHome: View {
                                }) {
                                    VStack {
                                     Image("iconsearch").resizable().frame(width: 50, height: 50)
-                                       Text("자재창고담당").font(.system(size:12))
+                                       Text("자재창고담당").font(.pretendardBold12)
                                    }
                                    .frame(width: 70, height: 60)
                                    .padding()

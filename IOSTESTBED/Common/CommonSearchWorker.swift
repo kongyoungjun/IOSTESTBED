@@ -9,14 +9,16 @@ struct CommonSearchWorker: View {
     //
     @State private var isLoading: Bool = false
     
-    @State private var modelsearchstroepics: [ModelSearchStorePic] = []
-    @State private var selectedmodelsearchstore: ModelSearchStorePic?
+    @State private var modelworkers: [ModelWorker] = []
+    @State private var selectedworker: ModelWorker?
 
+    @State private var showAlert = false
     
     @State private var isDataLoaded = false
     @State private var isShowingPopup = false
     //@State private var isShowing = false
     @State private var isShowingProjNo = false
+    @State private var textName: String = ""
     @State private var textDept: String = ""
     @State private var textWareHouse: String = ""
     @State private var selectedDate = Date()
@@ -24,6 +26,7 @@ struct CommonSearchWorker: View {
     @State private var textTeam: String = ""
     @State private var selectedOption = 0
     
+    //@State var isPresentedFloating: Bool = false
     
     
     let colorwhiteblue = Color(red: 243/255, green: 248/255, blue: 255/255)
@@ -58,14 +61,14 @@ struct CommonSearchWorker: View {
                 
                 VStack(alignment:.leading,  spacing: 3)
                 {
-                    HStack (spacing: 0)
+                    HStack
                     {
                         Text(" 성명 :").font(.pretendardBold14)
                         
                         Spacer()
                         
-                        TextField("", text: $textWareHouse)
-                                        .font(.pretendardBold14)
+                        TextField("", text: $textName)
+                                        .font(.pretendardBold14).textFieldStyle(RoundedBorderTextFieldStyle())
                         
                     }
                     HStack
@@ -82,15 +85,24 @@ struct CommonSearchWorker: View {
                                 .background(Color.blue)
                         }
                         .sheet(isPresented: $isShowingPopup, content: {
-                                PopUpDeptNo(isPresented: $isShowingPopup)})
+                                PopUpDeptNo(isPresented: $isShowingPopup , textDept: $textDept)})
                        
                     }
+                    
                 }
                 Spacer()
                 HStack
                 {
                         Button(action: {
-                            var textReult : String = loadData(from: textDept, to: textTeam)
+                            
+                            if textDept.isEmpty {
+                               showAlert = true
+                           } else {
+                               var textReult : String = loadData(from: textName, to: textDept)
+                          
+                           }
+                            
+                            
                         }) {
                             Text("조회").font(.pretendardBold24)
                                 .frame(height: 40)
@@ -98,6 +110,13 @@ struct CommonSearchWorker: View {
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.blue)
+                }
+                .alert(isPresented: $showAlert) {
+                   Alert(
+                       title: Text("Alert"),
+                       message: Text("부서를 넣어주세요"),
+                       dismissButton: .default(Text("OK"))
+                   )
                 }
                 Spacer()
             }
@@ -122,41 +141,65 @@ struct CommonSearchWorker: View {
                    
                 }
                 
+                
+                
             }.frame(width: .infinity, height: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
             NavigationView {
-                        VStack {
+                VStack ()
+                {
                             if isLoading {
                                                 ProgressView("Loading...")
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-                                List(modelsearchstroepics, id: \.EMPNO) { modelsearchstore in
+                                //List(modelworkers, id: \.EMPNO)
+                                List(modelworkers , id: \.EMPNO)
+                                {
+                                    modelworker in
                                     HStack(alignment: .top) {
-                                     //   Text("\(modelsearchstore.EMPNO ?? <#default value#>)")
-                                     //   Text("\(modelsearchstore.DEPTNM)")
-                                     //   Text("\(modelsearchstore.MOBILE)")
-                                    }
-                                    .onTapGesture {
-                                        selectedmodelsearchstore = modelsearchstore
-                                      //  textSampel = selectedWorker!.EMPNO
+                                        Text("\(modelworker.DEPTNM)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 140, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                        Text("\(modelworker.EMPNM)").font(.pretendardBold12).frame(minWidth:0, maxWidth: 40, minHeight: 10, maxHeight: 30, alignment: .center)
+                                        Text("\(modelworker.TELNO)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 60, minHeight: 10, maxHeight: 30, alignment: .center)
+                                            .onTapGesture{
+                                            if let phoneURL = URL(string: "tel://052-20\(modelworker.TELNO)") {
+                                                                    UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+                                                                }
+                                        }
+                                        Text("\(modelworker.MOBILE)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 120, minHeight: 10, maxHeight: 30, alignment: .center)
+                                            .onTapGesture{
+                                                if let phoneURL = URL(string: "tel://\(modelworker.MOBILE)") {
+                                                                        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+                                                                    }
+                                            }
                                     }
                                     
+                                    
                                 }
+                                .listStyle(.grouped)
                             }
                         }
-                        .navigationBarHidden(true)
-                        .navigationBarTitle("", displayMode: .automatic)
             }
-            
+            .navigationBarHidden(true)
+            .navigationBarTitle("", displayMode: .automatic).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+           
         }
       
     }
     
-    private func loadData(from textDept: String, to textTeam : String )-> String {
+    
+    
+    private func clearData() {
+        modelworkers.removeAll()
+    }
+    
+    private func loadData(from textName: String, to textDept : String )-> String {
         isLoading = true
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_store.jsp?userid=") else {
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchworker.jsp?userid=A372897&deptcd=\(textDept)&empnm=\(textName)") else {
             return "ERROR"
         }
 
@@ -173,10 +216,10 @@ struct CommonSearchWorker: View {
 
             do {
                 
-                    let decodedData = try JSONDecoder().decode([String: [ModelSearchStorePic]].self, from: data)
-                if let SearchStorePics = decodedData["List"] {
+                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
+                if let workerList = decodedData["List"] {
                                         DispatchQueue.main.async {
-                                            modelsearchstroepics = SearchStorePics
+                                            modelworkers = workerList
                                         }
                     }
                 

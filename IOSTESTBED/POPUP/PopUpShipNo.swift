@@ -1,9 +1,3 @@
-//
-//  PopUpShipNo.swift
-//  IOSTESTBED
-//
-//  Created by KX60 on 2024/01/20.
-//
 
 import SwiftUI
 
@@ -12,9 +6,16 @@ struct PopUpShipNo: View {
     @Binding var state: Int
     @Binding var textInput: String
     
-    @State private var selectedOption = 0
-   // @State private var textShip: String = ""
+    //@StateObject var userData = UserData()
     
+    @State private var modelpopupships: [ModelPopupShip] = []
+    @State private var selectedship: ModelPopupShip?
+    
+    @State private var showAlert = false
+    
+    @State private var selectedOption = 0
+    @State private var textSelect: String = ""
+    @State private var textValue: String = ""
     @State private var isLoading: Bool = false
     
     let options = ["호선번호","공사번호","공사명"]
@@ -52,25 +53,33 @@ struct PopUpShipNo: View {
                             index in Text(options[index]).tag(index)
                         }
                     }
-                    //.pickerStyle(DefaultPickerStyle())
-                    //.clipped()
                     .frame(width:100, height:20)
                     .clipped()
-                   // Spacer()
                 }
                 Spacer()
                 
-                TextField("", text: $textInput)
+                TextField("", text: $textValue)
                                 .font(.pretendardBold18)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .autocapitalization(.allCharacters)
                 Button(action: {
-                    var textReult : String = loadData(from: selectedOption, to: textInput)
-                   // textResult = "";
-                    //isBigEngine = false
+                    if textValue.isEmpty {
+                       showAlert = true
+                   } else {
+                       var textReult : String = loadData(from: selectedOption, to: textValue)
+                   }
                 }) {
                     Image("iconsearch")
                         .padding(6)
                         .background(Color.blue)
                 }
+            }
+            .alert(isPresented: $showAlert) {
+               Alert(
+                   title: Text("Alert"),
+                   message: Text("검색조건을 넣어주세요"),
+                   dismissButton: .default(Text("OK"))
+               )
             }
             
             GeometryReader { geometry in
@@ -95,55 +104,58 @@ struct PopUpShipNo: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-//                                List(modelworkers, id: \.EMPNO) { modelworkers in
-//                                    HStack(alignment: .top) {
-//                                        Text("\(modelworkers.EMPNO)")
-//                                        Text("\(modelworkers.DEPTNM)")
-//                                        Text("\(modelworkers.MOBILE)")
-//                                    }
-//                                    .onTapGesture {
-//                                        selectedWorker = modelworkers
-//                                      //  textSampel = selectedWorker!.EMPNO
-//                                    }
-//
-//                                }
+                                List(modelpopupships , id: \.COLM2)
+                                {
+                                    modelship in
+                                    HStack(alignment: .top) {
+                                        Text("\(String(describing: modelship.COLM1))").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 50, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture {
+                                                textInput = modelship.COLM1
+                                                isPresented = false
+                                            }
+                                        Text("\(String(describing: modelship.COLM2))").font(.pretendardBold12) .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture {
+                                            textInput = modelship.COLM1
+                                            isPresented = false
+                                        }
+                                        Text("\(String(describing: modelship.COLM3))").font(.pretendardBold12) .frame(minWidth:0, maxWidth: 150, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture {
+                                            textInput = modelship.COLM1
+                                            isPresented = false
+                                        }
+                                    }
+                                }
+                                .listStyle(.grouped)
                             }
                             
                             
                         }
                         .navigationBarHidden(true)
                         .navigationBarTitle("", displayMode: .automatic)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
-            
-         //   Spacer()
+            Spacer()
         }
-        
-//        VStack {
-//            Text("This is a Popup")
-//                .font(.title)
-//                .padding()
-//
-//            Button("Close HI") {
-//                textInput = "HI"
-//                isPresented = false // Close the popup when tapped
-//            }
-//            .padding()
-//        }
-//        .background(Color.white)
-        //.edgesIgnoringSafeArea(.all)
     }
     
     private func loadData(from selectInt : Int, to textShip : String) -> String {
         //print("nav")
         isLoading = true
         
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_projno.jsp?userid=A372897&COM_GUBUN=SHIP_01&COM_DATA1=B&COM_DATA2=SH393&COM_DATA3=&COM_DATA4=") else {
-            //print("nav1")
-            //return
+        if selectInt == 0 {
+            textSelect = "B"
+        }
+        else if selectInt == 1{
+            textSelect = "A"
+        }
+        else{
+            textSelect = "C"
+        }
+        
+        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/com/combo_projno.jsp?userid=\("")&COM_GUBUN=SHIP_01&COM_DATA1=\(textSelect)&COM_DATA2=\(textShip)&COM_DATA3=&COM_DATA4=") else {
             return "ERROR"
         }
-        //print("Error decoding JSON")
-
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             defer {
                 DispatchQueue.main.async {
@@ -152,16 +164,15 @@ struct PopUpShipNo: View {
             }
             
             guard let data = data, error == nil else {
-               // print("nav2")
                         return
                     }
 
             do {
                 
-                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
-                                    if let workerList = decodedData["List"] {
+                    let decodedData = try JSONDecoder().decode([String: [ModelPopupShip]].self, from: data)
+                    if let workerPopupShip = decodedData["List"] {
                                         DispatchQueue.main.async {
-                                            //modelworkers = workerList
+                                            modelpopupships = workerPopupShip
                                         }
                     }
                 

@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct AssemblySearchShip: View {
+    @StateObject var userData = UserData(loginIDNew: "")
     
-    @State private var modelworkers: [ModelWorker] = []
-    @State private var selectedWorker: ModelWorker?
+    @State private var modelships: [ModelSearchShip] = []
+    @State private var selectedship: ModelSearchShip?
 
+    
+    @State private var showAlert = false
     
     @State private var isDataLoaded = false
     @State private var isShowingPopup1 = false
@@ -37,8 +40,8 @@ struct AssemblySearchShip: View {
     @State private var isBigEngine: Bool = true
     @State private var isLoading: Bool = false
     
-    @State private var selectedFromDate = Date()
-    @State private var selectedToDate = Date()
+    @State private var selectedFromDate = Calendar.current.date(byAdding: .month, value: -1, to: Date()) ?? Date()
+    @State private var selectedToDate = Calendar.current.date(byAdding: .month, value: 11, to: Date()) ?? Date()
     
     
     let colorwhiteblue = Color(red: 243/255, green: 248/255, blue: 255/255)
@@ -68,7 +71,7 @@ struct AssemblySearchShip: View {
                            Text(" 구분:").font(.pretendardBold14)
                            Spacer()
                            Button(action: {
-                            isBigEngine = true
+                               isBigEngine = true
                            }) {
                                Text("대형").font(.pretendardBold18)
                                    .frame(width: 40, height: 10)
@@ -96,8 +99,9 @@ struct AssemblySearchShip: View {
                     HStack
                     {
                         Text(" 호선번호:").font(.pretendardBold14)
-                        TextField("호선번호", text: $textShip)
+                        TextField("", text: $textShip)
                                         .font(.pretendardBold14)
+                                        .autocapitalization(.allCharacters)
                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: {
                             isShowingPopup1 = true
@@ -116,8 +120,8 @@ struct AssemblySearchShip: View {
                     {
                         Text(" 공사번호:").font(.pretendardBold14)
                         
-                        TextField("공사번호", text: $textProjno)
-                                        .font(.pretendardBold14)
+                        TextField("", text: $textProjno)
+                                        .font(.pretendardBold14).autocapitalization(.allCharacters)
                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                         Button(action: {
                             isShowingPopup2 = true
@@ -141,7 +145,7 @@ struct AssemblySearchShip: View {
                 HStack
                 {
                         Button(action: {
-                            loadData()
+                            var textReult : String = loadData(mode : isBigEngine, from: textShip, to: textProjno)
                         }) {
                             Text("조회").font(.pretendardBold24)
                                 .frame(height: 100)
@@ -156,9 +160,9 @@ struct AssemblySearchShip: View {
             HStack (spacing: 0)
             {
                 Text(" 공시일  : ").font(.pretendardBold14)
-               DatePicker("Select Date", selection: $selectedFromDate, in: ...Date(), displayedComponents: .date).labelsHidden().font(.pretendardBold12)
+                DatePicker("Select Date", selection: $selectedFromDate, displayedComponents: .date).labelsHidden().font(.pretendardBold12)
                 Text(" ~ ").font(.pretendardBold14)
-               DatePicker("Select Date", selection: $selectedToDate, in: ...Date(), displayedComponents: .date).labelsHidden().font(.pretendardBold12)
+               DatePicker("Select Date", selection: $selectedToDate, displayedComponents: .date).labelsHidden().font(.pretendardBold12)
                Spacer()
                               
             }
@@ -189,24 +193,44 @@ struct AssemblySearchShip: View {
                                                     .progressViewStyle(CircularProgressViewStyle())
                                                     .padding()
                             } else {
-                                List(modelworkers, id: \.EMPNO) { modelworkers in
+                                List(modelships, id: \.PROJNO)
+                                {
+                                    modelship in
                                     HStack(alignment: .top) {
-                                        Text("\(modelworkers.EMPNO)")
-                                        Text("\(modelworkers.DEPTNM)")
-                                        Text("\(modelworkers.MOBILE)")
-                                    }
-                                    .onTapGesture {
-                                        selectedWorker = modelworkers
-                                      //  textSampel = selectedWorker!.EMPNO
+                                        let nullString = "N/A"
+                                       // let grade = modelship.GRADE ?? nullString
+                                       // let jptype = modelship.JPTYPE ?? nullString
+                                        
+                                        Text("\(modelship.SHIPNO)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30 , alignment: .center)
+                                            .onTapGesture{
+                                                findDetails(select : modelship)
+                                            }
+                                        Text("\(modelship.PROJNO)").font(.pretendardBold12).frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
+                                            .onTapGesture{
+                                                findDetails(select : modelship)
+                                            }
+                                        Text("\(modelship.JPTYPE ?? nullString)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
+                                            .onTapGesture{
+                                                findDetails(select : modelship)
+                                            }
+                                        
+                                        Text("\(modelship.TESTST ?? nullString)").font(.pretendardBold12)
+                                            .frame(minWidth:0, maxWidth: 100, minHeight: 10, maxHeight: 30, alignment: .center)
+                                            .onTapGesture{
+                                                findDetails(select : modelship)
+                                            }
                                     }
                                     
+                                    
                                 }
+                                .listStyle(.grouped)
                             }
-                            
-                            
-                        }.navigationBarHidden(true)
-                        .navigationBarTitle("", displayMode: .automatic)
+                        }
             }
+            .navigationBarHidden(true)
+            .navigationBarTitle("", displayMode: .automatic).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             
             GeometryReader { geometry in
                 let hstackwidth = geometry.size.width
@@ -264,27 +288,52 @@ struct AssemblySearchShip: View {
       
     }
     
-
-    private func formattedDate() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter.string(from: selectedFromDate)
+    private func findDetails(select searchShip : ModelSearchShip)
+    {
+        let nullString = "N/A"
+        textResult1 = searchShip.SHIPNO
+        textResult2 = searchShip.PROJNO
+        textResult3 = searchShip.JPTYPE ?? nullString
+        textResult4 = searchShip.TESTST ?? nullString
+        textResult5 = searchShip.SHYARDNM ?? nullString
+        textResult6 = searchShip.ASSYST ?? nullString
+        textResult7 = searchShip.TBED ?? nullString
+        textResult8 = searchShip.ASSYDEPT ?? nullString
+        textResult9 = searchShip.OOWNERNM ?? nullString
+        textResult10 = searchShip.SNATIONNM ?? nullString
+    }
+    
+    private func dateToString(_ date: Date, format: String) -> String {
+          let dateFormatter = DateFormatter()
+          dateFormatter.dateFormat = format
+          return dateFormatter.string(from: date)
+      }
+    
+    func addMonthsToDate(_ date: Date, months: Int) -> Date? {
+        return Calendar.current.date(byAdding: .month, value: months, to: date)
     }
     
     private func clearData() {
-        modelworkers.removeAll()
+        modelships.removeAll()
     }
-    
-    private func loadData() {
-        //print("nav")
+    private func loadData(mode bBigEngine: Bool, from textShipNo: String, to textProjNo : String )-> String {
         isLoading = true
         
-        
-        guard let url = URL(string: "https://m-engine.hhi.co.kr/mengine/testbed/searchworker.jsp?userid=A372897&deptcd=KX6&empnm=") else {
-            //print("nav1")
-            return
+        var textMode = String()
+        if bBigEngine {
+            textMode = "A"
         }
-        //print("Error decoding JSON")
+        else{
+            textMode = "B"
+        }
+        
+        
+        guard let url = URL(string:
+                                "https://m-engine.hhi.co.kr/mengine/testbed/searchship.jsp?user_id=\(userData.loginId)&gubun=\(textMode)&projno=\(textProjNo)&subprojno=&shipno=\(textShip)&stdate=\(dateToString(selectedFromDate, format: "yyyyMMdd"))&fndate=\(dateToString(selectedToDate, format: "yyyyMMdd"))"
+        )
+        else {
+            return "ERROR"
+        }
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             defer {
@@ -294,16 +343,15 @@ struct AssemblySearchShip: View {
             }
             
             guard let data = data, error == nil else {
-               // print("nav2")
                         return
                     }
 
             do {
                 
-                    let decodedData = try JSONDecoder().decode([String: [ModelWorker]].self, from: data)
-                                    if let workerList = decodedData["List"] {
+                    let decodedData = try JSONDecoder().decode([String: [ModelSearchShip]].self, from: data)
+                if let workership = decodedData["List"] {
                                         DispatchQueue.main.async {
-                                            modelworkers = workerList
+                                            modelships = workership
                                         }
                     }
                 
@@ -314,7 +362,10 @@ struct AssemblySearchShip: View {
         }
 
         task.resume()
+        return "OK"
     }
+
+    
 }
 
 struct AssemblySearchShip_Previews: PreviewProvider {
